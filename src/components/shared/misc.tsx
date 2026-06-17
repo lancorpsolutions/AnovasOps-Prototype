@@ -1,6 +1,17 @@
-import { Search } from "lucide-react";
+import { Info, Search } from "lucide-react";
 import { Input, Select } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+
+export function InfoTooltip({ text }: { text: string }) {
+  return (
+    <span className="relative group inline-flex items-center">
+      <Info size={13} className="text-gray-400 cursor-help" />
+      <span className="hidden group-hover:block absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-max max-w-[200px] rounded-md bg-charcoal text-white text-[11px] px-2 py-1 leading-snug shadow-lg z-10">
+        {text}
+      </span>
+    </span>
+  );
+}
 
 export function SearchInput({
   value,

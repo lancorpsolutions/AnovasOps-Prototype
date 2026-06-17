@@ -1,8 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { Header } from "@/components/layout/header";
+import { Button } from "@/components/ui/button";
+import { Modal } from "@/components/ui/modal";
+import { Input, Label, Select } from "@/components/ui/input";
 import { useStore } from "@/lib/store";
-import { Check } from "lucide-react";
+import { useToast } from "@/components/ui/toast";
+import { Role, User } from "@/lib/types";
+import { Check, Pencil, Plus, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const plans = [
@@ -45,48 +51,225 @@ const plans = [
   },
 ];
 
-const serviceTypes = ["HVAC", "Plumbing", "Electrical", "Roofing", "Landscaping", "Pest Control", "General Contracting"];
+const roles: Role[] = ["Owner", "Operations Manager", "Dispatcher", "Crew Lead", "Office Admin"];
 
-export default function SettingsPage() {
-  const { company, users } = useStore();
+function CompanyInfoCard() {
+  const { company, updateCompany } = useStore();
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(company.name);
+  const [industry, setIndustry] = useState(company.industry);
+  const [size, setSize] = useState(String(company.size));
+  const [toolsUsed, setToolsUsed] = useState(company.toolsUsed.join(", "));
+
+  function handleSave() {
+    updateCompany({
+      name,
+      industry,
+      size: Number(size) || company.size,
+      toolsUsed: toolsUsed.split(",").map((t) => t.trim()).filter(Boolean),
+    });
+    setEditing(false);
+  }
 
   return (
-    <div>
-      <Header title="Settings" subtitle="Manage company details, team, service types, and subscription plan." />
-      <div className="p-6 space-y-6">
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-sm font-semibold text-charcoal">Company Info</h3>
+        {!editing && (
+          <button onClick={() => setEditing(true)} className="text-gray-400 hover:text-navy cursor-pointer">
+            <Pencil size={15} />
+          </button>
+        )}
+      </div>
+      {editing ? (
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <Label>Company Name</Label>
+              <Input value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div>
+              <Label>Industry</Label>
+              <Input value={industry} onChange={(e) => setIndustry(e.target.value)} />
+            </div>
+            <div>
+              <Label>Team Size</Label>
+              <Input type="number" value={size} onChange={(e) => setSize(e.target.value)} />
+            </div>
+            <div>
+              <Label>Tools Used (comma separated)</Label>
+              <Input value={toolsUsed} onChange={(e) => setToolsUsed(e.target.value)} />
+            </div>
+          </div>
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" onClick={() => setEditing(false)}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={handleSave}>
+              Save
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field label="Company Name" value={company.name} />
           <Field label="Industry" value={company.industry} />
           <Field label="Team Size" value={String(company.size)} />
           <Field label="Subscription Tier" value={company.subscriptionTier} />
           <Field label="Tools Used" value={company.toolsUsed.join(", ")} />
         </div>
+      )}
+    </div>
+  );
+}
 
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-          <h3 className="text-sm font-semibold text-charcoal mb-3">Service Types</h3>
-          <div className="flex flex-wrap gap-2">
-            {serviceTypes.map((s) => (
-              <span key={s} className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-700">
-                {s}
-              </span>
-            ))}
-          </div>
-        </div>
+function ServiceTypesCard() {
+  const { serviceTypes, addServiceType, removeServiceType } = useStore();
+  const [newType, setNewType] = useState("");
 
-        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-          <h3 className="text-sm font-semibold text-charcoal mb-3">Users</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {users.map((u) => (
-              <div key={u.id} className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2">
-                <div>
-                  <p className="text-sm font-medium text-charcoal">{u.name}</p>
-                  <p className="text-xs text-gray-400">{u.email}</p>
-                </div>
-                <span className="text-xs px-2 py-1 rounded-full bg-navy/5 text-navy font-medium">{u.role}</span>
-              </div>
-            ))}
+  function handleAdd() {
+    if (newType.trim()) {
+      addServiceType(newType.trim());
+      setNewType("");
+    }
+  }
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <h3 className="text-sm font-semibold text-charcoal mb-3">Service Types</h3>
+      <div className="flex flex-wrap gap-2 mb-3">
+        {serviceTypes.map((s) => (
+          <span key={s} className="text-xs pl-3 pr-2 py-1.5 rounded-full bg-gray-100 text-gray-700 flex items-center gap-1.5">
+            {s}
+            <button onClick={() => removeServiceType(s)} className="text-gray-400 hover:text-red-600 cursor-pointer">
+              <X size={11} />
+            </button>
+          </span>
+        ))}
+      </div>
+      <div className="flex items-center gap-2">
+        <Input
+          value={newType}
+          onChange={(e) => setNewType(e.target.value)}
+          placeholder="New service type"
+          className="h-8 text-xs w-48"
+        />
+        <Button size="sm" variant="outline" onClick={handleAdd}>
+          <Plus size={13} /> Add
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function UserForm({ user, onDone }: { user?: User; onDone: () => void }) {
+  const { createUser, updateUser } = useStore();
+  const [name, setName] = useState(user?.name ?? "");
+  const [email, setEmail] = useState(user?.email ?? "");
+  const [role, setRole] = useState<Role>(user?.role ?? "Office Admin");
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (user) {
+      updateUser(user.id, { name, email, role });
+    } else {
+      createUser({ name, email, role });
+    }
+    onDone();
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div>
+        <Label>Name</Label>
+        <Input value={name} onChange={(e) => setName(e.target.value)} required />
+      </div>
+      <div>
+        <Label>Email</Label>
+        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      </div>
+      <div>
+        <Label>Role</Label>
+        <Select value={role} onChange={(e) => setRole(e.target.value as Role)}>
+          {roles.map((r) => (
+            <option key={r} value={r}>
+              {r}
+            </option>
+          ))}
+        </Select>
+      </div>
+      <div className="flex justify-end gap-2 pt-2">
+        <Button type="button" variant="outline" onClick={onDone}>
+          Cancel
+        </Button>
+        <Button type="submit" variant="primary">
+          {user ? "Save Changes" : "Add User"}
+        </Button>
+      </div>
+    </form>
+  );
+}
+
+function UsersCard() {
+  const { users, deleteUser } = useStore();
+  const { showToast } = useToast();
+  const [addOpen, setAddOpen] = useState(false);
+  const [editUser, setEditUser] = useState<User | null>(null);
+
+  function handleDelete(id: string) {
+    if (confirm("Delete this user?")) {
+      deleteUser(id);
+      showToast("User deleted");
+    }
+  }
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-semibold text-charcoal">Users</h3>
+        <Button size="sm" variant="primary" onClick={() => setAddOpen(true)}>
+          <Plus size={13} /> Add User
+        </Button>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        {users.map((u) => (
+          <div key={u.id} className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2">
+            <div>
+              <p className="text-sm font-medium text-charcoal">{u.name}</p>
+              <p className="text-xs text-gray-400">{u.email}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs px-2 py-1 rounded-full bg-navy/5 text-navy font-medium">{u.role}</span>
+              <button onClick={() => setEditUser(u)} className="text-gray-400 hover:text-navy cursor-pointer">
+                <Pencil size={13} />
+              </button>
+              <button onClick={() => handleDelete(u.id)} className="text-gray-400 hover:text-red-600 cursor-pointer">
+                <Trash2 size={13} />
+              </button>
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
+      <Modal open={addOpen} onOpenChange={setAddOpen} title="Add User" description="Create a new team member.">
+        <UserForm onDone={() => setAddOpen(false)} />
+      </Modal>
+      <Modal open={!!editUser} onOpenChange={(o) => !o && setEditUser(null)} title="Edit User" description="Update user details.">
+        {editUser && <UserForm user={editUser} onDone={() => setEditUser(null)} />}
+      </Modal>
+    </div>
+  );
+}
+
+export default function SettingsPage() {
+  const { company } = useStore();
+
+  return (
+    <div>
+      <Header title="Settings" subtitle="Manage company details, team, service types, and subscription plan." />
+      <div className="p-6 space-y-6">
+        <CompanyInfoCard />
+        <ServiceTypesCard />
+        <UsersCard />
 
         <div>
           <h3 className="text-sm font-semibold text-charcoal mb-3">Subscription Plans</h3>

@@ -142,12 +142,19 @@ export interface Task {
 
 export type CapacityStatus = "Available" | "Balanced" | "Heavy" | "Overloaded";
 
+export interface CrewMember {
+  id: string;
+  name: string;
+  role: string;
+}
+
 export interface Crew {
   id: string;
   companyId: string;
   crewName: string;
   crewLeadId: string | null;
   crewMembers: string[];
+  members: CrewMember[];
   serviceSpecialty: ServiceType;
   activeJobs: number;
   capacityStatus: CapacityStatus;
@@ -244,4 +251,12 @@ export interface ActivityEvent {
   message: string;
   timestamp: string;
   category: "sales" | "job" | "invoice" | "customer" | "crew" | "risk" | "sop" | "automation";
+}
+
+export interface Notification {
+  id: string;
+  message: string;
+  userId: string;
+  read: boolean;
+  createdAt: string;
 }

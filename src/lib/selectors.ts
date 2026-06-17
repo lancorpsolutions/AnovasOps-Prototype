@@ -23,6 +23,14 @@ export function isCrewOverloaded(crew: Crew): boolean {
   return crew.capacityStatus === "Overloaded" || crew.activeJobs > 5;
 }
 
+export function getCrewActiveJobCount(crew: Crew, jobs: Job[]): number {
+  return jobs.filter((j) => j.assignedCrewId === crew.id && !["Completed", "Invoiced", "Paid"].includes(j.status)).length;
+}
+
+export function isCrewOverloadedLive(crew: Crew, jobs: Job[]): boolean {
+  return getCrewActiveJobCount(crew, jobs) > 3;
+}
+
 export function calcRevenueAtRisk(jobs: Job[], invoices: Invoice[], opportunities: SalesOpportunity[]): number {
   const delayedJobValue = jobs.filter(isJobBehindSchedule).reduce((sum, j) => sum + j.jobValue, 0);
   const overdueInvoiceValue = invoices.filter(isInvoiceOverdue).reduce((sum, i) => sum + i.amount, 0);

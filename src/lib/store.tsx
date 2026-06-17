@@ -21,12 +21,14 @@ import {
   AutomationRule,
   Company,
   Crew,
+  CrewMember,
   Customer,
   Invoice,
   InvoiceStatus,
   Job,
   JobStage,
   JobStatus,
+  Notification,
   OperationalRisk,
   PipelineStage,
   SOP,
@@ -59,11 +61,15 @@ interface StoreState {
   sops: SOP[];
   automationRules: AutomationRule[];
   activity: ActivityEvent[];
+  notifications: Notification[];
+  serviceTypes: string[];
 }
 
 interface StoreActions {
   addActivity: (message: string, category: ActivityEvent["category"]) => void;
   createOpportunity: (data: Omit<SalesOpportunity, "id" | "companyId" | "createdAt" | "updatedAt" | "stageEnteredAt">) => void;
+  updateOpportunity: (id: string, data: Omit<SalesOpportunity, "id" | "companyId" | "createdAt" | "updatedAt" | "stageEnteredAt">) => void;
+  deleteOpportunity: (id: string) => void;
   moveOpportunityStage: (id: string, stage: PipelineStage) => void;
   updateOpportunityFollowUp: (id: string, date: string) => void;
   createJob: (data: Omit<Job, "id" | "companyId" | "createdAt" | "updatedAt">) => void;
@@ -84,13 +90,26 @@ interface StoreActions {
   createAutomationRule: (data: Omit<AutomationRule, "id" | "companyId">) => void;
   toggleAutomationRule: (id: string) => void;
   deleteAutomationRule: (id: string) => void;
+  updateAutomationRule: (id: string, data: Omit<AutomationRule, "id" | "companyId">) => void;
+  createCrew: (data: Omit<Crew, "id" | "companyId" | "createdAt" | "updatedAt">) => void;
+  deleteCrew: (id: string) => void;
+  addCrewMember: (crewId: string, member: Omit<CrewMember, "id">) => void;
+  removeCrewMember: (crewId: string, memberId: string) => void;
+  markNotificationRead: (id: string) => void;
+  markAllNotificationsRead: () => void;
+  updateCompany: (data: Partial<Company>) => void;
+  addServiceType: (name: string) => void;
+  removeServiceType: (name: string) => void;
+  createUser: (data: Omit<User, "id" | "companyId" | "createdAt" | "updatedAt">) => void;
+  updateUser: (id: string, data: Partial<Omit<User, "id" | "companyId" | "createdAt" | "updatedAt">>) => void;
+  deleteUser: (id: string) => void;
+  createCustomer: (data: Omit<Customer, "id" | "companyId" | "createdAt" | "updatedAt">) => void;
 }
 
 const StoreContext = createContext<(StoreState & StoreActions) | null>(null);
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
-  const [company] = useState<Company>(initialCompany);
-  const [users] = useState<User[]>(initialUsers);
+  const [users, setUsers] = useState<User[]>(initialUsers);
   const [customers, setCustomers] = useState<Customer[]>(initialCustomers);
   const [opportunities, setOpportunities] = useState<SalesOpportunity[]>(initialOpportunities);
   const [jobs, setJobs] = useState<Job[]>(initialJobs);
@@ -102,10 +121,29 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [sops, setSops] = useState<SOP[]>(initialSops);
   const [automationRules, setAutomationRules] = useState<AutomationRule[]>(initialAutomationRules);
   const [activity, setActivity] = useState<ActivityEvent[]>(initialActivity);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [serviceTypes, setServiceTypes] = useState<string[]>([
+    "HVAC",
+    "Plumbing",
+    "Electrical",
+    "Roofing",
+    "Landscaping",
+    "Pest Control",
+    "General Contracting",
+  ]);
+  const [company, setCompany] = useState<Company>(initialCompany);
 
   const addActivity = useCallback((message: string, category: ActivityEvent["category"]) => {
     setActivity((prev) => [
       { id: newId("act"), companyId: initialCompany.id, message, timestamp: nowIso(), category },
+      ...prev,
+    ]);
+  }, []);
+
+  const pushNotification = useCallback((userId: string | null, message: string) => {
+    if (!userId) return;
+    setNotifications((prev) => [
+      { id: newId("notif"), message, userId, read: false, createdAt: nowIso() },
       ...prev,
     ]);
   }, []);
@@ -124,6 +162,15 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     ]);
     addActivity(`New sales opportunity created: ${data.serviceType}`, "sales");
   }, [addActivity]);
+
+  const updateOpportunity: StoreActions["updateOpportunity"] = useCallback((id, data) => {
+    setOpportunities((prev) => prev.map((o) => (o.id === id ? { ...o, ...data, updatedAt: nowIso() } : o)));
+    addActivity(`Sales opportunity updated: ${data.serviceType}`, "sales");
+  }, [addActivity]);
+
+  const deleteOpportunity: StoreActions["deleteOpportunity"] = useCallback((id) => {
+    setOpportunities((prev) => prev.filter((o) => o.id !== id));
+  }, []);
 
   const moveOpportunityStage: StoreActions["moveOpportunityStage"] = useCallback((id, stage) => {
     setOpportunities((prev) =>
@@ -199,7 +246,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       ...prev,
     ]);
     addActivity(`Operational risk created: ${data.type}`, "risk");
-  }, [addActivity]);
+    pushNotification(data.ownerId, `New risk created: ${data.type}`);
+  }, [addActivity, pushNotification]);
 
   const resolveRisk: StoreActions["resolveRisk"] = useCallback((id) => {
     setRisks((prev) => prev.map((r) => (r.id === id ? { ...r, status: "Resolved", updatedAt: nowIso() } : r)));
@@ -213,7 +261,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const escalateRisk: StoreActions["escalateRisk"] = useCallback((id) => {
     setRisks((prev) => prev.map((r) => (r.id === id ? { ...r, severity: "Critical", updatedAt: nowIso() } : r)));
     addActivity(`Operational risk escalated`, "risk");
-  }, [addActivity]);
+    const risk = risks.find((r) => r.id === id);
+    if (risk) pushNotification(risk.ownerId, "Risk escalated to Critical severity");
+  }, [addActivity, pushNotification, risks]);
 
   const createInvoice: StoreActions["createInvoice"] = useCallback((data) => {
     setInvoices((prev) => [
@@ -265,6 +315,84 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     setAutomationRules((prev) => prev.filter((r) => r.id !== id));
   }, []);
 
+  const updateAutomationRule: StoreActions["updateAutomationRule"] = useCallback((id, data) => {
+    setAutomationRules((prev) => prev.map((r) => (r.id === id ? { ...r, ...data } : r)));
+    addActivity(`Automation rule updated: ${data.name}`, "automation");
+  }, [addActivity]);
+
+  const createCrew: StoreActions["createCrew"] = useCallback((data) => {
+    setCrews((prev) => [
+      { ...data, id: newId("crew"), companyId: initialCompany.id, createdAt: nowIso(), updatedAt: nowIso() },
+      ...prev,
+    ]);
+    addActivity(`New crew created: ${data.crewName}`, "crew");
+  }, [addActivity]);
+
+  const deleteCrew: StoreActions["deleteCrew"] = useCallback((id) => {
+    setCrews((prev) => prev.filter((c) => c.id !== id));
+  }, []);
+
+  const addCrewMember: StoreActions["addCrewMember"] = useCallback((crewId, member) => {
+    setCrews((prev) =>
+      prev.map((c) =>
+        c.id === crewId
+          ? { ...c, members: [...c.members, { ...member, id: newId("cm") }], updatedAt: nowIso() }
+          : c
+      )
+    );
+  }, []);
+
+  const removeCrewMember: StoreActions["removeCrewMember"] = useCallback((crewId, memberId) => {
+    setCrews((prev) =>
+      prev.map((c) =>
+        c.id === crewId ? { ...c, members: c.members.filter((m) => m.id !== memberId), updatedAt: nowIso() } : c
+      )
+    );
+  }, []);
+
+  const markNotificationRead: StoreActions["markNotificationRead"] = useCallback((id) => {
+    setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
+  }, []);
+
+  const markAllNotificationsRead: StoreActions["markAllNotificationsRead"] = useCallback(() => {
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  }, []);
+
+  const updateCompany: StoreActions["updateCompany"] = useCallback((data) => {
+    setCompany((prev) => ({ ...prev, ...data, updatedAt: nowIso() }));
+  }, []);
+
+  const addServiceType: StoreActions["addServiceType"] = useCallback((name) => {
+    setServiceTypes((prev) => (prev.includes(name) ? prev : [...prev, name]));
+  }, []);
+
+  const removeServiceType: StoreActions["removeServiceType"] = useCallback((name) => {
+    setServiceTypes((prev) => prev.filter((s) => s !== name));
+  }, []);
+
+  const createUser: StoreActions["createUser"] = useCallback((data) => {
+    setUsers((prev) => [
+      ...prev,
+      { ...data, id: newId("u"), companyId: initialCompany.id, createdAt: nowIso(), updatedAt: nowIso() },
+    ]);
+  }, []);
+
+  const updateUser: StoreActions["updateUser"] = useCallback((id, data) => {
+    setUsers((prev) => prev.map((u) => (u.id === id ? { ...u, ...data, updatedAt: nowIso() } : u)));
+  }, []);
+
+  const deleteUser: StoreActions["deleteUser"] = useCallback((id) => {
+    setUsers((prev) => prev.filter((u) => u.id !== id));
+  }, []);
+
+  const createCustomer: StoreActions["createCustomer"] = useCallback((data) => {
+    setCustomers((prev) => [
+      { ...data, id: newId("cust"), companyId: initialCompany.id, createdAt: nowIso(), updatedAt: nowIso() },
+      ...prev,
+    ]);
+    addActivity(`New customer created: ${data.customerName}`, "customer");
+  }, [addActivity]);
+
   const value = useMemo<StoreState & StoreActions>(
     () => ({
       company,
@@ -280,8 +408,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       sops,
       automationRules,
       activity,
+      notifications,
+      serviceTypes,
       addActivity,
       createOpportunity,
+      updateOpportunity,
+      deleteOpportunity,
       moveOpportunityStage,
       updateOpportunityFollowUp,
       createJob,
@@ -302,6 +434,20 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       createAutomationRule,
       toggleAutomationRule,
       deleteAutomationRule,
+      updateAutomationRule,
+      createCrew,
+      deleteCrew,
+      addCrewMember,
+      removeCrewMember,
+      markNotificationRead,
+      markAllNotificationsRead,
+      updateCompany,
+      addServiceType,
+      removeServiceType,
+      createUser,
+      updateUser,
+      deleteUser,
+      createCustomer,
     }),
     [
       company,
@@ -317,8 +463,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       sops,
       automationRules,
       activity,
+      notifications,
+      serviceTypes,
       addActivity,
       createOpportunity,
+      updateOpportunity,
+      deleteOpportunity,
       moveOpportunityStage,
       updateOpportunityFollowUp,
       createJob,
@@ -339,6 +489,20 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       createAutomationRule,
       toggleAutomationRule,
       deleteAutomationRule,
+      updateAutomationRule,
+      createCrew,
+      deleteCrew,
+      addCrewMember,
+      removeCrewMember,
+      markNotificationRead,
+      markAllNotificationsRead,
+      updateCompany,
+      addServiceType,
+      removeServiceType,
+      createUser,
+      updateUser,
+      deleteUser,
+      createCustomer,
     ]
   );
 

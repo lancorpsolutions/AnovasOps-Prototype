@@ -8,7 +8,7 @@ import { Modal } from "@/components/ui/modal";
 import { Select, Textarea } from "@/components/ui/input";
 import { CreateTaskForm } from "@/components/forms/create-task-form";
 import { StatusBadge, PriorityBadge } from "@/components/shared/badges";
-import { EmptyState } from "@/components/shared/misc";
+import { EmptyState, InfoTooltip } from "@/components/shared/misc";
 import { useCrewName, useCustomerName, useStore, useUserName } from "@/lib/store";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { JobStatus, TaskStatus } from "@/lib/types";
@@ -149,7 +149,14 @@ export default function JobDetailPage() {
               <Info label="Customer" value={customer} />
               <Info label="Service Type" value={job.serviceType} />
               <Info label="Job Manager" value={manager} />
-              <Info label="Job Value" value={formatCurrency(job.jobValue)} />
+              <Info
+                label={
+                  <span className="inline-flex items-center gap-1">
+                    Job Value <InfoTooltip text="Total contracted value of the job." />
+                  </span>
+                }
+                value={formatCurrency(job.jobValue)}
+              />
               <Info label="Scheduled Start" value={formatDate(job.scheduledStartDate)} />
               <Info label="Scheduled End" value={formatDate(job.scheduledEndDate)} />
             </div>
@@ -248,7 +255,7 @@ export default function JobDetailPage() {
   );
 }
 
-function Info({ label, value }: { label: string; value: string }) {
+function Info({ label, value }: { label: React.ReactNode; value: string }) {
   return (
     <div>
       <p className="text-xs text-gray-400">{label}</p>

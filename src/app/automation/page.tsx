@@ -5,14 +5,17 @@ import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { Modal, ConfirmDialog } from "@/components/ui/modal";
 import { CreateAutomationRuleForm } from "@/components/forms/create-automation-rule-form";
+import { EditAutomationForm } from "@/components/forms/edit-automation-form";
 import { useStore } from "@/lib/store";
-import { Plus, Zap, Trash2 } from "lucide-react";
+import { AutomationRule } from "@/lib/types";
+import { Plus, Zap, Trash2, Pencil } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function AutomationRulesPage() {
   const { automationRules, toggleAutomationRule, deleteAutomationRule } = useStore();
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [editRule, setEditRule] = useState<AutomationRule | null>(null);
 
   return (
     <div>
@@ -34,9 +37,14 @@ export default function AutomationRulesPage() {
                   <Zap size={15} className="text-orange" />
                   <h3 className="text-sm font-semibold text-charcoal">{rule.name}</h3>
                 </div>
-                <button onClick={() => setDeleteId(rule.id)} className="text-gray-400 hover:text-red-600 cursor-pointer">
-                  <Trash2 size={15} />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => setEditRule(rule)} className="text-gray-400 hover:text-navy cursor-pointer">
+                    <Pencil size={15} />
+                  </button>
+                  <button onClick={() => setDeleteId(rule.id)} className="text-gray-400 hover:text-red-600 cursor-pointer">
+                    <Trash2 size={15} />
+                  </button>
+                </div>
               </div>
               <p className="text-xs text-gray-500 mb-1">
                 <span className="font-medium text-gray-600">Trigger:</span> {rule.trigger}
@@ -56,14 +64,14 @@ export default function AutomationRulesPage() {
                 <button
                   onClick={() => toggleAutomationRule(rule.id)}
                   className={cn(
-                    "h-6 w-11 rounded-full transition-colors relative cursor-pointer",
-                    rule.isActive ? "bg-orange" : "bg-gray-300"
+                    "h-5 w-9 rounded-full transition-colors relative cursor-pointer",
+                    rule.isActive ? "bg-emerald-500" : "bg-gray-300"
                   )}
                 >
                   <span
                     className={cn(
-                      "absolute top-0.5 h-5 w-5 rounded-full bg-white transition-transform shadow",
-                      rule.isActive ? "translate-x-5" : "translate-x-0.5"
+                      "absolute top-0.5 h-4 w-4 rounded-full bg-white transition-transform shadow",
+                      rule.isActive ? "translate-x-4" : "translate-x-0.5"
                     )}
                   />
                 </button>
@@ -83,6 +91,14 @@ export default function AutomationRulesPage() {
         confirmLabel="Delete"
         onConfirm={() => deleteId && deleteAutomationRule(deleteId)}
       />
+      <Modal
+        open={!!editRule}
+        onOpenChange={(o) => !o && setEditRule(null)}
+        title="Edit Automation Rule"
+        description="Update the trigger, condition, and action."
+      >
+        {editRule && <EditAutomationForm rule={editRule} onDone={() => setEditRule(null)} />}
+      </Modal>
     </div>
   );
 }

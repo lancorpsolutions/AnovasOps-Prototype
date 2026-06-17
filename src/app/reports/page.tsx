@@ -1,10 +1,15 @@
 "use client";
 
+import { useRef } from "react";
 import { Header } from "@/components/layout/header";
 import { ChartCard } from "@/components/shared/misc";
+import { Button } from "@/components/ui/button";
 import { useStore } from "@/lib/store";
+import { useToast } from "@/components/ui/toast";
 import { calcRevenueAtRisk, isCompletedNotBilled, isEstimateOverdue, isJobBehindSchedule, isInvoiceOverdue } from "@/lib/selectors";
-import { formatCurrency } from "@/lib/utils";
+import { exportToCsv, formatCurrency, parseCsv } from "@/lib/utils";
+import { Customer, Invoice, Job } from "@/lib/types";
+import { Download, Upload } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -21,8 +26,45 @@ import {
 
 const COLORS = ["#0f1b2d", "#c9622d", "#e07b3f", "#94a3b8", "#dc2626"];
 
+function ImportExportRow({
+  label,
+  onExport,
+  onImport,
+}: {
+  label: string;
+  onExport: () => void;
+  onImport: (file: File) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  return (
+    <div className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2.5">
+      <span className="text-sm font-medium text-charcoal">{label}</span>
+      <div className="flex items-center gap-2">
+        <Button size="sm" variant="outline" onClick={onExport}>
+          <Download size={13} /> Export CSV
+        </Button>
+        <Button size="sm" variant="outline" onClick={() => inputRef.current?.click()}>
+          <Upload size={13} /> Import CSV
+        </Button>
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".csv"
+          className="hidden"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) onImport(file);
+            e.target.value = "";
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function ReportsPage() {
-  const { jobs, opportunities, invoices, risks, crews } = useStore();
+  const { jobs, opportunities, invoices, customers, crews, risks, createJob, createCustomer, createInvoice } = useStore();
+  const { showToast } = useToast();
 
   const revenueAtRisk = calcRevenueAtRisk(jobs, invoices, opportunities);
   const estimatesOutstanding = opportunities.filter((o) => !["Won", "Lost"].includes(o.stage)).length;
@@ -44,10 +86,87 @@ export default function ReportsPage() {
     value: risks.filter((r) => r.type === type).length,
   }));
 
+  function handleImportFile(file: File, kind: "jobs" | "customers" | "invoices") {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = String(reader.result ?? "");
+      const rows = parseCsv(text);
+      let count = 0;
+      rows.forEach((row) => {
+        if (kind === "jobs") {
+          createJob({
+            customerId: row.customerId || customers[0]?.id || "",
+            jobName: row.jobName || "Imported Job",
+            serviceType: (row.serviceType as Job["serviceType"]) || "HVAC",
+            jobValue: Number(row.jobValue) || 0,
+            jobManagerId: row.jobManagerId || "",
+            assignedCrewId: row.assignedCrewId || null,
+            status: (row.status as Job["status"]) || "Not Scheduled",
+            priority: (row.priority as Job["priority"]) || "Medium",
+            scheduledStartDate: row.scheduledStartDate || new Date().toISOString(),
+            scheduledEndDate: row.scheduledEndDate || new Date().toISOString(),
+            actualStartDate: null,
+            actualEndDate: null,
+            address: row.address || "",
+            notes: row.notes || "",
+          });
+        } else if (kind === "customers") {
+          createCustomer({
+            customerName: row.customerName || "Imported Customer",
+            primaryContact: row.primaryContact || "",
+            email: row.email || "",
+            phone: row.phone || "",
+            address: row.address || "",
+            status: (row.status as Customer["status"]) || "Prospect",
+            openJobs: Number(row.openJobs) || 0,
+            totalRevenue: Number(row.totalRevenue) || 0,
+            riskStatus: (row.riskStatus as Customer["riskStatus"]) || "Healthy",
+            lastActivity: row.lastActivity || new Date().toISOString(),
+          });
+        } else {
+          createInvoice({
+            customerId: row.customerId || customers[0]?.id || "",
+            jobId: row.jobId || "",
+            invoiceNumber: row.invoiceNumber || `INV-${Math.floor(1000 + Math.random() * 9000)}`,
+            amount: Number(row.amount) || 0,
+            status: (row.status as Invoice["status"]) || "Draft",
+            dueDate: row.dueDate || new Date().toISOString(),
+            sentDate: row.sentDate || null,
+            paidDate: row.paidDate || null,
+          });
+        }
+        count += 1;
+      });
+      showToast(`Imported ${count} ${kind}`);
+    };
+    reader.readAsText(file);
+  }
+
   return (
     <div>
       <Header title="Operational Reports" subtitle="Track jobs, estimates, crew capacity, overdue invoices, and revenue at risk." />
       <div className="p-6 space-y-5">
+        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+          <h3 className="text-sm font-semibold text-charcoal mb-3">Import / Export</h3>
+          <div className="space-y-2">
+            <ImportExportRow
+              label="Jobs"
+              onExport={() => exportToCsv("jobs.csv", jobs)}
+              onImport={(file) => handleImportFile(file, "jobs")}
+            />
+            <ImportExportRow
+              label="Customers"
+              onExport={() => exportToCsv("customers.csv", customers)}
+              onImport={(file) => handleImportFile(file, "customers")}
+            />
+            <ImportExportRow
+              label="Invoices"
+              onExport={() => exportToCsv("invoices.csv", invoices)}
+              onImport={(file) => handleImportFile(file, "invoices")}
+            />
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <SummaryStat label="Revenue at Risk" value={formatCurrency(revenueAtRisk)} />
           <SummaryStat label="Estimates Outstanding" value={estimatesOutstanding} />

@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { CreateOpportunityForm } from "@/components/forms/create-opportunity-form";
 import { useStore, useCustomerName, useUserName } from "@/lib/store";
+import { useToast } from "@/components/ui/toast";
 import { PipelineStage, SalesOpportunity } from "@/lib/types";
 import { formatCurrency, formatDate, daysBetween, isPast } from "@/lib/utils";
-import { Plus, Calendar } from "lucide-react";
+import { Plus, Calendar, Pencil, Trash2 } from "lucide-react";
 
 const stages: PipelineStage[] = [
   "Lead Received",
@@ -24,32 +25,56 @@ function OpportunityCard({ opp }: { opp: SalesOpportunity }) {
   const customer = useCustomerName(opp.customerId);
   const owner = useUserName(opp.ownerId);
   const overdue = isPast(opp.followUpDate) && !["Won", "Lost"].includes(opp.stage);
-  const { moveOpportunityStage } = useStore();
+  const { moveOpportunityStage, deleteOpportunity } = useStore();
+  const { showToast } = useToast();
+  const [editOpen, setEditOpen] = useState(false);
+
+  function handleDelete() {
+    if (confirm("Delete this opportunity?")) {
+      deleteOpportunity(opp.id);
+      showToast("Opportunity deleted");
+    }
+  }
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-sm space-y-2">
-      <p className="text-sm font-semibold text-charcoal">{customer}</p>
-      <p className="text-xs text-gray-500">{opp.serviceType}</p>
-      <p className="text-sm font-medium text-orange">{formatCurrency(opp.estimatedValue)}</p>
-      <div className="flex items-center justify-between text-xs text-gray-500">
-        <span>{owner}</span>
-        <span className={overdue ? "text-red-600 font-medium flex items-center gap-1" : "flex items-center gap-1"}>
-          <Calendar size={11} /> {formatDate(opp.followUpDate)}
-        </span>
+    <>
+      <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-sm space-y-2">
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-semibold text-charcoal">{customer}</p>
+          <div className="flex items-center gap-1.5">
+            <button onClick={() => setEditOpen(true)} className="text-gray-400 hover:text-navy cursor-pointer">
+              <Pencil size={13} />
+            </button>
+            <button onClick={handleDelete} className="text-gray-400 hover:text-red-600 cursor-pointer">
+              <Trash2 size={13} />
+            </button>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500">{opp.serviceType}</p>
+        <p className="text-sm font-medium text-orange">{formatCurrency(opp.estimatedValue)}</p>
+        <div className="flex items-center justify-between text-xs text-gray-500">
+          <span>{owner}</span>
+          <span className={overdue ? "text-red-600 font-medium flex items-center gap-1" : "flex items-center gap-1"}>
+            <Calendar size={11} /> {formatDate(opp.followUpDate)}
+          </span>
+        </div>
+        <p className="text-[11px] text-gray-400">{daysBetween(opp.stageEnteredAt)} days in stage</p>
+        <select
+          value={opp.stage}
+          onChange={(e) => moveOpportunityStage(opp.id, e.target.value as PipelineStage)}
+          className="w-full text-xs border border-gray-200 rounded-md h-7 px-1.5"
+        >
+          {stages.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
       </div>
-      <p className="text-[11px] text-gray-400">{daysBetween(opp.stageEnteredAt)} days in stage</p>
-      <select
-        value={opp.stage}
-        onChange={(e) => moveOpportunityStage(opp.id, e.target.value as PipelineStage)}
-        className="w-full text-xs border border-gray-200 rounded-md h-7 px-1.5"
-      >
-        {stages.map((s) => (
-          <option key={s} value={s}>
-            {s}
-          </option>
-        ))}
-      </select>
-    </div>
+      <Modal open={editOpen} onOpenChange={setEditOpen} title="Edit Opportunity" description="Update this sales opportunity.">
+        <CreateOpportunityForm opportunity={opp} onDone={() => setEditOpen(false)} />
+      </Modal>
+    </>
   );
 }
 

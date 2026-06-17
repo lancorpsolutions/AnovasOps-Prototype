@@ -13,6 +13,7 @@ import {
   openRisks,
   topRisks,
 } from "@/lib/selectors";
+import { generateDailyBriefing } from "@/lib/aria";
 import { formatCurrency, timeAgo } from "@/lib/utils";
 import {
   Briefcase,
@@ -21,11 +22,14 @@ import {
   ShieldAlert,
   Receipt,
   DollarSign,
+  Sparkles,
+  CheckCircle2,
 } from "lucide-react";
 import Link from "next/link";
 
 export default function DashboardPage() {
   const { jobs, opportunities, invoices, risks, crews, users, activity } = useStore();
+  const briefing = generateDailyBriefing(risks, jobs, invoices, opportunities, crews);
 
   const activeJobs = jobs.filter((j) => !["Completed", "Invoiced", "Paid"].includes(j.status));
   const behindSchedule = jobs.filter(isJobBehindSchedule);
@@ -54,13 +58,67 @@ export default function DashboardPage() {
         subtitle="See what is happening, fix what is stuck, and protect revenue before small issues become bigger problems."
       />
       <div className="p-6 space-y-6">
+        <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-5 border-t-2 border-t-orange">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="h-7 w-7 rounded-lg bg-gradient-to-br from-orange to-navy flex items-center justify-center">
+              <Sparkles size={15} className="text-white" />
+            </span>
+            <h3 className="text-sm font-semibold text-charcoal">A.R.I.A. — Daily Operations Briefing</h3>
+          </div>
+          <p className="text-sm text-gray-700 mb-4">{briefing.summary}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Top Risks</p>
+              {briefing.topRisks.length === 0 ? (
+                <p className="text-xs text-gray-400">No open risks right now.</p>
+              ) : (
+                <ul className="space-y-1.5">
+                  {briefing.topRisks.map((r, idx) => (
+                    <li key={idx} className="flex items-center justify-between text-sm gap-2">
+                      <span className="text-gray-700">{r.text}</span>
+                      <span className="text-xs font-medium text-red-600 whitespace-nowrap">{r.impact}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Recommended Actions</p>
+              {briefing.recommendedActions.length === 0 ? (
+                <p className="text-xs text-gray-400">No actions needed today.</p>
+              ) : (
+                <ul className="space-y-1.5">
+                  {briefing.recommendedActions.map((a, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5 text-sm text-gray-700">
+                      <CheckCircle2 size={14} className="text-emerald-600 mt-0.5 shrink-0" />
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          <MetricCard label="Active Jobs" value={activeJobs.length} icon={Briefcase} />
-          <MetricCard label="Jobs Behind Schedule" value={behindSchedule.length} icon={Clock} tone="warning" />
-          <MetricCard label="Estimates Needing Follow-Up" value={estimatesNeedingFollowUp.length} icon={AlertOctagon} tone="warning" />
-          <MetricCard label="Open Operational Risks" value={openOpsRisks.length} icon={ShieldAlert} tone="danger" />
-          <MetricCard label="Overdue Invoices" value={overdueInvoices.length} icon={Receipt} tone="danger" />
-          <MetricCard label="Revenue At Risk" value={formatCurrency(revenueAtRisk)} icon={DollarSign} tone="danger" />
+          <Link href="/jobs" className="block rounded-xl hover:shadow-md hover:border-navy/30 transition">
+            <MetricCard label="Active Jobs" value={activeJobs.length} icon={Briefcase} />
+          </Link>
+          <Link href="/jobs" className="block rounded-xl hover:shadow-md hover:border-navy/30 transition">
+            <MetricCard label="Jobs Behind Schedule" value={behindSchedule.length} icon={Clock} tone="warning" />
+          </Link>
+          <Link href="/sales" className="block rounded-xl hover:shadow-md hover:border-navy/30 transition">
+            <MetricCard label="Estimates Needing Follow-Up" value={estimatesNeedingFollowUp.length} icon={AlertOctagon} tone="warning" />
+          </Link>
+          <Link href="/risks" className="block rounded-xl hover:shadow-md hover:border-navy/30 transition">
+            <MetricCard label="Open Operational Risks" value={openOpsRisks.length} icon={ShieldAlert} tone="danger" />
+          </Link>
+          <Link href="/invoices" className="block rounded-xl hover:shadow-md hover:border-navy/30 transition">
+            <MetricCard label="Overdue Invoices" value={overdueInvoices.length} icon={Receipt} tone="danger" />
+          </Link>
+          <Link href="/sales" className="block rounded-xl hover:shadow-md hover:border-navy/30 transition">
+            <MetricCard label="Revenue At Risk" value={formatCurrency(revenueAtRisk)} icon={DollarSign} tone="danger" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { CreateJobForm } from "@/components/forms/create-job-form";
-import { SearchInput, FilterDropdown, EmptyState } from "@/components/shared/misc";
+import { SearchInput, FilterDropdown, EmptyState, InfoTooltip } from "@/components/shared/misc";
 import { StatusBadge, PriorityBadge } from "@/components/shared/badges";
 import { useCrewName, useCustomerName, useStore } from "@/lib/store";
 import { isJobBehindSchedule } from "@/lib/selectors";
@@ -110,7 +110,11 @@ export default function JobsPage() {
                   <th className="px-4 py-3">Priority</th>
                   <th className="px-4 py-3">Start</th>
                   <th className="px-4 py-3">End</th>
-                  <th className="px-4 py-3">Value</th>
+                  <th className="px-4 py-3">
+                    <span className="inline-flex items-center gap-1">
+                      Value <InfoTooltip text="Total contracted value of the job." />
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody>

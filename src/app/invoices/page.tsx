@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { SearchInput, FilterDropdown, EmptyState } from "@/components/shared/misc";
@@ -10,12 +11,43 @@ import { isInvoiceOverdue } from "@/lib/selectors";
 import { formatCurrency, formatDate, daysBetween, isPast } from "@/lib/utils";
 import { InvoiceStatus } from "@/lib/types";
 import { useToast } from "@/components/ui/toast";
+import { CreditCard, Link2, Receipt } from "lucide-react";
+
+const connectedAccounts = [
+  { name: "PayPal", icon: CreditCard },
+  { name: "Stripe", icon: Link2 },
+  { name: "QuickBooks", icon: Receipt },
+];
+
+function ConnectedAccountsCard() {
+  const { showToast } = useToast();
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <h3 className="text-sm font-semibold text-charcoal mb-3">Connected Accounts</h3>
+      <div className="space-y-2">
+        {connectedAccounts.map(({ name, icon: Icon }) => (
+          <div key={name} className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2.5">
+            <div className="flex items-center gap-2">
+              <Icon size={16} className="text-gray-500" />
+              <span className="text-sm font-medium text-charcoal">{name}</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 font-medium">Coming soon</span>
+            </div>
+            <Button size="sm" variant="outline" onClick={() => showToast("Coming soon")}>
+              Connect
+            </Button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const statuses: InvoiceStatus[] = ["Draft", "Sent", "Due Soon", "Overdue", "Paid", "Escalated"];
 
 function InvoiceRow({ invoiceId }: { invoiceId: string }) {
   const { invoices, markInvoiceSent, markInvoicePaid, escalateInvoice, createRisk } = useStore();
   const { showToast } = useToast();
+  const router = useRouter();
   const invoice = invoices.find((i) => i.id === invoiceId)!;
   const customer = useCustomerName(invoice.customerId);
   const job = useJobName(invoice.jobId);
@@ -66,7 +98,8 @@ function InvoiceRow({ invoiceId }: { invoiceId: string }) {
                   recommendedAction: "Send payment reminder and consider escalation.",
                   status: "Open",
                 });
-                showToast("Operational risk created");
+                showToast("Risk created — view it on the Risks page");
+                router.push("/risks");
               }}
             >
               Create Risk
@@ -98,7 +131,8 @@ export default function InvoicesPage() {
   return (
     <div>
       <Header title="Invoices" subtitle="Track outstanding invoices and take action before they become risks." />
-      <div className="p-6">
+      <div className="p-6 space-y-5">
+        <ConnectedAccountsCard />
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <SearchInput value={search} onChange={setSearch} placeholder="Search invoice #..." className="w-56" />
           <FilterDropdown value={status} onChange={setStatus} options={statuses} label="Statuses" />

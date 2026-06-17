@@ -45,9 +45,19 @@ export const users: User[] = [
 ];
 
 export const crews: Crew[] = [
-  { id: "crew-a", companyId: COMPANY_ID, crewName: "HVAC Crew A", crewLeadId: "u-ray", crewMembers: ["Ray Thompson", "Tom Diaz", "Sam Patel"], serviceSpecialty: "HVAC", activeJobs: 6, capacityStatus: "Heavy", createdAt: daysFromNow(-300), updatedAt: daysFromNow(-1) },
-  { id: "crew-b", companyId: COMPANY_ID, crewName: "Plumbing Crew B", crewLeadId: "u-malik", crewMembers: ["Malik Johnson", "Chris Lee", "Omar Diallo"], serviceSpecialty: "Plumbing", activeJobs: 4, capacityStatus: "Balanced", createdAt: daysFromNow(-300), updatedAt: daysFromNow(-1) },
-  { id: "crew-c", companyId: COMPANY_ID, crewName: "Install Crew C", crewLeadId: null, crewMembers: ["Open Lead", "Devon Marsh"], serviceSpecialty: "General Contracting", activeJobs: 7, capacityStatus: "Overloaded", createdAt: daysFromNow(-300), updatedAt: daysFromNow(-1) },
+  { id: "crew-a", companyId: COMPANY_ID, crewName: "HVAC Crew A", crewLeadId: "u-ray", crewMembers: ["Ray Thompson", "Tom Diaz", "Sam Patel"], members: [
+    { id: "cm-1", name: "Ray Thompson", role: "Crew Lead" },
+    { id: "cm-2", name: "Tom Diaz", role: "Technician" },
+    { id: "cm-3", name: "Sam Patel", role: "Technician" },
+  ], serviceSpecialty: "HVAC", activeJobs: 6, capacityStatus: "Heavy", createdAt: daysFromNow(-300), updatedAt: daysFromNow(-1) },
+  { id: "crew-b", companyId: COMPANY_ID, crewName: "Plumbing Crew B", crewLeadId: "u-malik", crewMembers: ["Malik Johnson", "Chris Lee", "Omar Diallo"], members: [
+    { id: "cm-4", name: "Malik Johnson", role: "Crew Lead" },
+    { id: "cm-5", name: "Chris Lee", role: "Technician" },
+    { id: "cm-6", name: "Omar Diallo", role: "Technician" },
+  ], serviceSpecialty: "Plumbing", activeJobs: 4, capacityStatus: "Balanced", createdAt: daysFromNow(-300), updatedAt: daysFromNow(-1) },
+  { id: "crew-c", companyId: COMPANY_ID, crewName: "Install Crew C", crewLeadId: null, crewMembers: ["Open Lead", "Devon Marsh"], members: [
+    { id: "cm-7", name: "Devon Marsh", role: "Technician" },
+  ], serviceSpecialty: "General Contracting", activeJobs: 7, capacityStatus: "Overloaded", createdAt: daysFromNow(-300), updatedAt: daysFromNow(-1) },
 ];
 
 export const customers: Customer[] = [

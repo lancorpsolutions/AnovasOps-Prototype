@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Select, Textarea } from "@/components/ui/input";
 import { useStore } from "@/lib/store";
-import { ServiceType } from "@/lib/types";
+import { SalesOpportunity, ServiceType } from "@/lib/types";
 import { useToast } from "@/components/ui/toast";
 
 const serviceTypes: ServiceType[] = [
@@ -17,28 +17,42 @@ const serviceTypes: ServiceType[] = [
   "General Contracting",
 ];
 
-export function CreateOpportunityForm({ onDone }: { onDone: () => void }) {
-  const { customers, users, createOpportunity } = useStore();
+export function CreateOpportunityForm({
+  onDone,
+  opportunity,
+}: {
+  onDone: () => void;
+  opportunity?: SalesOpportunity;
+}) {
+  const { customers, users, createOpportunity, updateOpportunity } = useStore();
   const { showToast } = useToast();
-  const [customerId, setCustomerId] = useState(customers[0]?.id ?? "");
-  const [serviceType, setServiceType] = useState<ServiceType>("HVAC");
-  const [estimatedValue, setEstimatedValue] = useState("");
-  const [ownerId, setOwnerId] = useState(users[0]?.id ?? "");
-  const [followUpDate, setFollowUpDate] = useState("");
-  const [notes, setNotes] = useState("");
+  const [customerId, setCustomerId] = useState(opportunity?.customerId ?? customers[0]?.id ?? "");
+  const [serviceType, setServiceType] = useState<ServiceType>(opportunity?.serviceType ?? "HVAC");
+  const [estimatedValue, setEstimatedValue] = useState(opportunity ? String(opportunity.estimatedValue) : "");
+  const [ownerId, setOwnerId] = useState(opportunity?.ownerId ?? users[0]?.id ?? "");
+  const [followUpDate, setFollowUpDate] = useState(
+    opportunity ? opportunity.followUpDate.slice(0, 10) : ""
+  );
+  const [notes, setNotes] = useState(opportunity?.notes ?? "");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    createOpportunity({
+    const data = {
       customerId,
       serviceType,
       estimatedValue: Number(estimatedValue) || 0,
-      stage: "Lead Received",
+      stage: opportunity?.stage ?? ("Lead Received" as const),
       ownerId,
       followUpDate: followUpDate ? new Date(followUpDate).toISOString() : new Date().toISOString(),
       notes,
-    });
-    showToast("Sales opportunity created");
+    };
+    if (opportunity) {
+      updateOpportunity(opportunity.id, data);
+      showToast("Sales opportunity updated");
+    } else {
+      createOpportunity(data);
+      showToast("Sales opportunity created");
+    }
     onDone();
   }
 
@@ -95,7 +109,7 @@ export function CreateOpportunityForm({ onDone }: { onDone: () => void }) {
           Cancel
         </Button>
         <Button type="submit" variant="primary">
-          Create Opportunity
+          {opportunity ? "Save Changes" : "Create Opportunity"}
         </Button>
       </div>
     </form>

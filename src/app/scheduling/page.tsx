@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/header";
 import { StatusBadge } from "@/components/shared/badges";
 import { Select } from "@/components/ui/input";
 import { useCrewName, useCustomerName, useStore } from "@/lib/store";
-import { isJobBehindSchedule } from "@/lib/selectors";
+import { isJobBehindSchedule, isCrewOverloadedLive } from "@/lib/selectors";
 import { formatDate } from "@/lib/utils";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
 
@@ -59,7 +59,7 @@ function ScheduleRow({ jobId }: { jobId: string }) {
 export default function SchedulingPage() {
   const { jobs, crews } = useStore();
   const activeJobs = jobs.filter((j) => !["Completed", "Invoiced", "Paid"].includes(j.status));
-  const overloadedCrews = crews.filter((c) => c.capacityStatus === "Overloaded");
+  const overloadedCrews = crews.filter((c) => isCrewOverloadedLive(c, jobs));
 
   return (
     <div>

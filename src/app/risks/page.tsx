@@ -67,7 +67,7 @@ function RiskRow({ riskId }: { riskId: string }) {
             </Button>
           )}
           {risk.severity !== "Critical" && risk.status !== "Resolved" && (
-            <Button size="sm" variant="destructive" onClick={() => { escalateRisk(risk.id); showToast("Risk escalated"); }}>
+            <Button size="sm" variant="destructive" onClick={() => { escalateRisk(risk.id); showToast("Risk escalated to Critical"); }}>
               Escalate
             </Button>
           )}

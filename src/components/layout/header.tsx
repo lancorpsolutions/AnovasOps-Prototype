@@ -1,7 +1,7 @@
 "use client";
 
-import { Bell } from "lucide-react";
 import { useStore } from "@/lib/store";
+import { NotificationBell } from "@/components/layout/notification-bell";
 
 export function Header({ title, subtitle }: { title: string; subtitle?: string }) {
   const { company, users } = useStore();
@@ -17,9 +17,7 @@ export function Header({ title, subtitle }: { title: string; subtitle?: string }
           <p className="text-sm font-medium text-charcoal">{company.name}</p>
           <p className="text-xs text-gray-400">{company.subscriptionTier} Plan</p>
         </div>
-        <button className="relative text-gray-500 hover:text-charcoal cursor-pointer">
-          <Bell size={19} />
-        </button>
+        <NotificationBell />
         <div className="flex items-center gap-2">
           <div className="h-8 w-8 rounded-full bg-navy text-white flex items-center justify-center text-xs font-semibold">
             {currentUser.name.split(" ").map((n) => n[0]).join("")}
