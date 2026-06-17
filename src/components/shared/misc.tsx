@@ -53,9 +53,19 @@ export function EmptyState({ title, description }: { title: string; description?
   );
 }
 
-export function ChartCard({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
+export function ChartCard({
+  title,
+  description,
+  children,
+  className,
+}: {
+  title: string;
+  description?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+    <div className={cn("rounded-xl border border-gray-200 bg-white p-5 shadow-sm", className)}>
       <div className="mb-4">
         <h3 className="text-sm font-semibold text-charcoal">{title}</h3>
         {description && <p className="text-xs text-gray-500 mt-0.5">{description}</p>}
