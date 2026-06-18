@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
-import { Modal } from "@/components/ui/modal";
+import { Modal, ConfirmDialog } from "@/components/ui/modal";
 import { Input, Label, Select } from "@/components/ui/input";
 import { useStore } from "@/lib/store";
 import { useToast } from "@/components/ui/toast";
-import { Role, User } from "@/lib/types";
+import { Role, User, Company } from "@/lib/types";
 import { Check, Pencil, Plus, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const tierOrder: Company["subscriptionTier"][] = ["Startup", "Small Business", "Enterprise"];
 
 const plans = [
   {
@@ -260,9 +262,73 @@ function UsersCard() {
   );
 }
 
-export default function SettingsPage() {
-  const { company } = useStore();
+function SubscriptionPlansCard() {
+  const { company, changeSubscriptionTier } = useStore();
+  const { showToast } = useToast();
+  const [pendingTier, setPendingTier] = useState<Company["subscriptionTier"] | null>(null);
+  const currentIndex = tierOrder.indexOf(company.subscriptionTier);
 
+  return (
+    <div>
+      <h3 className="text-sm font-semibold text-charcoal mb-3">Subscription Plans</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {plans.map((plan) => {
+          const active = plan.name === company.subscriptionTier;
+          const planIndex = tierOrder.indexOf(plan.name as Company["subscriptionTier"]);
+          const isUpgrade = planIndex > currentIndex;
+          return (
+            <div
+              key={plan.name}
+              className={cn(
+                "rounded-xl border bg-white p-5 shadow-sm flex flex-col",
+                active ? "border-orange ring-2 ring-orange/20" : "border-gray-200"
+              )}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <h4 className="text-base font-bold text-charcoal">{plan.name}</h4>
+                {active && <span className="text-xs bg-orange text-white px-2 py-0.5 rounded-full">Current</span>}
+              </div>
+              <p className="text-sm font-medium text-orange mb-3">{plan.price}</p>
+              <ul className="space-y-1.5 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f} className="text-xs text-gray-600 flex items-start gap-1.5">
+                    <Check size={13} className="text-emerald-600 mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              {!active && (
+                <Button
+                  size="sm"
+                  variant={isUpgrade ? "primary" : "outline"}
+                  className="mt-4 w-full"
+                  onClick={() => setPendingTier(plan.name as Company["subscriptionTier"])}
+                >
+                  {isUpgrade ? "Upgrade" : "Downgrade"} to {plan.name}
+                </Button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <ConfirmDialog
+        open={!!pendingTier}
+        onOpenChange={(o) => !o && setPendingTier(null)}
+        title={pendingTier ? `Switch to ${pendingTier}` : ""}
+        description="Your plan will change immediately. You can switch again at any time."
+        confirmLabel="Confirm Switch"
+        onConfirm={() => {
+          if (pendingTier) {
+            changeSubscriptionTier(pendingTier);
+            showToast(`Subscription switched to ${pendingTier}`);
+          }
+        }}
+      />
+    </div>
+  );
+}
+
+export default function SettingsPage() {
   return (
     <div>
       <Header title="Settings" subtitle="Manage company details, team, service types, and subscription plan." />
@@ -270,38 +336,7 @@ export default function SettingsPage() {
         <CompanyInfoCard />
         <ServiceTypesCard />
         <UsersCard />
-
-        <div>
-          <h3 className="text-sm font-semibold text-charcoal mb-3">Subscription Plans</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {plans.map((plan) => {
-              const active = plan.name === company.subscriptionTier;
-              return (
-                <div
-                  key={plan.name}
-                  className={cn(
-                    "rounded-xl border bg-white p-5 shadow-sm",
-                    active ? "border-orange ring-2 ring-orange/20" : "border-gray-200"
-                  )}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-base font-bold text-charcoal">{plan.name}</h4>
-                    {active && <span className="text-xs bg-orange text-white px-2 py-0.5 rounded-full">Current</span>}
-                  </div>
-                  <p className="text-sm font-medium text-orange mb-3">{plan.price}</p>
-                  <ul className="space-y-1.5">
-                    {plan.features.map((f) => (
-                      <li key={f} className="text-xs text-gray-600 flex items-start gap-1.5">
-                        <Check size={13} className="text-emerald-600 mt-0.5 shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <SubscriptionPlansCard />
       </div>
     </div>
   );

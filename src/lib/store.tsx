@@ -63,6 +63,7 @@ interface StoreState {
   activity: ActivityEvent[];
   notifications: Notification[];
   serviceTypes: string[];
+  connectedIntegrations: string[];
 }
 
 interface StoreActions {
@@ -104,6 +105,9 @@ interface StoreActions {
   updateUser: (id: string, data: Partial<Omit<User, "id" | "companyId" | "createdAt" | "updatedAt">>) => void;
   deleteUser: (id: string) => void;
   createCustomer: (data: Omit<Customer, "id" | "companyId" | "createdAt" | "updatedAt">) => void;
+  connectIntegration: (name: string) => void;
+  disconnectIntegration: (name: string) => void;
+  changeSubscriptionTier: (tier: Company["subscriptionTier"]) => void;
 }
 
 const StoreContext = createContext<(StoreState & StoreActions) | null>(null);
@@ -132,6 +136,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     "General Contracting",
   ]);
   const [company, setCompany] = useState<Company>(initialCompany);
+  const [connectedIntegrations, setConnectedIntegrations] = useState<string[]>(["HubSpot", "QuickBooks"]);
 
   const addActivity = useCallback((message: string, category: ActivityEvent["category"]) => {
     setActivity((prev) => [
@@ -393,6 +398,21 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     addActivity(`New customer created: ${data.customerName}`, "customer");
   }, [addActivity]);
 
+  const connectIntegration: StoreActions["connectIntegration"] = useCallback((name) => {
+    setConnectedIntegrations((prev) => (prev.includes(name) ? prev : [...prev, name]));
+    addActivity(`Connected integration: ${name}`, "automation");
+  }, [addActivity]);
+
+  const disconnectIntegration: StoreActions["disconnectIntegration"] = useCallback((name) => {
+    setConnectedIntegrations((prev) => prev.filter((n) => n !== name));
+    addActivity(`Disconnected integration: ${name}`, "automation");
+  }, [addActivity]);
+
+  const changeSubscriptionTier: StoreActions["changeSubscriptionTier"] = useCallback((tier) => {
+    setCompany((prev) => ({ ...prev, subscriptionTier: tier, updatedAt: nowIso() }));
+    addActivity(`Subscription plan changed to ${tier}`, "automation");
+  }, [addActivity]);
+
   const value = useMemo<StoreState & StoreActions>(
     () => ({
       company,
@@ -410,6 +430,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       activity,
       notifications,
       serviceTypes,
+      connectedIntegrations,
       addActivity,
       createOpportunity,
       updateOpportunity,
@@ -448,6 +469,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       updateUser,
       deleteUser,
       createCustomer,
+      connectIntegration,
+      disconnectIntegration,
+      changeSubscriptionTier,
     }),
     [
       company,
@@ -465,6 +489,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       activity,
       notifications,
       serviceTypes,
+      connectedIntegrations,
       addActivity,
       createOpportunity,
       updateOpportunity,
@@ -503,6 +528,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       updateUser,
       deleteUser,
       createCustomer,
+      connectIntegration,
+      disconnectIntegration,
+      changeSubscriptionTier,
     ]
   );
 

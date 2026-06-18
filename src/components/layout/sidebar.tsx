@@ -15,6 +15,7 @@ import {
   Zap,
   BarChart3,
   Settings,
+  Plug,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +31,7 @@ const navItems = [
   { href: "/sop", label: "SOP Library", icon: BookOpen },
   { href: "/automation", label: "Automation Rules", icon: Zap },
   { href: "/reports", label: "Reports", icon: BarChart3 },
+  { href: "/integrations", label: "Integrations", icon: Plug },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
