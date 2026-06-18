@@ -14,6 +14,7 @@ import {
   topRisks,
 } from "@/lib/selectors";
 import { generateDailyBriefing } from "@/lib/aria";
+import { OnboardingChecklist } from "@/components/shared/onboarding-checklist";
 import { formatCurrency, timeAgo } from "@/lib/utils";
 import {
   Briefcase,
@@ -58,6 +59,7 @@ export default function DashboardPage() {
         subtitle="See what is happening, fix what is stuck, and protect revenue before small issues become bigger problems."
       />
       <div className="p-6 space-y-6">
+        <OnboardingChecklist />
         <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-5 border-t-2 border-t-orange">
           <div className="flex items-center gap-2 mb-3">
             <span className="h-7 w-7 rounded-lg bg-gradient-to-br from-orange to-navy flex items-center justify-center">

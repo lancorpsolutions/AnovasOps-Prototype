@@ -64,6 +64,7 @@ interface StoreState {
   notifications: Notification[];
   serviceTypes: string[];
   connectedIntegrations: string[];
+  onboardingDismissed: boolean;
 }
 
 interface StoreActions {
@@ -108,6 +109,7 @@ interface StoreActions {
   connectIntegration: (name: string) => void;
   disconnectIntegration: (name: string) => void;
   changeSubscriptionTier: (tier: Company["subscriptionTier"]) => void;
+  dismissOnboarding: () => void;
 }
 
 const StoreContext = createContext<(StoreState & StoreActions) | null>(null);
@@ -137,6 +139,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   ]);
   const [company, setCompany] = useState<Company>(initialCompany);
   const [connectedIntegrations, setConnectedIntegrations] = useState<string[]>(["HubSpot", "QuickBooks"]);
+  const [onboardingDismissed, setOnboardingDismissed] = useState(false);
 
   const addActivity = useCallback((message: string, category: ActivityEvent["category"]) => {
     setActivity((prev) => [
@@ -413,6 +416,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     addActivity(`Subscription plan changed to ${tier}`, "automation");
   }, [addActivity]);
 
+  const dismissOnboarding: StoreActions["dismissOnboarding"] = useCallback(() => {
+    setOnboardingDismissed(true);
+  }, []);
+
   const value = useMemo<StoreState & StoreActions>(
     () => ({
       company,
@@ -431,6 +438,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       notifications,
       serviceTypes,
       connectedIntegrations,
+      onboardingDismissed,
       addActivity,
       createOpportunity,
       updateOpportunity,
@@ -472,6 +480,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       connectIntegration,
       disconnectIntegration,
       changeSubscriptionTier,
+      dismissOnboarding,
     }),
     [
       company,
@@ -490,6 +499,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       notifications,
       serviceTypes,
       connectedIntegrations,
+      onboardingDismissed,
       addActivity,
       createOpportunity,
       updateOpportunity,
@@ -531,6 +541,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       connectIntegration,
       disconnectIntegration,
       changeSubscriptionTier,
+      dismissOnboarding,
     ]
   );
 
