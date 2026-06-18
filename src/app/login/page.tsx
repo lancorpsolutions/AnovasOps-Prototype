@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Input, Label } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/toast";
+import { createClient } from "@/lib/supabase/client";
 import { Zap } from "lucide-react";
 
 export default function LoginPage() {
@@ -13,11 +14,23 @@ export default function LoginPage() {
   const { showToast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError(null);
+    setLoading(true);
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    setLoading(false);
+    if (error) {
+      setError(error.message);
+      return;
+    }
     showToast("Welcome back");
     router.push("/");
+    router.refresh();
   }
 
   return (
@@ -40,8 +53,9 @@ export default function LoginPage() {
             <Label>Password</Label>
             <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required />
           </div>
-          <Button type="submit" variant="primary" className="w-full mt-2">
-            Log In
+          {error && <p className="text-xs text-red-600">{error}</p>}
+          <Button type="submit" variant="primary" className="w-full mt-2" disabled={loading}>
+            {loading ? "Logging In..." : "Log In"}
           </Button>
         </form>
         <p className="text-xs text-gray-400 text-center mt-5">

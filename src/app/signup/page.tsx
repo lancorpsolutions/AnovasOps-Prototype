@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Input, Label, Select } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useStore } from "@/lib/store";
 import { useToast } from "@/components/ui/toast";
+import { createClient } from "@/lib/supabase/client";
 import { Company } from "@/lib/types";
 import { Check, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -21,7 +21,6 @@ const industries = ["HVAC", "Plumbing", "Electrical", "Roofing", "Landscaping", 
 
 export default function SignupPage() {
   const router = useRouter();
-  const { updateCompany, updateUser, users } = useStore();
   const { showToast } = useToast();
   const [step, setStep] = useState(1);
 
@@ -31,12 +30,33 @@ export default function SignupPage() {
   const [companyName, setCompanyName] = useState("");
   const [industry, setIndustry] = useState(industries[0]);
   const [plan, setPlan] = useState<Company["subscriptionTier"]>("Small Business");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  function handleFinish() {
-    updateCompany({ name: companyName || "My Company", industry, subscriptionTier: plan });
-    if (users[0]) updateUser(users[0].id, { name: name || users[0].name, email: email || users[0].email });
+  async function handleFinish() {
+    setError(null);
+    setLoading(true);
+    const supabase = createClient();
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name,
+          company_name: companyName || "My Company",
+          industry,
+          subscription_tier: plan,
+        },
+      },
+    });
+    setLoading(false);
+    if (error) {
+      setError(error.message);
+      return;
+    }
     showToast("Account created — welcome to AnovasOS");
     router.push("/");
+    router.refresh();
   }
 
   return (
@@ -136,12 +156,13 @@ export default function SignupPage() {
                 </button>
               ))}
             </div>
+            {error && <p className="text-xs text-red-600">{error}</p>}
             <div className="flex gap-2 mt-2">
               <Button variant="outline" className="w-full" onClick={() => setStep(2)}>
                 Back
               </Button>
-              <Button variant="primary" className="w-full" onClick={handleFinish}>
-                Create Account
+              <Button variant="primary" className="w-full" onClick={handleFinish} disabled={loading}>
+                {loading ? "Creating..." : "Create Account"}
               </Button>
             </div>
           </div>

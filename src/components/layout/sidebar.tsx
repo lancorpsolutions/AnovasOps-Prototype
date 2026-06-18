@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   TrendingUp,
@@ -16,8 +16,10 @@ import {
   BarChart3,
   Settings,
   Plug,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { createClient } from "@/lib/supabase/client";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -37,6 +39,15 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleLogout() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/login");
+    router.refresh();
+  }
+
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-navy text-white h-screen sticky top-0">
       <div className="px-5 py-5 border-b border-white/10">
@@ -64,6 +75,15 @@ export function Sidebar() {
           );
         })}
       </nav>
+      <div className="px-2.5 pb-2">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-colors w-full cursor-pointer"
+        >
+          <LogOut size={17} />
+          Log Out
+        </button>
+      </div>
       <div className="px-4 py-4 border-t border-white/10 text-[11px] text-white/40">
         Anovas Integrated Systems
       </div>
