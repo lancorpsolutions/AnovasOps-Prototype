@@ -174,6 +174,21 @@ export default function SignupPage() {
             Log in
           </Link>
         </p>
+        <p className="text-[11px] text-gray-400 text-center mt-3">
+          By creating an account you agree to our{" "}
+          <Link href="/terms" className="text-orange font-medium">
+            Terms
+          </Link>
+          ,{" "}
+          <Link href="/privacy" className="text-orange font-medium">
+            Privacy Policy
+          </Link>
+          , and{" "}
+          <Link href="/cookies" className="text-orange font-medium">
+            Cookie Policy
+          </Link>
+          .
+        </p>
       </div>
     </div>
   );
