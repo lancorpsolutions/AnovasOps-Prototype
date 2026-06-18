@@ -62,7 +62,7 @@ export default function RevenueLeaksLandingPage() {
             </p>
           </div>
           <div className="md:max-w-sm md:ml-auto w-full">
-            <LeadCaptureForm />
+            <LeadCaptureForm leadMagnet="revenue-leaks-guide" />
           </div>
         </div>
       </section>
@@ -103,6 +103,11 @@ export default function RevenueLeaksLandingPage() {
           <p className="text-white/50 text-xs">
             AnovasOS is the operating system for home service businesses, built by Anovas
             Integrated Systems.
+          </p>
+          <p className="text-white/30 text-[11px] mt-4">
+            <a href="/privacy" className="underline hover:text-white/60">
+              Privacy Policy
+            </a>
           </p>
         </div>
       </section>

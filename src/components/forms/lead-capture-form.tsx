@@ -5,36 +5,48 @@ import { Download, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/input";
 import { useToast } from "@/components/ui/toast";
+import { LEAD_MAGNETS, LeadMagnetSlug } from "@/lib/lead-magnets";
 
-const PDF_PATH = "/lead-magnets/anovas-revenue-leaks-guide.pdf";
-
-export function LeadCaptureForm() {
+export function LeadCaptureForm({ leadMagnet }: { leadMagnet: LeadMagnetSlug }) {
   const { showToast } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  const [pdfPath, setPdfPath] = useState(LEAD_MAGNETS[leadMagnet].pdfPath);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const res = await fetch("/api/lead-magnet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, company, leadMagnet }),
+      });
+      const data = await res.json();
+      setPdfPath(data.pdfPath || LEAD_MAGNETS[leadMagnet].pdfPath);
       setUnlocked(true);
-      showToast(`Sent! Check ${email} for your copy of the guide.`);
-    }, 600);
+      showToast(
+        data.crmSynced
+          ? `You're in! Your guide is ready below.`
+          : `Your guide is ready below. (CRM sync skipped — no HubSpot connection configured.)`
+      );
+    } catch {
+      showToast("Something went wrong sending your guide. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (unlocked) {
     return (
       <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-6 text-center">
         <p className="text-sm font-semibold text-charcoal mb-1">You&apos;re in, {name.split(" ")[0] || "there"}.</p>
-        <p className="text-xs text-gray-500 mb-4">
-          Your guide is ready below. We also sent a copy to {email}.
-        </p>
+        <p className="text-xs text-gray-500 mb-4">Your guide is ready to download below.</p>
         <Button asChild variant="primary" size="lg" className="w-full">
-          <a href={PDF_PATH} download>
+          <a href={pdfPath} download>
             <Download size={16} />
             Download the Guide (PDF)
           </a>
@@ -47,7 +59,7 @@ export function LeadCaptureForm() {
     <form onSubmit={handleSubmit} className="rounded-xl border border-gray-200 bg-white shadow-sm p-6 space-y-3">
       <div>
         <p className="text-sm font-semibold text-charcoal">Get the free guide</p>
-        <p className="text-xs text-gray-500">5 Hidden Revenue Leaks in Home Service Businesses — instant download.</p>
+        <p className="text-xs text-gray-500">{LEAD_MAGNETS[leadMagnet].title} — instant download.</p>
       </div>
       <div>
         <Label htmlFor="lead-name">Full Name</Label>
@@ -72,7 +84,13 @@ export function LeadCaptureForm() {
         {submitting ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
         {submitting ? "Sending..." : "Send Me the Guide"}
       </Button>
-      <p className="text-[11px] text-gray-400 text-center">No spam. Unsubscribe anytime.</p>
+      <p className="text-[11px] text-gray-400 text-center">
+        No spam. Unsubscribe anytime. See our{" "}
+        <a href="/privacy" className="underline hover:text-gray-600">
+          Privacy Policy
+        </a>
+        .
+      </p>
     </form>
   );
 }

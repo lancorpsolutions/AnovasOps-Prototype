@@ -341,7 +341,7 @@ function LeakPage({ leak }) {
     e(
       View,
       { style: styles.footer },
-      e(Text, null, "anovasos.com"),
+      e(Text, null, "anovasintegratedsystems.com"),
       e(Text, null, `Page ${Number(leak.number) + 1} of 7`)
     )
   );
@@ -362,7 +362,7 @@ function CtaPage() {
       { style: styles.ctaBody },
       "AnovasOS watches your estimates, jobs, crews, invoices, and customer issues in real time — and flags exactly where revenue is at risk, who owns it, and what to do next. See what's happening, fix what's stuck, and protect revenue before small issues become bigger problems."
     ),
-    e(Link, { style: styles.ctaLink, src: "https://anovasos.com" }, "Talk to Anovas Integrated Systems"),
+    e(Link, { style: styles.ctaLink, src: "https://anovasintegratedsystems.com" }, "Talk to Anovas Integrated Systems"),
     e(
       Text,
       { style: { color: "rgba(255,255,255,0.4)", fontSize: 9, marginTop: 28 } },

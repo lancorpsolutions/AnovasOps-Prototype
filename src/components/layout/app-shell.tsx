@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Sidebar } from "@/components/layout/sidebar";
 
-const MARKETING_PREFIXES = ["/resources"];
+const MARKETING_PREFIXES = ["/resources", "/privacy"];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
