@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { Sidebar } from "@/components/layout/sidebar";
 import { SplashScreen } from "@/components/layout/splash-screen";
 
-const noChromeRoutes = ["/signup", "/login", "/terms", "/privacy", "/cookies"];
+const noChromeRoutes = ["/signup", "/login", "/terms", "/privacy", "/cookies", "/resources/revenue-leaks"];
 
 export function AppChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
