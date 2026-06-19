@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Zap } from "lucide-react";
+import Image from "next/image";
 
 export function SplashScreen() {
   const [visible, setVisible] = useState(false);
@@ -28,8 +28,8 @@ export function SplashScreen() {
       }`}
     >
       <div className="flex flex-col items-center gap-3 animate-[splashIn_0.6s_ease-out]">
-        <div className="h-16 w-16 rounded-2xl bg-orange flex items-center justify-center shadow-lg shadow-orange/30 animate-[splashPulse_1.6s_ease-in-out_infinite]">
-          <Zap size={32} className="text-white" />
+        <div className="h-16 w-16 flex items-center justify-center animate-[splashPulse_1.6s_ease-in-out_infinite]">
+          <Image src="/branding/anovas-phoenix-icon.png" alt="" width={64} height={64} priority />
         </div>
         <p className="text-2xl font-bold tracking-tight text-white">
           Anovas<span className="text-orange-light">OS</span>

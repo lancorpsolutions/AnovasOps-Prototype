@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -50,11 +51,14 @@ export function Sidebar() {
 
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-navy text-white h-screen sticky top-0">
-      <div className="px-5 py-5 border-b border-white/10">
-        <p className="text-lg font-bold tracking-tight">
-          Anovas<span className="text-orange-light">OS</span>
-        </p>
-        <p className="text-[11px] text-white/50 mt-0.5">Operating system for home service businesses</p>
+      <div className="px-5 py-5 border-b border-white/10 flex items-center gap-2.5">
+        <Image src="/branding/anovas-phoenix-icon.png" alt="" width={28} height={28} className="shrink-0" />
+        <div>
+          <p className="text-lg font-bold tracking-tight">
+            Anovas<span className="text-orange-light">OS</span>
+          </p>
+          <p className="text-[11px] text-white/50 mt-0.5">Operating system for home service businesses</p>
+        </div>
       </div>
       <nav className="flex-1 overflow-y-auto py-3 px-2.5">
         {navItems.map((item) => {

@@ -3,9 +3,11 @@
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import React from "react";
-import { Document, Page, Text, View, StyleSheet, Link, renderToFile } from "@react-pdf/renderer";
+import { Document, Page, Text, View, Image, StyleSheet, Link, renderToFile } from "@react-pdf/renderer";
 
 const e = React.createElement;
+
+const PHOENIX_ICON = path.join(process.cwd(), "public", "branding", "anovas-phoenix-icon.png");
 
 const COLORS = {
   navy: "#0f1b2d",
@@ -33,6 +35,11 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     textTransform: "uppercase",
     fontFamily: "Helvetica-Bold",
+  },
+  coverIcon: {
+    width: 44,
+    height: 44,
+    marginBottom: 18,
   },
   coverTitle: {
     color: "#ffffff",
@@ -278,6 +285,7 @@ function CoverPage() {
     e(
       View,
       null,
+      e(Image, { style: styles.coverIcon, src: PHOENIX_ICON }),
       e(Text, { style: styles.coverEyebrow }, "A Field Guide for Home Service Operators"),
       e(
         Text,
