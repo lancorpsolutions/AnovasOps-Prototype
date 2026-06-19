@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const authRoutes = ["/login", "/signup"];
-const publicRoutes = [...authRoutes, "/terms", "/privacy", "/cookies", "/resources/revenue-leaks"];
+const authRoutes = ["/anovasos/login", "/anovasos/signup"];
+const publicRoutes = [...authRoutes, "/terms", "/privacy", "/cookies", "/revenue-leaks-guide"];
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
@@ -31,7 +31,7 @@ export async function updateSession(request: NextRequest) {
 
   if (!data.user && !isPublicRoute) {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = "/anovasos/login";
     return NextResponse.redirect(url);
   }
 
@@ -39,7 +39,7 @@ export async function updateSession(request: NextRequest) {
 
   if (data.user && isAuthRoute) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = "/anovasos";
     return NextResponse.redirect(url);
   }
 

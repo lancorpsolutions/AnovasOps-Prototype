@@ -38,7 +38,7 @@ function JobRow({ jobId }: { jobId: string }) {
   return (
     <tr className="border-b border-gray-100 hover:bg-gray-50">
       <td className="px-4 py-3">
-        <Link href={`/jobs/${job.id}`} className="text-sm font-medium text-navy hover:underline flex items-center gap-1.5">
+        <Link href={`/anovasos/jobs/${job.id}`} className="text-sm font-medium text-navy hover:underline flex items-center gap-1.5">
           {behind && <AlertTriangle size={13} className="text-red-500" />}
           {job.jobName}
         </Link>

@@ -9,7 +9,7 @@ export default function CookiesPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-3xl mx-auto px-6 py-12">
         <p className="text-xs text-gray-400 mb-6">
-          <Link href="/login" className="text-orange font-medium">
+          <Link href="/anovasos/login" className="text-orange font-medium">
             ← Back
           </Link>
         </p>

@@ -40,7 +40,7 @@ export default function CustomerDetailPage() {
           <div className="space-y-2">
             {customerJobs.length === 0 && <p className="text-xs text-gray-400">No jobs for this customer.</p>}
             {customerJobs.map((j) => (
-              <Link key={j.id} href={`/jobs/${j.id}`} className="flex items-center justify-between border-b border-gray-100 pb-2 last:border-0 hover:bg-gray-50 -mx-1 px-1 rounded">
+              <Link key={j.id} href={`/anovasos/jobs/${j.id}`} className="flex items-center justify-between border-b border-gray-100 pb-2 last:border-0 hover:bg-gray-50 -mx-1 px-1 rounded">
                 <span className="text-sm text-navy font-medium">{j.jobName}</span>
                 <StatusBadge status={j.status} />
               </Link>

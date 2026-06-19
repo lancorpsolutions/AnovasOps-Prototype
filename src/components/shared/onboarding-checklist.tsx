@@ -10,12 +10,12 @@ export function OnboardingChecklist() {
     useStore();
 
   const steps = [
-    { label: "Invite your team", done: users.length > 1, href: "/settings" },
-    { label: "Add a crew", done: crews.length > 0, href: "/crews" },
-    { label: "Add your customers", done: customers.length > 0, href: "/customers" },
-    { label: "Connect a tool", done: connectedIntegrations.length > 0, href: "/integrations" },
-    { label: "Create your first job", done: jobs.length > 0, href: "/jobs" },
-    { label: "Turn on an automation rule", done: automationRules.some((r) => r.isActive), href: "/automation" },
+    { label: "Invite your team", done: users.length > 1, href: "/anovasos/settings" },
+    { label: "Add a crew", done: crews.length > 0, href: "/anovasos/crews" },
+    { label: "Add your customers", done: customers.length > 0, href: "/anovasos/customers" },
+    { label: "Connect a tool", done: connectedIntegrations.length > 0, href: "/anovasos/integrations" },
+    { label: "Create your first job", done: jobs.length > 0, href: "/anovasos/jobs" },
+    { label: "Turn on an automation rule", done: automationRules.some((r) => r.isActive), href: "/anovasos/automation" },
   ];
 
   const completedCount = steps.filter((s) => s.done).length;

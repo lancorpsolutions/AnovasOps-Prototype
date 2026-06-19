@@ -29,7 +29,7 @@ export default function LoginPage() {
       return;
     }
     showToast("Welcome back");
-    router.push("/");
+    router.push("/anovasos");
     router.refresh();
   }
 
@@ -60,7 +60,7 @@ export default function LoginPage() {
         </form>
         <p className="text-xs text-gray-400 text-center mt-5">
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="text-orange font-medium">
+          <Link href="/anovasos/signup" className="text-orange font-medium">
             Sign up
           </Link>
         </p>

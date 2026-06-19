@@ -99,7 +99,7 @@ function InvoiceRow({ invoiceId }: { invoiceId: string }) {
                   status: "Open",
                 });
                 showToast("Risk created — view it on the Risks page");
-                router.push("/risks");
+                router.push("/anovasos/risks");
               }}
             >
               Create Risk

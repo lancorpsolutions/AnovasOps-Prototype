@@ -55,7 +55,7 @@ export default function SignupPage() {
       return;
     }
     showToast("Account created — welcome to AnovasOS");
-    router.push("/");
+    router.push("/anovasos");
     router.refresh();
   }
 
@@ -170,7 +170,7 @@ export default function SignupPage() {
 
         <p className="text-xs text-gray-400 text-center mt-5">
           Already have an account?{" "}
-          <Link href="/login" className="text-orange font-medium">
+          <Link href="/anovasos/login" className="text-orange font-medium">
             Log in
           </Link>
         </p>

@@ -72,12 +72,12 @@ function RiskRow({ riskId }: { riskId: string }) {
             </Button>
           )}
           {risk.jobId && (
-            <Link href={`/jobs/${risk.jobId}`} className="text-xs text-navy hover:underline px-1">
+            <Link href={`/anovasos/jobs/${risk.jobId}`} className="text-xs text-navy hover:underline px-1">
               View Job
             </Link>
           )}
           {risk.customerId && (
-            <Link href={`/customers/${risk.customerId}`} className="text-xs text-navy hover:underline px-1">
+            <Link href={`/anovasos/customers/${risk.customerId}`} className="text-xs text-navy hover:underline px-1">
               View Customer
             </Link>
           )}

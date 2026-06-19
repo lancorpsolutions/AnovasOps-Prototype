@@ -39,7 +39,7 @@ export default function CustomersPage() {
                 return (
                   <tr key={c.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="px-4 py-3">
-                      <Link href={`/customers/${c.id}`} className="text-sm font-medium text-navy hover:underline">
+                      <Link href={`/anovasos/customers/${c.id}`} className="text-sm font-medium text-navy hover:underline">
                         {c.customerName}
                       </Link>
                     </td>

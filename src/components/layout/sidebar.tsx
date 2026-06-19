@@ -23,19 +23,19 @@ import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/sales", label: "Sales Pipeline", icon: TrendingUp },
-  { href: "/jobs", label: "Jobs", icon: Briefcase },
-  { href: "/scheduling", label: "Scheduling", icon: CalendarDays },
-  { href: "/crews", label: "Crews", icon: Users2 },
-  { href: "/customers", label: "Customers", icon: UserSquare2 },
-  { href: "/invoices", label: "Invoices", icon: Receipt },
-  { href: "/risks", label: "Operational Risks", icon: ShieldAlert },
-  { href: "/sop", label: "SOP Library", icon: BookOpen },
-  { href: "/automation", label: "Automation Rules", icon: Zap },
-  { href: "/reports", label: "Reports", icon: BarChart3 },
-  { href: "/integrations", label: "Integrations", icon: Plug },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/anovasos", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/anovasos/sales", label: "Sales Pipeline", icon: TrendingUp },
+  { href: "/anovasos/jobs", label: "Jobs", icon: Briefcase },
+  { href: "/anovasos/scheduling", label: "Scheduling", icon: CalendarDays },
+  { href: "/anovasos/crews", label: "Crews", icon: Users2 },
+  { href: "/anovasos/customers", label: "Customers", icon: UserSquare2 },
+  { href: "/anovasos/invoices", label: "Invoices", icon: Receipt },
+  { href: "/anovasos/risks", label: "Operational Risks", icon: ShieldAlert },
+  { href: "/anovasos/sop", label: "SOP Library", icon: BookOpen },
+  { href: "/anovasos/automation", label: "Automation Rules", icon: Zap },
+  { href: "/anovasos/reports", label: "Reports", icon: BarChart3 },
+  { href: "/anovasos/integrations", label: "Integrations", icon: Plug },
+  { href: "/anovasos/settings", label: "Settings", icon: Settings },
 ];
 
 export function Sidebar() {
@@ -45,7 +45,7 @@ export function Sidebar() {
   async function handleLogout() {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push("/login");
+    router.push("/anovasos/login");
     router.refresh();
   }
 
