@@ -10,11 +10,27 @@ import { createClient } from "@/lib/supabase/client";
 import { Company } from "@/lib/types";
 import { Check, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PaypalSubscribeButton } from "@/components/paypal/subscribe-button";
 
-const plans: { name: Company["subscriptionTier"]; price: string; blurb: string }[] = [
-  { name: "Startup", price: "$1,000/mo", blurb: "Up to 3 workflows, basic command center." },
-  { name: "Small Business", price: "$2,500/mo", blurb: "Advanced dashboard, automations, crew tracking." },
-  { name: "Enterprise", price: "$5,000/mo", blurb: "Unlimited workflows, full reporting, priority support." },
+const plans: { name: Company["subscriptionTier"]; price: string; blurb: string; paypalPlanId?: string }[] = [
+  {
+    name: "Startup",
+    price: "$1,000/mo",
+    blurb: "Up to 3 workflows, basic command center.",
+    paypalPlanId: process.env.NEXT_PUBLIC_PAYPAL_PLAN_STARTUP_ID,
+  },
+  {
+    name: "Small Business",
+    price: "$2,500/mo",
+    blurb: "Advanced dashboard, automations, crew tracking.",
+    paypalPlanId: process.env.NEXT_PUBLIC_PAYPAL_PLAN_SMALL_BUSINESS_ID,
+  },
+  {
+    name: "Enterprise",
+    price: "$5,000/mo",
+    blurb: "Unlimited workflows, full reporting, priority support.",
+    paypalPlanId: process.env.NEXT_PUBLIC_PAYPAL_PLAN_ENTERPRISE_ID,
+  },
 ];
 
 const industries = ["HVAC", "Plumbing", "Electrical", "Roofing", "Landscaping", "Pest Control", "General Contracting"];
@@ -33,7 +49,7 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleFinish() {
+  async function createAccount(paypalSubscriptionId: string) {
     setError(null);
     setLoading(true);
     const supabase = createClient();
@@ -46,6 +62,7 @@ export default function SignupPage() {
           company_name: companyName || "My Company",
           industry,
           subscription_tier: plan,
+          paypal_subscription_id: paypalSubscriptionId,
         },
       },
     });
@@ -54,9 +71,29 @@ export default function SignupPage() {
       setError(error.message);
       return;
     }
-    showToast("Account created — welcome to AnovasOS");
+    showToast("Payment confirmed — welcome to AnovasOS");
     router.push("/anovasos");
     router.refresh();
+  }
+
+  async function handleSubscribed(subscriptionId: string) {
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/paypal/verify-subscription", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subscriptionId, tier: plan }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error ?? "Could not verify payment with PayPal");
+      }
+      await createAccount(subscriptionId);
+    } catch (err) {
+      setLoading(false);
+      setError(err instanceof Error ? err.message : "Could not verify payment with PayPal");
+    }
   }
 
   return (
@@ -157,14 +194,30 @@ export default function SignupPage() {
               ))}
             </div>
             {error && <p className="text-xs text-red-600">{error}</p>}
-            <div className="flex gap-2 mt-2">
-              <Button variant="outline" className="w-full" onClick={() => setStep(2)}>
-                Back
-              </Button>
-              <Button variant="primary" className="w-full" onClick={handleFinish} disabled={loading}>
-                {loading ? "Creating..." : "Create Account"}
-              </Button>
-            </div>
+            <p className="text-[11px] text-gray-400 text-center">
+              Pay with PayPal to activate your subscription and create your account.
+            </p>
+            {loading ? (
+              <p className="text-xs text-gray-500 text-center py-2">Confirming your payment…</p>
+            ) : (
+              (() => {
+                const selectedPlan = plans.find((p) => p.name === plan);
+                return selectedPlan?.paypalPlanId ? (
+                  <PaypalSubscribeButton
+                    planId={selectedPlan.paypalPlanId}
+                    onSubscribed={handleSubscribed}
+                    onError={(message) => setError(message)}
+                  />
+                ) : (
+                  <p className="text-xs text-red-600 text-center py-2">
+                    PayPal is not configured for the {plan} plan yet.
+                  </p>
+                );
+              })()
+            )}
+            <Button variant="outline" className="w-full" onClick={() => setStep(2)} disabled={loading}>
+              Back
+            </Button>
           </div>
         )}
 

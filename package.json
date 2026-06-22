@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:lead-magnet": "node scripts/generate-lead-magnet.mjs"
+    "generate:lead-magnet": "node scripts/generate-lead-magnet.mjs",
+    "setup:paypal-plans": "node scripts/setup-paypal-plans.mjs"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.3.5",
