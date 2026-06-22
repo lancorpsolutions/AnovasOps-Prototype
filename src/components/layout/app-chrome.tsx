@@ -4,7 +4,18 @@ import { usePathname } from "next/navigation";
 import { Sidebar } from "@/components/layout/sidebar";
 import { SplashScreen } from "@/components/layout/splash-screen";
 
-const noChromeRoutes = ["/anovasos/signup", "/anovasos/login", "/terms", "/privacy", "/cookies", "/revenue-leaks-guide"];
+const noChromeRoutes = [
+  "/",
+  "/about",
+  "/pricing",
+  "/contact",
+  "/anovasos/signup",
+  "/anovasos/login",
+  "/terms",
+  "/privacy",
+  "/cookies",
+  "/revenue-leaks-guide",
+];
 
 export function AppChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

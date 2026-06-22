@@ -10,48 +10,9 @@ import { useToast } from "@/components/ui/toast";
 import { Role, User, Company } from "@/lib/types";
 import { Check, Pencil, Plus, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PLANS as plans } from "@/lib/plans";
 
 const tierOrder: Company["subscriptionTier"][] = ["Startup", "Small Business", "Enterprise"];
-
-const plans = [
-  {
-    name: "Startup",
-    price: "$1,000/month",
-    features: [
-      "Up to 3 workflows/templates",
-      "Basic command center",
-      "Basic operational risk tracking",
-      "Basic SOP library",
-      "Monthly optimization review",
-    ],
-  },
-  {
-    name: "Small Business",
-    price: "$2,500/month",
-    features: [
-      "Up to 10 workflows/templates",
-      "Advanced dashboard",
-      "Automation rules",
-      "Operational risk reporting",
-      "SOP library",
-      "Crew accountability tracking",
-      "Bi-weekly optimization review",
-    ],
-  },
-  {
-    name: "Enterprise",
-    price: "$5,000/month",
-    features: [
-      "Unlimited workflows/templates",
-      "Advanced reporting",
-      "Custom automations",
-      "Executive dashboards",
-      "Full SOP system",
-      "Priority support",
-      "Weekly optimization review",
-    ],
-  },
-];
 
 const roles: Role[] = ["Owner", "Operations Manager", "Dispatcher", "Crew Lead", "Office Admin"];
 
