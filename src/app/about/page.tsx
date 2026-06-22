@@ -6,9 +6,18 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "About Anovas Integrated Systems",
+  title: "About Us",
   description:
     "Anovas Integrated Systems builds AnovasOS and Anovas Autopilot, and runs the growth strategy behind local and home service businesses across the U.S.",
+  keywords: ["about Anovas Integrated Systems", "home service business growth company"],
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Us",
+    description:
+      "Anovas Integrated Systems builds the software and runs the strategy behind growing local and home service businesses across the U.S.",
+    url: "/about",
+    type: "website",
+  },
 };
 
 const values = [

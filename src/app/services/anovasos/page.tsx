@@ -17,9 +17,42 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { PLANS } from "@/lib/plans";
 
 export const metadata: Metadata = {
-  title: "AnovasOS | The Business Growth Platform from Anovas Integrated Systems",
+  title: "AnovasOS — The Business Growth Platform for Local Service Businesses",
   description:
     "AnovasOS gives HVAC, plumbing, electrical, roofing, landscaping, and pest control operators one place to see what's happening, fix what's stuck, and protect revenue.",
+  keywords: [
+    "AnovasOS",
+    "business growth platform for contractors",
+    "HVAC business management software",
+    "plumbing business growth software",
+    "operational risk tracking for service businesses",
+  ],
+  alternates: { canonical: "/services/anovasos" },
+  openGraph: {
+    title: "AnovasOS — The Business Growth Platform for Local Service Businesses",
+    description:
+      "One command center for HVAC, plumbing, electrical, roofing, and pest control operators to see what's happening, fix what's stuck, and protect revenue.",
+    url: "/services/anovasos",
+    type: "website",
+  },
+};
+
+const anovasOSJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "AnovasOS",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "AnovasOS is a business growth platform providing demand generation, content creation, campaign management, SEO, lead nurturing, and consumer intelligence for local and home service businesses.",
+  brand: { "@type": "Organization", name: "Anovas Integrated Systems" },
+  offers: PLANS.map((plan) => ({
+    "@type": "Offer",
+    name: plan.name,
+    price: plan.price.replace(/[^0-9.]/g, ""),
+    priceCurrency: "USD",
+    description: plan.description,
+  })),
 };
 
 const painPoints = [
@@ -221,6 +254,11 @@ export default function AnovasOSPage() {
       </section>
 
       <MarketingFooter />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(anovasOSJsonLd) }}
+      />
     </div>
   );
 }

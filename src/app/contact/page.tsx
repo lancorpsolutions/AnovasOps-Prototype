@@ -5,8 +5,16 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { ContactForm } from "@/components/forms/contact-form";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Anovas Integrated Systems",
+  title: "Contact Us",
   description: "Get in touch with the Anovas Integrated Systems team to talk through your business.",
+  keywords: ["contact Anovas Integrated Systems", "get a quote home service software"],
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Us",
+    description: "Get in touch with the Anovas Integrated Systems team to talk through your business.",
+    url: "/contact",
+    type: "website",
+  },
 };
 
 export default function ContactPage() {

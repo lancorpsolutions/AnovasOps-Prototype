@@ -14,9 +14,42 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Anovas Autopilot | AI Back-Office Automation from Anovas Integrated Systems",
+  title: "Anovas Autopilot — AI Back-Office Automation for Local Service Businesses",
   description:
     "Anovas Autopilot is an AI-powered back office automation platform for local service businesses — missed-call text-back, lead follow-up, booking reminders, invoice nudges, and review generation.",
+  keywords: [
+    "Anovas Autopilot",
+    "AI back office automation for contractors",
+    "missed call text back software",
+    "lead follow-up automation for service businesses",
+    "review generation software for contractors",
+    "invoice reminder automation",
+  ],
+  alternates: { canonical: "/services/autopilot" },
+  openGraph: {
+    title: "Anovas Autopilot — AI Back-Office Automation for Local Service Businesses",
+    description:
+      "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation — running automatically in the background.",
+    url: "/services/autopilot",
+    type: "website",
+  },
+};
+
+const autopilotJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Anovas Autopilot",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "Anovas Autopilot is an AI-powered back office automation platform for local service businesses, delivering missed-call text-back, lead and quote follow-up, booking and reminder automation, invoice and payment nudges, and review generation.",
+  brand: { "@type": "Organization", name: "Anovas Integrated Systems" },
+  offers: [
+    { "@type": "Offer", name: "Basic" },
+    { "@type": "Offer", name: "Pro" },
+    { "@type": "Offer", name: "Elite" },
+    { "@type": "Offer", name: "Enterprise" },
+  ],
 };
 
 const automations = [
@@ -186,6 +219,11 @@ export default function AutopilotPage() {
       </section>
 
       <MarketingFooter />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(autopilotJsonLd) }}
+      />
     </div>
   );
 }

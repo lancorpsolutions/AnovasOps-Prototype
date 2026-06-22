@@ -12,9 +12,27 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Anovas Integrated Systems | Software & Growth Systems for Local Service Businesses",
+  title: {
+    absolute: "Anovas Integrated Systems | Software & Growth Systems for Local Service Businesses",
+  },
   description:
     "Anovas Integrated Systems builds the software and runs the strategy behind growing local and home service businesses — from AI back-office automation to full-scale growth marketing.",
+  keywords: [
+    "home service business software",
+    "local service business growth platform",
+    "AI back office automation for contractors",
+    "missed call text back software",
+    "HVAC plumbing electrical roofing software",
+    "service business growth strategy",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Anovas Integrated Systems | Software & Growth Systems for Local Service Businesses",
+    description:
+      "We build AI-powered automation and growth software for local and home service businesses, backed by a real team that helps you put it to work.",
+    url: "/",
+    type: "website",
+  },
 };
 
 const offerings = [
@@ -36,10 +54,10 @@ const offerings = [
   },
   {
     icon: Compass,
-    name: "Professional Services",
-    tagline: "Strategy & implementation",
+    name: "Services",
+    tagline: "Strategy, design & implementation",
     summary:
-      "The AROS Growth Score, Growth Blueprint, implementation services, website design, and Fractional Growth Advisor engagements.",
+      "Business formation guidance, graphic design and branding, website design, the AROS Growth Score, Growth Blueprint, and Fractional Growth Advisor engagements.",
     href: "/services",
   },
 ];

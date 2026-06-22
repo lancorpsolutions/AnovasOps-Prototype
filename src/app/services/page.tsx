@@ -9,16 +9,54 @@ import {
   Wrench,
   Globe,
   Users,
+  Building2,
+  Palette,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Services & Offerings | Anovas Integrated Systems",
+  title: "Services & Offerings",
   description:
-    "AnovasOS, Anovas Autopilot, and Professional Services — the products and strategy Anovas Integrated Systems offers local and home service businesses.",
+    "AnovasOS, Anovas Autopilot, and a full suite of professional services — business formation, graphic design and branding, website design, growth strategy, and implementation — built for local and home service businesses.",
+  keywords: [
+    "service business software",
+    "home service business growth services",
+    "business formation services for contractors",
+    "graphic design and branding for service businesses",
+    "website design for home service businesses",
+    "growth strategy for HVAC plumbing electrical roofing companies",
+    "AnovasOS",
+    "Anovas Autopilot",
+  ],
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services & Offerings",
+    description:
+      "AnovasOS, Anovas Autopilot, and professional services — business formation, branding, web design, growth strategy, and implementation for local service businesses.",
+    url: "/services",
+    type: "website",
+  },
 };
+
+const faqs = [
+  {
+    question: "What services does Anovas Integrated Systems offer?",
+    answer:
+      "Anovas Integrated Systems offers two SaaS products — AnovasOS, a business growth platform, and Anovas Autopilot, an AI back-office automation platform — plus professional services including business formation and corporate structure guidance, graphic design and branding, website design, the AROS Growth Score diagnostic, the Growth Blueprint strategic roadmap, implementation services, and Fractional Growth Advisor engagements.",
+  },
+  {
+    question: "Who is Anovas Integrated Systems built for?",
+    answer:
+      "Anovas Integrated Systems is built for local and home service businesses across the U.S. — HVAC, plumbing, electrical, roofing, landscaping, pest control, and similar trades — from owner-operators running their first few crews to multi-location operations.",
+  },
+  {
+    question: "Do I need to use AnovasOS or Autopilot to get professional services like web design or branding?",
+    answer:
+      "No. Professional services such as website design, graphic design and branding, and business formation guidance can be engaged on their own or combined with AnovasOS and Anovas Autopilot as part of a broader growth strategy.",
+  },
+];
 
 const products = [
   {
@@ -44,10 +82,12 @@ const products = [
 ];
 
 const professionalServices = [
+  { icon: Building2, name: "Corporate Structure & Business Formation", summary: "Guidance on entity setup and business structuring so your operation is built on solid legal and financial footing." },
+  { icon: Palette, name: "Graphic Design & Branding", summary: "Logos, brand identity, and marketing collateral that make your business look as good as the work you do." },
+  { icon: Globe, name: "Website Design", summary: "A site built to convert, designed around how your customers actually find and choose you." },
   { icon: Gauge, name: "AROS Growth Score", summary: "A free diagnostic that benchmarks where your business is leaking revenue and opportunity." },
   { icon: FileText, name: "Growth Blueprint", summary: "A strategic analysis and roadmap tailored to your business and market." },
   { icon: Wrench, name: "Implementation Services", summary: "Hands-on setup and rollout so AnovasOS and Autopilot are configured right from day one." },
-  { icon: Globe, name: "Website Design", summary: "A site built to convert, designed around how your customers actually find and choose you." },
   { icon: Users, name: "Fractional Growth Advisor", summary: "Ongoing strategic guidance from our team, without the cost of a full-time hire." },
 ];
 
@@ -63,11 +103,13 @@ export default function ServicesPage() {
             Services &amp; Offerings
           </p>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            Two products. One team behind both.
+            Software, strategy, and design. One team behind all of it.
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
             AnovasOS and Anovas Autopilot are the SaaS products at the core of what we build —
-            backed by professional services that help you put them to work.
+            backed by professional services covering business formation, branding, web design,
+            and growth strategy, so you don&apos;t have to piece it together with five different
+            vendors.
           </p>
         </div>
       </section>
@@ -142,6 +184,23 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <section className="max-w-3xl mx-auto px-6 py-20">
+        <div className="text-center mb-10">
+          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">FAQ</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-charcoal">
+            Common questions about our services.
+          </h2>
+        </div>
+        <div className="space-y-5">
+          {faqs.map((faq) => (
+            <div key={faq.question} className="rounded-xl border border-gray-200 bg-white p-5">
+              <p className="text-sm font-semibold text-charcoal mb-1.5">{faq.question}</p>
+              <p className="text-xs text-gray-500 leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy-light to-navy text-white">
         <div className="relative max-w-4xl mx-auto px-6 py-14 text-center">
           <p className="text-base md:text-lg font-semibold mb-6">
@@ -156,6 +215,21 @@ export default function ServicesPage() {
       </section>
 
       <MarketingFooter />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }),
+        }}
+      />
     </div>
   );
 }

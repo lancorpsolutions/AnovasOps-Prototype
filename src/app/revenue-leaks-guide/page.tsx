@@ -3,9 +3,22 @@ import { ShieldAlert, Clock, Users2, Receipt, AlertTriangle } from "lucide-react
 import { LeadCaptureForm } from "@/components/forms/lead-capture-form";
 
 export const metadata: Metadata = {
-  title: "5 Hidden Revenue Leaks in Home Service Businesses | AnovasOS",
+  title: "5 Hidden Revenue Leaks in Home Service Businesses | Free Guide",
   description:
     "A free guide for HVAC, plumbing, electrical, roofing, landscaping, and pest control operators on the 5 revenue leaks quietly draining their business — and how to plug them.",
+  keywords: [
+    "revenue leaks home service business",
+    "free guide for contractors",
+    "HVAC plumbing electrical business growth guide",
+  ],
+  alternates: { canonical: "/revenue-leaks-guide" },
+  openGraph: {
+    title: "5 Hidden Revenue Leaks in Home Service Businesses | Free Guide",
+    description:
+      "A free guide on the 5 revenue leaks quietly draining local service businesses — and how to plug them.",
+    url: "/revenue-leaks-guide",
+    type: "website",
+  },
 };
 
 const leaks = [

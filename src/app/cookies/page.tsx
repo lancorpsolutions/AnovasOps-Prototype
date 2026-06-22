@@ -1,7 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Cookie Policy | AnovasOS",
+  title: "Cookie Policy",
+  alternates: { canonical: "/cookies" },
+  robots: { index: false, follow: true },
 };
 
 export default function CookiesPage() {

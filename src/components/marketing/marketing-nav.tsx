@@ -11,16 +11,21 @@ const services = [
   { href: "/services/autopilot", label: "Anovas Autopilot", summary: "AI back-office automation" },
 ];
 
+const resources = [
+  { href: "/revenue-leaks-guide", label: "Free Revenue Leaks Guide", summary: "Free diagnostic guide" },
+  { href: "/blog", label: "Blog", summary: "Insights & updates" },
+];
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/revenue-leaks-guide", label: "Free Guide" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function MarketingNav() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-navy/95 backdrop-blur-sm text-white border-b border-white/5">
@@ -69,9 +74,32 @@ export function MarketingNav() {
             )}
           </div>
 
-          <Link href="/revenue-leaks-guide" className="text-sm text-white/70 hover:text-white transition-colors">
-            Free Guide
-          </Link>
+          <div
+            className="relative"
+            onMouseEnter={() => setResourcesOpen(true)}
+            onMouseLeave={() => setResourcesOpen(false)}
+          >
+            <button className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors">
+              Resources <ChevronDown size={14} />
+            </button>
+            {resourcesOpen && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64">
+                <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-2">
+                  {resources.map((r) => (
+                    <Link
+                      key={r.href}
+                      href={r.href}
+                      className="block rounded-lg px-3 py-2.5 hover:bg-white/10 transition-colors"
+                    >
+                      <p className="text-sm font-semibold text-white">{r.label}</p>
+                      <p className="text-xs text-white/50">{r.summary}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           <Link href="/contact" className="text-sm text-white/70 hover:text-white transition-colors">
             Contact
           </Link>
@@ -117,6 +145,19 @@ export function MarketingNav() {
                 onClick={() => setOpen(false)}
               >
                 {s.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-col gap-2 pl-3 border-l border-white/10">
+            <p className="text-[11px] uppercase tracking-wide text-white/40">Resources</p>
+            {resources.map((r) => (
+              <Link
+                key={r.href}
+                href={r.href}
+                className="text-sm text-white/80 hover:text-white"
+                onClick={() => setOpen(false)}
+              >
+                {r.label}
               </Link>
             ))}
           </div>
