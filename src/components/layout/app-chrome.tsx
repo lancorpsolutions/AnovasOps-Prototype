@@ -7,6 +7,9 @@ import { SplashScreen } from "@/components/layout/splash-screen";
 const noChromeRoutes = [
   "/",
   "/about",
+  "/services",
+  "/services/anovasos",
+  "/services/autopilot",
   "/pricing",
   "/contact",
   "/anovasos/signup",

@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "About Anovas Integrated Systems | AnovasOS",
+  title: "About Anovas Integrated Systems",
   description:
-    "Anovas Integrated Systems builds AnovasOS, the operating system for home service businesses — giving operators visibility, automation, and accountability in one place.",
+    "Anovas Integrated Systems builds AnovasOS and Anovas Autopilot, and runs the growth strategy behind local and home service businesses across the U.S.",
 };
 
 const values = [
@@ -16,7 +16,7 @@ const values = [
     icon: Eye,
     title: "Visibility first",
     summary:
-      "You can't fix what you can't see. Every feature starts with surfacing what's actually happening in the business.",
+      "You can't fix what you can't see. Every product we build starts with surfacing what's actually happening in the business.",
   },
   {
     icon: Zap,
@@ -28,7 +28,7 @@ const values = [
     icon: ClipboardCheck,
     title: "Built for operators",
     summary:
-      "Every workflow is designed around how home service businesses actually run — not generic project management.",
+      "Every product and engagement is designed around how local service businesses actually run — not generic software.",
   },
 ];
 
@@ -37,18 +37,19 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background">
       <MarketingNav />
 
-      <section className="bg-navy text-white">
-        <div className="max-w-4xl mx-auto px-6 py-16 text-center">
+      <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy via-navy to-navy-light text-white">
+        <div className="absolute inset-0 hero-grid opacity-50" />
+        <div className="relative max-w-4xl mx-auto px-6 py-20 text-center">
           <p className="text-orange-light text-xs font-semibold uppercase tracking-widest mb-4">
             About Us
           </p>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            We build the operating system home service businesses run on.
+            We&apos;re the team behind the systems that run service businesses.
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-            Anovas Integrated Systems builds AnovasOS for HVAC, plumbing, electrical, roofing,
-            landscaping, and pest control operators who are done finding out about problems after
-            the money is already gone.
+            Anovas Integrated Systems builds the software — AnovasOS and Anovas Autopilot — and
+            provides the strategy and implementation work that local and home service businesses
+            need to grow, without piecing it together themselves.
           </p>
         </div>
       </section>
@@ -56,16 +57,17 @@ export default function AboutPage() {
       <section className="max-w-4xl mx-auto px-6 py-16">
         <h2 className="text-xl font-bold text-charcoal mb-4">Our mission</h2>
         <p className="text-sm text-gray-500 leading-relaxed mb-4">
-          Home service businesses run on a lot of moving parts: quotes, schedules, crews,
-          invoices, and customers, all happening at once. When that information lives in
-          spreadsheets, group chats, and someone&apos;s memory, revenue leaks quietly — a cold
-          quote here, a slipping job there, an invoice nobody sent.
+          Local and home service businesses run on a lot of moving parts: leads, quotes,
+          schedules, crews, invoices, and customers, all happening at once. When that information
+          lives in spreadsheets, group chats, and someone&apos;s memory, revenue leaks quietly —
+          a missed call here, a cold quote there, an invoice nobody sent.
         </p>
         <p className="text-sm text-gray-500 leading-relaxed">
-          AnovasOS exists to close that gap. We give operators one place to see what&apos;s
-          actually happening across the business, automate the follow-ups and handoffs that
-          shouldn&apos;t require a human, and catch operational risk before it turns into lost
-          revenue.
+          Anovas Integrated Systems exists to close that gap — with software that automates the
+          back office and drives growth, and a team that helps you put it to work. We give
+          operators one place to see what&apos;s actually happening, automate the follow-ups and
+          handoffs that shouldn&apos;t require a human, and catch the leaks before they become
+          lost revenue.
         </p>
       </section>
 
@@ -76,8 +78,11 @@ export default function AboutPage() {
             {values.map((value) => {
               const Icon = value.icon;
               return (
-                <div key={value.title} className="rounded-xl border border-gray-200 bg-background p-6">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-md bg-orange/10 text-orange mb-4">
+                <div
+                  key={value.title}
+                  className="rounded-2xl border border-gray-200 bg-background p-6 hover:shadow-md transition-shadow"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange to-orange-light text-white mb-4 shadow-sm">
                     <Icon size={18} />
                   </span>
                   <p className="text-sm font-semibold text-charcoal mb-2">{value.title}</p>
@@ -92,24 +97,25 @@ export default function AboutPage() {
       <section className="max-w-4xl mx-auto px-6 py-16 text-center">
         <h2 className="text-xl font-bold text-charcoal mb-3">Who we serve</h2>
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl mx-auto">
-          HVAC, plumbing, electrical, roofing, landscaping, and pest control teams — from
-          owner-operators running their first few crews to multi-crew operations that need
-          executive-level visibility and accountability across the board.
+          HVAC, plumbing, electrical, roofing, landscaping, pest control, and other local service
+          businesses across the U.S. — from owner-operators running their first few crews to
+          multi-location operations that need executive-level visibility and accountability
+          across the board.
         </p>
       </section>
 
-      <section className="bg-navy-light text-white">
-        <div className="max-w-4xl mx-auto px-6 py-14 text-center">
+      <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy-light to-navy text-white">
+        <div className="relative max-w-4xl mx-auto px-6 py-14 text-center">
           <p className="text-base md:text-lg font-semibold mb-6">
-            Ready to see what&apos;s actually happening in your business?
+            Ready to see what Anovas Integrated Systems can do for your business?
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild variant="primary" size="lg">
-              <Link href="/anovasos/signup">
-                Get Started <ArrowRight size={16} />
+              <Link href="/services">
+                Explore Our Services <ArrowRight size={16} />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="bg-transparent border-white/30 text-white hover:bg-white/10">
+            <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">
               <Link href="/contact">Talk to Us</Link>
             </Button>
           </div>
