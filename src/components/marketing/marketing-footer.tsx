@@ -16,6 +16,7 @@ export function MarketingFooter() {
           <nav className="flex flex-col gap-2 text-xs text-white/60">
             <Link href="/about" className="hover:text-white">About</Link>
             <Link href="/services" className="hover:text-white">Services</Link>
+            <Link href="/faq" className="hover:text-white">FAQ</Link>
             <Link href="/contact" className="hover:text-white">Contact</Link>
           </nav>
         </div>

@@ -19,6 +19,7 @@ const resources = [
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -99,6 +100,10 @@ export function MarketingNav() {
               </div>
             )}
           </div>
+
+          <Link href="/faq" className="text-sm text-white/70 hover:text-white transition-colors">
+            FAQ
+          </Link>
 
           <Link href="/contact" className="text-sm text-white/70 hover:text-white transition-colors">
             Contact
