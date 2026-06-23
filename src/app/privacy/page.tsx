@@ -16,20 +16,14 @@ export default function PrivacyPage() {
           </Link>
         </p>
 
-        <div className="border border-amber-300 bg-amber-50 text-amber-900 text-xs font-medium rounded-lg px-4 py-3 mb-8">
-          ATTORNEY REVIEW DRAFT — DO NOT PUBLISH WITHOUT LEGAL SIGN-OFF
-          <br />
-          Version: v1.0 — June 15, 2026
-        </div>
-
         <h1 className="text-2xl font-bold text-charcoal mb-1">
           Privacy Policy — Anovas Integrated Systems
         </h1>
         <p className="text-sm text-gray-500 mb-1">
-          <strong>Effective Date:</strong> [To be set upon publication]
+          <strong>Effective Date:</strong> June 23, 2026
         </p>
         <p className="text-sm text-gray-500 mb-8">
-          <strong>Last Updated:</strong> June 15, 2026
+          <strong>Last Updated:</strong> June 23, 2026
         </p>
         <p className="text-sm text-gray-500 mb-8">
           Anovas Integrated Systems LLC · North Little Rock, Arkansas ·{" "}
