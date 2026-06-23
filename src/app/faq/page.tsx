@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
-import { FaqTabs } from "@/components/marketing/faq-tabs";
+import { FaqAccordion } from "@/components/marketing/faq-accordion";
 import { faqSections } from "@/lib/faq-data";
 import { Button } from "@/components/ui/button";
 
@@ -43,8 +43,23 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <div className="max-w-3xl mx-auto px-6 py-14">
-        <FaqTabs sections={faqSections} />
+      <nav className="border-b border-gray-200 bg-white sticky top-16 z-40">
+        <div className="max-w-3xl mx-auto px-6 py-3 flex flex-wrap gap-4 justify-center">
+          {faqSections.map((s) => (
+            <a key={s.id} href={`#${s.id}`} className="text-xs font-medium text-gray-500 hover:text-orange">
+              {s.title}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <div className="max-w-3xl mx-auto px-6 py-14 space-y-14">
+        {faqSections.map((section) => (
+          <section key={section.id} id={section.id} className="scroll-mt-28">
+            <h2 className="text-xl font-bold text-charcoal mb-5">{section.title}</h2>
+            <FaqAccordion items={section.items} />
+          </section>
+        ))}
       </div>
 
       <section className="bg-white border-t border-gray-200">
