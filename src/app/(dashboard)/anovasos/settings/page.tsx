@@ -8,7 +8,7 @@ import { Input, Label, Select } from "@/components/ui/input";
 import { useStore } from "@/lib/store";
 import { useToast } from "@/components/ui/toast";
 import { Role, User, Company } from "@/lib/types";
-import { Check, Pencil, Plus, Trash2, X } from "lucide-react";
+import { Check, Pencil, Plus, Trash2, X, PhoneMissed } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PLANS as plans } from "@/lib/plans";
 
@@ -289,12 +289,83 @@ function SubscriptionPlansCard() {
   );
 }
 
+function AutopilotMissedCallCard() {
+  const { autopilotSettings, saveAutopilotSettings } = useStore();
+  const { showToast } = useToast();
+  const [twilioPhoneNumber, setTwilioPhoneNumber] = useState(autopilotSettings.twilioPhoneNumber ?? "");
+  const [forwardToPhone, setForwardToPhone] = useState(autopilotSettings.forwardToPhone ?? "");
+  const [smsTemplate, setSmsTemplate] = useState(autopilotSettings.missedCallSmsTemplate);
+
+  function handleSave() {
+    saveAutopilotSettings({
+      twilioPhoneNumber: twilioPhoneNumber.trim() || null,
+      forwardToPhone: forwardToPhone.trim() || null,
+      missedCallSmsTemplate: smsTemplate,
+    });
+    showToast("Autopilot settings saved");
+  }
+
+  function handleToggle() {
+    saveAutopilotSettings({ missedCallTextBackEnabled: !autopilotSettings.missedCallTextBackEnabled });
+    showToast(autopilotSettings.missedCallTextBackEnabled ? "Missed-call text-back disabled" : "Missed-call text-back enabled");
+  }
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <PhoneMissed size={15} className="text-orange" />
+          <h3 className="text-sm font-semibold text-charcoal">Anovas Autopilot — Missed-Call Text-Back</h3>
+        </div>
+        <button
+          onClick={handleToggle}
+          className={cn(
+            "h-5 w-9 rounded-full transition-colors relative cursor-pointer",
+            autopilotSettings.missedCallTextBackEnabled ? "bg-emerald-500" : "bg-gray-300"
+          )}
+        >
+          <span
+            className={cn(
+              "absolute top-0.5 h-4 w-4 rounded-full bg-white transition-transform shadow",
+              autopilotSettings.missedCallTextBackEnabled ? "translate-x-4" : "translate-x-0.5"
+            )}
+          />
+        </button>
+      </div>
+      <p className="text-xs text-gray-500 mb-4">
+        When a call to your Twilio number goes unanswered, the caller automatically gets a text-back so the lead
+        doesn&apos;t go cold.
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div>
+          <Label>Twilio Phone Number</Label>
+          <Input value={twilioPhoneNumber} onChange={(e) => setTwilioPhoneNumber(e.target.value)} placeholder="+15551234567" />
+        </div>
+        <div>
+          <Label>Forward Calls To</Label>
+          <Input value={forwardToPhone} onChange={(e) => setForwardToPhone(e.target.value)} placeholder="+15557654321" />
+        </div>
+      </div>
+      <div className="mb-4">
+        <Label>Auto-Reply Text Message</Label>
+        <Input value={smsTemplate} onChange={(e) => setSmsTemplate(e.target.value)} />
+      </div>
+      <div className="flex justify-end">
+        <Button variant="primary" size="sm" onClick={handleSave}>
+          Save
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 export default function SettingsPage() {
   return (
     <div>
       <Header title="Settings" subtitle="Manage company details, team, service types, and subscription plan." />
       <div className="p-6 space-y-6">
         <CompanyInfoCard />
+        <AutopilotMissedCallCard />
         <ServiceTypesCard />
         <UsersCard />
         <SubscriptionPlansCard />

@@ -5,6 +5,7 @@ import { createClient } from "./supabase/client";
 import {
   ActivityEvent,
   AutomationRule,
+  AutopilotSettings,
   Company,
   Crew,
   CrewMember,
@@ -47,6 +48,7 @@ interface StoreState {
   serviceTypes: string[];
   connectedIntegrations: string[];
   onboardingDismissed: boolean;
+  autopilotSettings: AutopilotSettings;
 }
 
 interface StoreActions {
@@ -92,6 +94,7 @@ interface StoreActions {
   disconnectIntegration: (name: string) => void;
   changeSubscriptionTier: (tier: Company["subscriptionTier"]) => void;
   dismissOnboarding: () => void;
+  saveAutopilotSettings: (data: Partial<Omit<AutopilotSettings, "companyId">>) => void;
 }
 
 const StoreContext = createContext<(StoreState & StoreActions) | null>(null);
@@ -339,6 +342,25 @@ function mapNotification(row: any): Notification {
   };
 }
 
+function mapAutopilotSettings(row: any): AutopilotSettings {
+  return {
+    companyId: row.company_id,
+    twilioPhoneNumber: row.twilio_phone_number,
+    forwardToPhone: row.forward_to_phone,
+    missedCallSmsTemplate: row.missed_call_sms_template,
+    missedCallTextBackEnabled: row.missed_call_text_back_enabled,
+  };
+}
+
+const EMPTY_AUTOPILOT_SETTINGS: AutopilotSettings = {
+  companyId: "",
+  twilioPhoneNumber: null,
+  forwardToPhone: null,
+  missedCallSmsTemplate:
+    "Hi! Sorry we missed your call. We'll text you back shortly — feel free to reply here with what you need.",
+  missedCallTextBackEnabled: false,
+};
+
 export function StoreProvider({ children }: { children: React.ReactNode }) {
   const supabase = useMemo(() => createClient(), []);
   const companyIdRef = useRef<string>("");
@@ -361,6 +383,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [serviceTypes, setServiceTypes] = useState<string[]>(DEFAULT_SERVICE_TYPES);
   const [connectedIntegrations, setConnectedIntegrations] = useState<string[]>([]);
   const [onboardingDismissed, setOnboardingDismissed] = useState(false);
+  const [autopilotSettings, setAutopilotSettings] = useState<AutopilotSettings>(EMPTY_AUTOPILOT_SETTINGS);
 
   useEffect(() => {
     let cancelled = false;
@@ -408,6 +431,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         activityRes,
         notificationsRes,
         integrationsRes,
+        autopilotSettingsRes,
       ] = await Promise.all([
         supabase.from("team_members").select("*").eq("company_id", companyId),
         supabase.from("customers").select("*").eq("company_id", companyId),
@@ -424,6 +448,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         supabase.from("activity_events").select("*").eq("company_id", companyId).order("created_at", { ascending: false }),
         supabase.from("notifications").select("*").eq("company_id", companyId).order("created_at", { ascending: false }),
         supabase.from("connected_integrations").select("*").eq("company_id", companyId),
+        supabase.from("autopilot_settings").select("*").eq("company_id", companyId).maybeSingle(),
       ]);
 
       if (cancelled) return;
@@ -451,6 +476,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setNotifications((notificationsRes.data ?? []).map(mapNotification));
       setConnectedIntegrations((integrationsRes.data ?? []).map((row: any) => row.name));
       setOnboardingDismissed(!!companyRow?.onboarding_dismissed);
+      setAutopilotSettings(
+        autopilotSettingsRes.data ? mapAutopilotSettings(autopilotSettingsRes.data) : { ...EMPTY_AUTOPILOT_SETTINGS, companyId }
+      );
 
       setLoading(false);
     }
@@ -1153,6 +1181,20 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     supabase.from("companies").update({ onboarding_dismissed: true }).eq("id", companyIdRef.current).then();
   }, [supabase]);
 
+  const saveAutopilotSettings: StoreActions["saveAutopilotSettings"] = useCallback(
+    (data) => {
+      const companyId = companyIdRef.current;
+      setAutopilotSettings((prev) => ({ ...prev, ...data, companyId }));
+      const payload: Record<string, unknown> = { company_id: companyId };
+      if (data.twilioPhoneNumber !== undefined) payload.twilio_phone_number = data.twilioPhoneNumber;
+      if (data.forwardToPhone !== undefined) payload.forward_to_phone = data.forwardToPhone;
+      if (data.missedCallSmsTemplate !== undefined) payload.missed_call_sms_template = data.missedCallSmsTemplate;
+      if (data.missedCallTextBackEnabled !== undefined) payload.missed_call_text_back_enabled = data.missedCallTextBackEnabled;
+      supabase.from("autopilot_settings").upsert(payload, { onConflict: "company_id" }).then();
+    },
+    [supabase]
+  );
+
   const value = useMemo<StoreState & StoreActions>(
     () => ({
       company,
@@ -1172,6 +1214,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       serviceTypes,
       connectedIntegrations,
       onboardingDismissed,
+      autopilotSettings,
       addActivity,
       createOpportunity,
       updateOpportunity,
@@ -1214,6 +1257,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       disconnectIntegration,
       changeSubscriptionTier,
       dismissOnboarding,
+      saveAutopilotSettings,
     }),
     [
       company,
@@ -1233,6 +1277,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       serviceTypes,
       connectedIntegrations,
       onboardingDismissed,
+      autopilotSettings,
       addActivity,
       createOpportunity,
       updateOpportunity,
@@ -1275,6 +1320,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       disconnectIntegration,
       changeSubscriptionTier,
       dismissOnboarding,
+      saveAutopilotSettings,
     ]
   );
 

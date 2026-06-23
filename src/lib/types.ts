@@ -253,6 +253,14 @@ export interface ActivityEvent {
   category: "sales" | "job" | "invoice" | "customer" | "crew" | "risk" | "sop" | "automation";
 }
 
+export interface AutopilotSettings {
+  companyId: string;
+  twilioPhoneNumber: string | null;
+  forwardToPhone: string | null;
+  missedCallSmsTemplate: string;
+  missedCallTextBackEnabled: boolean;
+}
+
 export interface Notification {
   id: string;
   message: string;
