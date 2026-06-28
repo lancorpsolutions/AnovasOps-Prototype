@@ -69,7 +69,11 @@ export const faqSections: FaqSection[] = [
           <p>
             Anovas Autopilot is your AI-powered back office. It runs five core automations that
             handle the most time-consuming, revenue-critical tasks in your business — automatically,
-            around the clock, without you lifting a finger.
+            around the clock, without you lifting a finger. See full plan details on the{" "}
+            <Link href="/services/autopilot" className="text-orange font-medium">
+              Autopilot page
+            </Link>
+            .
           </p>
         ),
       },
