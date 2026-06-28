@@ -5,11 +5,12 @@ import { Header } from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { CreateOpportunityForm } from "@/components/forms/create-opportunity-form";
+import { FindLeadsForm } from "@/components/forms/find-leads-form";
 import { useStore, useCustomerName, useUserName } from "@/lib/store";
 import { useToast } from "@/components/ui/toast";
 import { PipelineStage, SalesOpportunity } from "@/lib/types";
 import { formatCurrency, formatDate, daysBetween, isPast } from "@/lib/utils";
-import { Plus, Calendar, Pencil, Trash2 } from "lucide-react";
+import { Plus, Calendar, Pencil, Trash2, Search } from "lucide-react";
 
 const stages: PipelineStage[] = [
   "Lead Received",
@@ -81,12 +82,16 @@ function OpportunityCard({ opp }: { opp: SalesOpportunity }) {
 export default function SalesPipelinePage() {
   const { opportunities } = useStore();
   const [open, setOpen] = useState(false);
+  const [findOpen, setFindOpen] = useState(false);
 
   return (
     <div>
       <Header title="Sales Pipeline" subtitle="Track leads and estimates from first contact through won or lost." />
       <div className="p-6">
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-end gap-2 mb-4">
+          <Button variant="outline" onClick={() => setFindOpen(true)}>
+            <Search size={15} /> Find Leads
+          </Button>
           <Button variant="primary" onClick={() => setOpen(true)}>
             <Plus size={15} /> New Opportunity
           </Button>
@@ -112,6 +117,14 @@ export default function SalesPipelinePage() {
       </div>
       <Modal open={open} onOpenChange={setOpen} title="New Sales Opportunity" description="Create a new lead or estimate opportunity.">
         <CreateOpportunityForm onDone={() => setOpen(false)} />
+      </Modal>
+      <Modal
+        open={findOpen}
+        onOpenChange={setFindOpen}
+        title="Find Leads"
+        description="Search public business listings and import matches as prospects."
+      >
+        <FindLeadsForm onDone={() => setFindOpen(false)} />
       </Modal>
     </div>
   );
