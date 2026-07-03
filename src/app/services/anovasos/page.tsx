@@ -120,12 +120,12 @@ export default function AnovasOSPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild variant="primary" size="lg">
-              <Link href="/anovasos/signup">
-                Get Started <ArrowRight size={16} />
+              <Link href="/anovasos">
+                Try the Live Demo <ArrowRight size={16} />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">
-              <Link href="/revenue-leaks-guide">Get the Free Revenue Leaks Guide</Link>
+              <Link href="/anovasos/signup">Sign Up &amp; Get Started</Link>
             </Button>
           </div>
         </div>
@@ -242,8 +242,8 @@ export default function AnovasOSPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild variant="primary" size="lg">
-              <Link href="/anovasos/signup">
-                Get Started <ArrowRight size={16} />
+              <Link href="/anovasos">
+                Try the Live Demo <ArrowRight size={16} />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">

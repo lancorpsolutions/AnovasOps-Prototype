@@ -7,11 +7,12 @@ import {
   CalendarClock,
   Receipt,
   Star,
-  Check,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { AutopilotInquiryForm } from "@/components/forms/autopilot-inquiry-form";
 
 export const metadata: Metadata = {
   title: "Anovas Autopilot — AI Back-Office Automation for Local Service Businesses",
@@ -81,11 +82,90 @@ const automations = [
 ];
 
 const tiers = [
-  { name: "Basic", summary: "The core automations, sized for a single crew or small operation." },
-  { name: "Pro", summary: "Higher capacity and more automation coverage for a growing team." },
-  { name: "Elite", summary: "Full automation depth for established, multi-crew operations." },
-  { name: "Enterprise", summary: "Custom capacity and configuration for large or multi-location businesses." },
+  {
+    name: "Basic",
+    price: "$500/mo",
+    setup: "$1,000 setup",
+    badge: null,
+    tagline: "For solo operators and single-crew businesses just getting started with automation.",
+    features: [
+      "All five core automations included",
+      "Up to 100 leads/mo capacity",
+      "Single user access",
+      "Missed-call text-back",
+      "Lead & quote follow-up sequences",
+      "Booking confirmations & reminders",
+      "Invoice nudges & payment follow-up",
+      "Automated review requests",
+      "Standard onboarding (2 weeks)",
+    ],
+  },
+  {
+    name: "Pro",
+    price: "$1,000/mo",
+    setup: "$2,500 setup",
+    badge: "Most Popular",
+    tagline: "For growing teams with a few techs or staff who need higher capacity and more coverage.",
+    features: [
+      "Everything in Basic",
+      "Up to 500 leads/mo capacity",
+      "Up to 5 user seats",
+      "Advanced follow-up sequences",
+      "Priority booking management",
+      "Multi-step invoice escalation",
+      "Performance reporting dashboard",
+      "Bi-weekly optimization check-in",
+      "Priority email support",
+    ],
+  },
+  {
+    name: "Elite",
+    price: "$2,000/mo",
+    setup: "$5,000 setup",
+    badge: null,
+    tagline: "For established businesses doing over $1M who need full automation depth and higher capacity.",
+    features: [
+      "Everything in Pro",
+      "Unlimited lead capacity",
+      "Up to 15 user seats",
+      "Custom automation sequences",
+      "Multi-location support",
+      "Dedicated onboarding specialist",
+      "Weekly optimization check-in",
+      "Phone & priority support",
+      "Custom reporting",
+    ],
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    setup: "Custom",
+    badge: null,
+    tagline: "For multi-location operations with complex needs and high lead volume.",
+    features: [
+      "Everything in Elite",
+      "Unlimited users & locations",
+      "Custom CRM & tool integrations",
+      "Dedicated account manager",
+      "SLA-backed support",
+      "White-glove onboarding",
+      "Executive reporting",
+      "Quarterly strategy reviews",
+      "Custom pricing",
+    ],
+  },
 ];
+
+function TierBullet({ text }: { text: string }) {
+  return (
+    <li className="flex items-start gap-2.5">
+      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br from-orange to-orange-light text-white shrink-0 mt-0.5 shadow-sm">
+        <Zap size={10} />
+      </span>
+      <span className="text-xs text-gray-600 leading-relaxed">{text}</span>
+    </li>
+  );
+}
 
 export default function AutopilotPage() {
   return (
@@ -108,9 +188,9 @@ export default function AutopilotPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild variant="primary" size="lg">
-              <Link href="/contact">
-                Get a Custom Quote <ArrowRight size={16} />
-              </Link>
+              <a href="#get-started">
+                Get Your Autopilot Setup <ArrowRight size={16} />
+              </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">
               <Link href="/revenue-leaks-guide">Get the Free Revenue Leaks Guide</Link>
@@ -119,6 +199,7 @@ export default function AutopilotPage() {
         </div>
       </section>
 
+      {/* Five automations */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">
@@ -127,6 +208,9 @@ export default function AutopilotPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-charcoal mb-3">
             It runs the parts of the day that don&apos;t need a human.
           </h2>
+          <p className="text-sm text-gray-500 max-w-xl mx-auto">
+            Every Autopilot plan includes all five automations. What scales between tiers is capacity, users, and support.
+          </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {automations.map((item) => {
@@ -147,6 +231,7 @@ export default function AutopilotPage() {
         </div>
       </section>
 
+      {/* Tiers */}
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-20">
           <div className="text-center mb-12">
@@ -155,31 +240,53 @@ export default function AutopilotPage() {
               Four tiers, sized to your operation.
             </h2>
             <p className="text-sm text-gray-500 max-w-xl mx-auto">
-              Autopilot scales with you — capacity and automation coverage grow tier to tier.
-              Pricing is tailored to your business, so let&apos;s talk through what fits.
+              All five automations are included in every tier. Capacity, user seats, and support depth scale as you grow.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {tiers.map((tier) => (
-              <div
-                key={tier.name}
-                className="rounded-2xl border border-gray-200 bg-background p-6 hover:shadow-md transition-shadow"
-              >
-                <p className="text-base font-bold text-charcoal mb-2">{tier.name}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{tier.summary}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Button asChild variant="primary" size="lg">
-              <Link href="/contact">
-                Talk to Us About Pricing <ArrowRight size={16} />
-              </Link>
-            </Button>
+            {tiers.map((tier) => {
+              const isFeatured = tier.badge === "Most Popular";
+              return (
+                <div
+                  key={tier.name}
+                  className={
+                    isFeatured
+                      ? "rounded-2xl border-2 border-orange bg-white shadow-md p-6 flex flex-col relative"
+                      : "rounded-2xl border border-gray-200 bg-background p-6 flex flex-col"
+                  }
+                >
+                  {isFeatured && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
+                      Most Popular
+                    </span>
+                  )}
+                  <div className="mb-4">
+                    <p className="text-base font-bold text-charcoal">{tier.name}</p>
+                    <p className="text-xl font-bold text-orange mt-0.5">{tier.price}</p>
+                    <p className="text-[11px] text-gray-400">{tier.setup}</p>
+                  </div>
+                  <p className="text-xs text-gray-500 leading-relaxed mb-4 border-b border-gray-100 pb-4">{tier.tagline}</p>
+                  <ul className="space-y-2.5 flex-1">
+                    {tier.features.map((f) => <TierBullet key={f} text={f} />)}
+                  </ul>
+                  <a
+                    href="#get-started"
+                    className={
+                      isFeatured
+                        ? "mt-6 block text-center text-xs font-semibold bg-orange text-white rounded-lg py-2.5 px-4 hover:bg-orange/90 transition-colors"
+                        : "mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 px-4 hover:border-orange hover:text-orange transition-colors"
+                    }
+                  >
+                    Get Started with {tier.name}
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
+      {/* Why Autopilot */}
       <section className="max-w-4xl mx-auto px-6 py-16">
         <div className="rounded-2xl bg-gradient-to-br from-navy to-navy-light text-white p-8 shadow-md">
           <p className="text-sm font-semibold mb-4 text-white/90">Why businesses run on Autopilot</p>
@@ -187,11 +294,13 @@ export default function AutopilotPage() {
             {[
               "Built for local service businesses, not generic SMB software",
               "Five automations working together, not five disconnected tools",
+              "Most owners spend less than 2 hours total on setup — we handle the build",
+              "The missed-call text-back alone typically recovers enough jobs in month one to cover the fee",
               "Backed by the same team that builds AnovasOS and our growth services",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2.5 text-sm text-white/80">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-orange/20 text-orange-light shrink-0 mt-0.5">
-                  <Check size={12} />
+                <span className="flex h-5 w-5 items-center justify-center rounded-md bg-orange/20 shrink-0 mt-0.5">
+                  <Zap size={10} className="text-orange-light" />
                 </span>
                 {item}
               </li>
@@ -200,22 +309,18 @@ export default function AutopilotPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy-light to-navy text-white">
-        <div className="relative max-w-4xl mx-auto px-6 py-14 text-center">
-          <p className="text-base md:text-lg font-semibold mb-6">
-            Ready to put your back office on autopilot?
+      {/* Inline inquiry form */}
+      <section id="get-started" className="max-w-2xl mx-auto px-6 pb-20">
+        <div className="text-center mb-8">
+          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Get Started</p>
+          <h2 className="text-2xl font-bold text-charcoal mb-3">
+            Let&apos;s size the right plan for your business.
+          </h2>
+          <p className="text-sm text-gray-500 max-w-md mx-auto">
+            Fill this out and we&apos;ll walk you through exactly what gets automated for your operation — no pressure, no pitch until you&apos;ve seen the numbers.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild variant="primary" size="lg">
-              <Link href="/contact">
-                Contact Us <ArrowRight size={16} />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">
-              <Link href="/services/anovasos">See AnovasOS</Link>
-            </Button>
-          </div>
         </div>
+        <AutopilotInquiryForm />
       </section>
 
       <MarketingFooter />
