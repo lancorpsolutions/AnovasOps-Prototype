@@ -2,6 +2,8 @@ import { StoreProvider } from "@/lib/store";
 import { Sidebar } from "@/components/layout/sidebar";
 import { SplashScreen } from "@/components/layout/splash-screen";
 
+export const dynamic = "force-dynamic";
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <StoreProvider>
