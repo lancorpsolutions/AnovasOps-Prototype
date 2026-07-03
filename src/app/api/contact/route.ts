@@ -6,6 +6,12 @@ interface ContactRequestBody {
   name: string;
   email: string;
   company?: string;
+  phone?: string;
+  industry?: string;
+  teamSize?: string;
+  tier?: string;
+  biggestPain?: string;
+  // legacy generic contact form field
   message?: string;
 }
 
@@ -18,7 +24,11 @@ function splitName(fullName: string) {
   };
 }
 
-async function upsertHubspotContact(accessToken: string, properties: Record<string, string>, email: string) {
+async function upsertHubspotContact(
+  accessToken: string,
+  properties: Record<string, string>,
+  email: string
+) {
   const headers = {
     Authorization: `Bearer ${accessToken}`,
     "Content-Type": "application/json",
@@ -46,31 +56,72 @@ async function upsertHubspotContact(accessToken: string, properties: Record<stri
   return true;
 }
 
+async function fireN8nWebhook(payload: Record<string, string | undefined>) {
+  const webhookUrl = process.env.N8N_AUTOPILOT_LEAD_WEBHOOK_URL;
+  if (!webhookUrl) return;
+  try {
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error("n8n webhook call failed:", err);
+  }
+}
+
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as ContactRequestBody;
-  const { name, email, company, message } = body;
+  const { name, email, company, phone, industry, teamSize, tier, biggestPain, message } = body;
 
   if (!name || !email) {
     return NextResponse.json({ ok: false, error: "Missing or invalid fields" }, { status: 400 });
   }
 
-  console.log("Contact form submission:", { name, email, company, message });
+  const isAutopilotInquiry = !!(industry || teamSize || tier);
+
+  console.log("Contact form submission:", { name, email, company, isAutopilotInquiry });
+
+  // Fire n8n webhook for Autopilot inquiries (async — don't await, don't block response)
+  if (isAutopilotInquiry) {
+    fireN8nWebhook({ name, email, company, phone, industry, teamSize, tier, biggestPain });
+  }
 
   const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
   if (!accessToken) {
-    console.warn("HUBSPOT_ACCESS_TOKEN is not set — skipping CRM sync for contact submission. See .env.example.");
+    console.warn("HUBSPOT_ACCESS_TOKEN not set — skipping CRM sync.");
     return NextResponse.json({ ok: true, crmSynced: false });
   }
 
   const { firstname, lastname } = splitName(name);
-  const properties: Record<string, string> = { firstname, lastname };
+  const properties: Record<string, string> = {
+    firstname,
+    lastname,
+    lifecyclestage: "lead",
+    hs_lead_status: "NEW",
+  };
   if (company) properties.company = company;
+  if (phone) properties.phone = phone;
+  if (industry) properties.industry = industry;
+
+  // Stash Autopilot-specific context in HubSpot's notes field
+  if (isAutopilotInquiry) {
+    const parts = [
+      teamSize && `Team size: ${teamSize}`,
+      tier && `Interested tier: ${tier}`,
+      biggestPain && `Biggest pain: ${biggestPain}`,
+    ].filter(Boolean);
+    if (parts.length) properties.hs_content_membership_notes = parts.join(" | ");
+    properties.lead_source = "Autopilot Inquiry";
+  } else if (message) {
+    properties.hs_content_membership_notes = message;
+  }
 
   try {
     await upsertHubspotContact(accessToken, properties, email);
     return NextResponse.json({ ok: true, crmSynced: true });
   } catch (err) {
-    console.error("HubSpot sync failed for contact submission:", err);
+    console.error("HubSpot sync failed:", err);
     return NextResponse.json({ ok: true, crmSynced: false });
   }
 }

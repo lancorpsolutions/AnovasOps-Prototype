@@ -37,20 +37,11 @@ export function AutopilotInquiryForm() {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-    const message = [
-      `Industry: ${industry}`,
-      `Team size: ${teamSize}`,
-      `Interested tier: ${tier}`,
-      biggestPain ? `Biggest pain point: ${biggestPain}` : null,
-      phone ? `Phone: ${phone}` : null,
-    ]
-      .filter(Boolean)
-      .join("\n");
     try {
       await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, company, message }),
+        body: JSON.stringify({ name, email, company, phone, industry, teamSize, tier, biggestPain }),
       });
       setSent(true);
     } catch {
