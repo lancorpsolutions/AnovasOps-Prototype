@@ -59,12 +59,12 @@ export function MarketingNav() {
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
-            <Link
-              href="/services"
+            <button
+              onClick={() => { setServicesOpen(!servicesOpen); setResourcesOpen(false); }}
               className="flex items-center gap-0.5 text-xs sm:text-sm text-white/70 hover:text-white transition-colors whitespace-nowrap"
             >
               Services <ChevronDown size={12} className="shrink-0" />
-            </Link>
+            </button>
             {servicesOpen && (
               <div className="absolute left-0 top-full pt-3 w-[min(560px,90vw)]">
                 <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-4">
@@ -72,7 +72,7 @@ export function MarketingNav() {
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2 px-2">Platforms</p>
                       {platforms.map((s) => (
-                        <Link key={s.href} href={s.href} className="block rounded-lg px-2 py-2 hover:bg-white/10 transition-colors">
+                        <Link key={s.href} href={s.href} onClick={() => setServicesOpen(false)} className="block rounded-lg px-2 py-2 hover:bg-white/10 transition-colors">
                           <p className="text-sm font-semibold text-white">{s.label}</p>
                           <p className="text-xs text-white/50">{s.summary}</p>
                         </Link>
@@ -81,14 +81,14 @@ export function MarketingNav() {
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2 px-2">Professional Services</p>
                       {professionalServices.map((s) => (
-                        <Link key={s.href} href={s.href} className="block rounded-lg px-2 py-1.5 hover:bg-white/10 transition-colors">
+                        <Link key={s.href} href={s.href} onClick={() => setServicesOpen(false)} className="block rounded-lg px-2 py-1.5 hover:bg-white/10 transition-colors">
                           <p className="text-sm text-white/80 hover:text-white">{s.label}</p>
                         </Link>
                       ))}
                     </div>
                   </div>
                   <div className="mt-3 pt-3 border-t border-white/10">
-                    <Link href="/services" className="flex items-center gap-1.5 px-2 text-xs font-semibold text-orange-light hover:text-white transition-colors">
+                    <Link href="/services" onClick={() => setServicesOpen(false)} className="flex items-center gap-1.5 px-2 text-xs font-semibold text-orange-light hover:text-white transition-colors">
                       View all services <ArrowRight size={12} />
                     </Link>
                   </div>
@@ -103,14 +103,17 @@ export function MarketingNav() {
             onMouseEnter={() => setResourcesOpen(true)}
             onMouseLeave={() => setResourcesOpen(false)}
           >
-            <button className="flex items-center gap-0.5 text-xs sm:text-sm text-white/70 hover:text-white transition-colors whitespace-nowrap">
+            <button
+              onClick={() => { setResourcesOpen(!resourcesOpen); setServicesOpen(false); }}
+              className="flex items-center gap-0.5 text-xs sm:text-sm text-white/70 hover:text-white transition-colors whitespace-nowrap"
+            >
               Resources <ChevronDown size={12} className="shrink-0" />
             </button>
             {resourcesOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64">
                 <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-2">
                   {resources.map((r) => (
-                    <Link key={r.href} href={r.href} className="block rounded-lg px-3 py-2.5 hover:bg-white/10 transition-colors">
+                    <Link key={r.href} href={r.href} onClick={() => setResourcesOpen(false)} className="block rounded-lg px-3 py-2.5 hover:bg-white/10 transition-colors">
                       <p className="text-sm font-semibold text-white">{r.label}</p>
                       <p className="text-xs text-white/50">{r.summary}</p>
                     </Link>

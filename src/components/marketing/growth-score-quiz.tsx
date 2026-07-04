@@ -436,7 +436,7 @@ function ResultsStep({ overall, band, scores, route, firstName }: {
               {rec.primaryCta} <ArrowRight size={15} />
             </a>
           </Button>
-          <Button asChild variant="outline" size="lg" className="flex-1 border-white/20 text-white hover:bg-white/10">
+          <Button asChild variant="outline" size="lg" className="flex-1 border-white/20 bg-transparent text-white hover:bg-white/10">
             <Link href={rec.learnHref}>
               Learn More
             </Link>
