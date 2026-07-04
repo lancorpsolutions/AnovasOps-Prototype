@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Select } from "@/components/ui/input";
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call";
+const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=growth-score";
 
 const BUSINESS_TYPES = [
   "HVAC", "Plumbing", "Electrical", "Roofing", "Landscaping",

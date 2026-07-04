@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/content-creation" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call";
+const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=websitehttps://calendly.com/d/cysq-pnv-zpx/discovery-call"utm_medium=ctahttps://calendly.com/d/cysq-pnv-zpx/discovery-call"utm_content=content-creation";
 
 const tiers = [
   {
