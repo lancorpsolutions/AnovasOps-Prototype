@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/ai-agents" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/sales-demo-call";
+const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call";
 
 const capabilities = [
   {
