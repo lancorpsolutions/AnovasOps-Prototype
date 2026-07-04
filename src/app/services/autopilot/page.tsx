@@ -156,13 +156,26 @@ const tiers = [
   },
 ];
 
-function TierBullet({ text }: { text: string }) {
+function FlameIcon() {
+  return (
+    <svg width="11" height="14" viewBox="0 0 11 14" fill="none" aria-hidden="true" className="shrink-0 mt-0.5">
+      <path
+        d="M5.5 0C5.5 0 9 3.5 9 7C9 9.4 7.4 11.5 5.5 11.5C3.6 11.5 2 9.4 2 7C2 5.5 2.8 4 3.5 3C3.5 4.5 4.5 5.5 4.5 5.5C4.5 4 5.5 2 5.5 0Z"
+        fill="#F2581E"
+      />
+      <path
+        d="M5.5 9C4.7 9 4 9.7 4 10.5C4 11.3 4.7 12 5.5 12C6.3 12 7 11.3 7 10.5C7 9.7 6.3 9 5.5 9Z"
+        fill="#FF7A33"
+      />
+    </svg>
+  );
+}
+
+function TierBullet({ text, inverted = false }: { text: string; inverted?: boolean }) {
   return (
     <li className="flex items-start gap-2.5">
-      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br from-orange to-orange-light text-white shrink-0 mt-0.5 shadow-sm">
-        <Zap size={10} />
-      </span>
-      <span className="text-xs text-gray-600 leading-relaxed">{text}</span>
+      <FlameIcon />
+      <span className={`text-xs leading-relaxed ${inverted ? "text-white/80" : "text-gray-600"}`}>{text}</span>
     </li>
   );
 }
@@ -243,7 +256,7 @@ export default function AutopilotPage() {
               All five automations are included in every tier. Capacity, user seats, and support depth scale as you grow.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
             {tiers.map((tier) => {
               const isFeatured = tier.badge === "Most Popular";
               return (
@@ -251,29 +264,31 @@ export default function AutopilotPage() {
                   key={tier.name}
                   className={
                     isFeatured
-                      ? "rounded-2xl border-2 border-orange bg-white shadow-md p-6 flex flex-col relative"
+                      ? "rounded-2xl border-2 border-orange bg-navy p-6 flex flex-col relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.45)]"
                       : "rounded-2xl border border-gray-200 bg-background p-6 flex flex-col"
                   }
                 >
                   {isFeatured && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
-                      Most Popular
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+                      ⚡ Flagship
                     </span>
                   )}
                   <div className="mb-4">
-                    <p className="text-base font-bold text-charcoal">{tier.name}</p>
+                    <p className={`text-base font-bold ${isFeatured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
                     <p className="text-xl font-bold text-orange mt-0.5">{tier.price}</p>
-                    <p className="text-[11px] text-gray-400">{tier.setup}</p>
+                    <p className={`text-[11px] ${isFeatured ? "text-white/40" : "text-gray-400"}`}>{tier.setup}</p>
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed mb-4 border-b border-gray-100 pb-4">{tier.tagline}</p>
+                  <p className={`text-xs leading-relaxed mb-4 pb-4 ${isFeatured ? "text-white/60 border-b border-white/10" : "text-gray-500 border-b border-gray-100"}`}>
+                    {tier.tagline}
+                  </p>
                   <ul className="space-y-2.5 flex-1">
-                    {tier.features.map((f) => <TierBullet key={f} text={f} />)}
+                    {tier.features.map((f) => <TierBullet key={f} text={f} inverted={isFeatured} />)}
                   </ul>
                   <a
                     href="#get-started"
                     className={
                       isFeatured
-                        ? "mt-6 block text-center text-xs font-semibold bg-orange text-white rounded-lg py-2.5 px-4 hover:bg-orange/90 transition-colors"
+                        ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 px-4 hover:opacity-90 transition-opacity shadow-sm"
                         : "mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 px-4 hover:border-orange hover:text-orange transition-colors"
                     }
                   >
@@ -312,12 +327,12 @@ export default function AutopilotPage() {
       {/* Inline inquiry form */}
       <section id="get-started" className="max-w-2xl mx-auto px-6 pb-20">
         <div className="text-center mb-8">
-          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Get Started</p>
+          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Free Admin Audit</p>
           <h2 className="text-2xl font-bold text-charcoal mb-3">
-            Let&apos;s size the right plan for your business.
+            Book your free Admin Audit.
           </h2>
           <p className="text-sm text-gray-500 max-w-md mx-auto">
-            Fill this out and we&apos;ll walk you through exactly what gets automated for your operation — no pressure, no pitch until you&apos;ve seen the numbers.
+            We&apos;ll map out exactly what&apos;s costing your business time and money — and show you what Autopilot would look like for your operation. Free, no commitment.
           </p>
         </div>
         <AutopilotInquiryForm />
