@@ -153,29 +153,29 @@ const professionalServices = [
 
 const faqs = [
   {
-    question: "What professional services does Anovas Integrated Systems offer?",
-    answer:
-      "We offer business and corporate structure consulting, brand identity design, graphic design, website design and development, SEO/AEO/GEO, Google My Business management, social media management, content creation, and paid advertising — all built specifically for local service businesses.",
-  },
-  {
-    question: "Who are these services built for?",
-    answer:
-      "Local and home service businesses across the U.S. — HVAC, plumbing, electrical, roofing, landscaping, pest control, auto repair, general contracting, and similar trades — from solo operators running their first few crews to multi-location operations.",
-  },
-  {
     question: "Do I need AnovasOS or Autopilot to use your professional services?",
     answer:
-      "No. Services like website design, brand identity, local SEO, and social media management can be engaged on their own. Many clients start with a website build or SEO retainer and add AnovasOS or Autopilot as they grow.",
+      "No. Website design, brand identity, local SEO, social media, and all other professional services can be engaged on their own. Many clients start with a website build or an SEO retainer and add AnovasOS or Autopilot as their business grows.",
+  },
+  {
+    question: "How are services priced?",
+    answer:
+      "Every service has tiered pricing — typically Basic, Pro, and Elite — so you can start at the right level and scale up. One-time projects (website, brand identity, business structure) are flat-fee. Monthly services (SEO, social media, graphic design) are retainers with no setup fee on most plans.",
   },
   {
     question: "What's the difference between SEO, AEO, and GEO?",
     answer:
-      "SEO (Search Engine Optimization) improves your rankings on Google's traditional results and Maps. AEO (Answer Engine Optimization) optimizes for AI-powered search features like Google's AI Overviews and voice search. GEO (Generative Engine Optimization) positions your business to appear in AI-generated answers from tools like ChatGPT, Perplexity, and similar platforms. We manage all three because search is no longer just one channel.",
+      "SEO improves your rankings on Google's traditional results and Maps. AEO (Answer Engine Optimization) optimizes for AI-powered search features like Google AI Overviews and voice search. GEO (Generative Engine Optimization) positions your business to appear in AI-generated answers from ChatGPT, Perplexity, and similar platforms. We manage all three because search is no longer just one channel.",
+  },
+  {
+    question: "How long does a website build take?",
+    answer:
+      "Most website projects are delivered in 2–3 weeks from approved copy. Copy is drafted and reviewed before a single page is built — the site is built around your message, not retrofitted around a template.",
   },
   {
     question: "How do I know which services my business actually needs?",
     answer:
-      "Start with the AROS Growth Score — a free 10-question diagnostic that benchmarks your business across Acquisition, Revenue, Operations, and Systems, and tells you exactly where the biggest gap is. From there we can recommend the right combination of services.",
+      "Start with the AROS Growth Score — a free 10-question diagnostic that benchmarks your business across Acquisition, Revenue, Operations, and Systems. It tells you exactly which gap is costing you the most and recommends the right service to address it.",
   },
 ];
 
