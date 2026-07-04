@@ -184,7 +184,7 @@ export function AutopilotInquiryForm() {
             Sending...
           </>
         ) : (
-          "Book My Free Admin Audit"
+          "Book My Autopilot Demo"
         )}
       </Button>
 

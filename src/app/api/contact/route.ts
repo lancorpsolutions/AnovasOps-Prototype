@@ -11,6 +11,14 @@ interface ContactRequestBody {
   teamSize?: string;
   tier?: string;
   biggestPain?: string;
+  // AROS Growth Score fields
+  arosScore?: number;
+  scoreBand?: string;
+  pillarA?: number;
+  pillarR?: number;
+  pillarO?: number;
+  pillarS?: number;
+  recommendation?: string;
   // legacy generic contact form field
   message?: string;
 }
@@ -72,13 +80,17 @@ async function fireN8nWebhook(payload: Record<string, string | undefined>) {
 
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as ContactRequestBody;
-  const { name, email, company, phone, industry, teamSize, tier, biggestPain, message } = body;
+  const {
+    name, email, company, phone, industry, teamSize, tier, biggestPain,
+    arosScore, scoreBand, pillarA, pillarR, pillarO, pillarS, recommendation,
+    message,
+  } = body;
 
   if (!name || !email) {
     return NextResponse.json({ ok: false, error: "Missing or invalid fields" }, { status: 400 });
   }
 
-  const isAutopilotInquiry = !!(industry || teamSize || tier);
+  const isAutopilotInquiry = !!(industry || teamSize || tier || arosScore !== undefined);
 
   console.log("Contact form submission:", { name, email, company, isAutopilotInquiry });
 
@@ -107,12 +119,15 @@ export async function POST(request: NextRequest) {
   // Stash Autopilot-specific context in HubSpot's notes field
   if (isAutopilotInquiry) {
     const parts = [
+      arosScore !== undefined && `AROS Score: ${arosScore}/100 (${scoreBand})`,
+      pillarA !== undefined && `A:${pillarA} R:${pillarR} O:${pillarO} S:${pillarS}`,
+      recommendation && `Recommended: ${recommendation}`,
       teamSize && `Team size: ${teamSize}`,
       tier && `Interested tier: ${tier}`,
       biggestPain && `Biggest pain: ${biggestPain}`,
     ].filter(Boolean);
     if (parts.length) properties.hs_content_membership_notes = parts.join(" | ");
-    properties.lead_source = "Autopilot Inquiry";
+    properties.lead_source = arosScore !== undefined ? "AROS Growth Score" : "Autopilot Inquiry";
   } else if (message) {
     properties.hs_content_membership_notes = message;
   }

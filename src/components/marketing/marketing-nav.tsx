@@ -115,7 +115,7 @@ export function MarketingNav() {
             Log In
           </Link>
           <Button asChild variant="primary" size="sm">
-            <Link href="/services/autopilot#get-started">Book Free Audit</Link>
+            <Link href="/aros-growth-score">Book Free Audit</Link>
           </Button>
         </div>
 
@@ -171,7 +171,7 @@ export function MarketingNav() {
               Log In
             </Link>
             <Button asChild variant="primary" size="sm" className="w-full">
-              <Link href="/services/autopilot#get-started" onClick={() => setOpen(false)}>Book Free Audit</Link>
+              <Link href="/aros-growth-score" onClick={() => setOpen(false)}>Book Free Audit</Link>
             </Button>
           </div>
         </div>

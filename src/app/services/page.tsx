@@ -167,17 +167,30 @@ export default function ServicesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {professionalServices.map((service) => {
               const Icon = service.icon;
-              return (
+              const isGrowthScore = service.name === "AROS Growth Score";
+              const card = (
                 <div
                   key={service.name}
-                  className="rounded-xl border border-gray-200 bg-background p-5 hover:shadow-md transition-shadow"
+                  className={`rounded-xl border p-5 transition-shadow ${
+                    isGrowthScore
+                      ? "border-orange/40 bg-orange/5 hover:shadow-md hover:shadow-orange/10"
+                      : "border-gray-200 bg-background hover:shadow-md"
+                  }`}
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-md bg-orange/10 text-orange mb-3">
                     <Icon size={17} />
                   </span>
                   <p className="text-sm font-semibold text-charcoal mb-1.5">{service.name}</p>
                   <p className="text-xs text-gray-500 leading-relaxed">{service.summary}</p>
+                  {isGrowthScore && (
+                    <p className="text-xs font-semibold text-orange mt-3">Take it free →</p>
+                  )}
                 </div>
+              );
+              return isGrowthScore ? (
+                <Link key={service.name} href="/aros-growth-score">{card}</Link>
+              ) : (
+                <div key={service.name}>{card}</div>
               );
             })}
           </div>

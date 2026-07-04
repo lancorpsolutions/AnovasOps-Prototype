@@ -327,12 +327,12 @@ export default function AutopilotPage() {
       {/* Inline inquiry form */}
       <section id="get-started" className="max-w-2xl mx-auto px-6 pb-20">
         <div className="text-center mb-8">
-          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Free Admin Audit</p>
+          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Get Started</p>
           <h2 className="text-2xl font-bold text-charcoal mb-3">
-            Book your free Admin Audit.
+            Let&apos;s size the right plan for your operation.
           </h2>
           <p className="text-sm text-gray-500 max-w-md mx-auto">
-            We&apos;ll map out exactly what&apos;s costing your business time and money — and show you what Autopilot would look like for your operation. Free, no commitment.
+            Tell us about your business and we&apos;ll walk you through exactly what gets automated — no pressure, no pitch until you&apos;ve seen what it looks like for you.
           </p>
         </div>
         <AutopilotInquiryForm />
