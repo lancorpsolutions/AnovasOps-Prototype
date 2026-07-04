@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Local SEO Management — Anovas Integrated Systems",
+  title: "Local SEO / AEO / GEO — Anovas Integrated Systems",
   description:
-    "Monthly local SEO, AEO, and GEO management for local service businesses — GMB optimization, SEO content, citation building, keyword tracking, and monthly ranking reports.",
+    "Monthly search optimization for local service businesses — local SEO, AI answer engine optimization, and generative engine positioning. Three tiers from $750/mo.",
   alternates: { canonical: "/services/seo" },
 };
 
@@ -23,7 +23,7 @@ const disciplines = [
   {
     abbr: "AEO",
     name: "Answer Engine Optimization",
-    desc: "Structured content optimized for Google AI Overviews, featured snippets, and voice search — capturing the queries that return a spoken answer instead of a link list.",
+    desc: "Structured content optimized for Google AI Overviews, featured snippets, and voice search — capturing queries that return a spoken answer instead of a link list.",
   },
   {
     abbr: "GEO",
@@ -32,15 +32,57 @@ const disciplines = [
   },
 ];
 
-const included = [
-  "Google My Business optimization and weekly posts",
-  "On-page SEO updates and technical fixes",
-  "SEO content production (blog posts, service pages)",
-  "Citation building and cleanup across major directories",
-  "Local keyword tracking and rank monitoring",
-  "AEO content structure and schema markup",
-  "GEO content positioning and AI platform citations",
-  "Monthly ranking and performance report",
+const tiers = [
+  {
+    name: "Local Visibility",
+    price: "$750",
+    period: "/mo",
+    badge: null,
+    tagline: "For businesses that need a consistent local search foundation.",
+    features: [
+      "Google Business Profile optimization",
+      "Local keyword tracking",
+      "Citation building and cleanup",
+      "On-page SEO updates",
+      "2 SEO-optimized posts/month",
+      "Monthly ranking report",
+    ],
+    cta: "Get Started — $750/mo",
+  },
+  {
+    name: "Search Growth",
+    price: "$1,500",
+    period: "/mo",
+    badge: "Most Popular",
+    tagline: "For businesses ready to expand their visibility across all search channels.",
+    features: [
+      "Everything in Local Visibility",
+      "AEO content structure and schema markup",
+      "4 SEO blog posts or service pages/month",
+      "Competitor gap analysis",
+      "GBP weekly posts and photo updates",
+      "Review response management",
+      "Monthly strategy call",
+    ],
+    cta: "Get Started — $1,500/mo",
+  },
+  {
+    name: "Authority Engine",
+    price: "$3,000+",
+    period: "/mo",
+    badge: null,
+    tagline: "For multi-location or high-competition markets that need dominant visibility.",
+    features: [
+      "Everything in Search Growth",
+      "GEO content positioning",
+      "AI platform citation tracking",
+      "Full technical SEO audit and remediation",
+      "High-volume content production",
+      "Multi-location management",
+      "Full performance reporting and quarterly strategy",
+    ],
+    cta: "Book a Discovery Call",
+  },
 ];
 
 export default function SeoPage() {
@@ -58,7 +100,7 @@ export default function SeoPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/20 text-orange-light">
               <Search size={22} />
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer · $500 Setup + $750/mo</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer · From $750/mo</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">SEO / AEO / GEO</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
@@ -81,38 +123,59 @@ export default function SeoPage() {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* Tiers */}
       <section className="bg-white border-y border-gray-200">
-        <div className="max-w-3xl mx-auto px-6 py-16">
-          <div className="rounded-2xl border-2 border-orange bg-navy p-8 relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-6 mb-6 pb-6 border-b border-white/10">
-              <div>
-                <p className="text-white font-bold text-lg mb-1">Local SEO Management</p>
-                <p className="text-xs text-white/40 leading-relaxed max-w-sm">
-                  Full SEO + AEO + GEO coverage — handled monthly, reported monthly, and adjusted as your rankings and market evolve.
-                </p>
-              </div>
-              <div className="shrink-0 text-right">
-                <p className="text-3xl font-black text-orange">$750<span className="text-base font-semibold text-orange/60">/mo</span></p>
-                <p className="text-xs text-white/30">$500 one-time setup</p>
-              </div>
-            </div>
-            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
-              {included.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-xs text-white/80">
-                  <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 block text-center text-sm font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-xl py-3 hover:opacity-90 transition-opacity"
-            >
-              Book a Discovery Call <ArrowRight size={15} className="inline ml-1" />
-            </a>
+        <div className="max-w-5xl mx-auto px-6 py-14">
+          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include monthly reporting and active management.</h2>
+          <p className="text-sm text-gray-500 mb-8">No setup fee on any tier. Cancel with 30 days notice.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {tiers.map((tier) => {
+              const featured = tier.badge === "Most Popular";
+              return (
+                <div
+                  key={tier.name}
+                  className={
+                    featured
+                      ? "rounded-2xl border-2 border-orange bg-navy p-6 flex flex-col relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]"
+                      : "rounded-2xl border border-gray-200 bg-background p-6 flex flex-col"
+                  }
+                >
+                  {featured && (
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+                      Most Popular
+                    </span>
+                  )}
+                  <p className={`text-base font-bold mb-0.5 ${featured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
+                  <p className={`text-2xl font-black mb-0.5 ${featured ? "text-orange" : "text-charcoal"}`}>
+                    {tier.price}<span className={`text-sm font-semibold ${featured ? "text-orange/60" : "text-gray-400"}`}>{tier.period}</span>
+                  </p>
+                  <p className={`text-xs mt-1 mb-4 pb-4 border-b leading-relaxed ${featured ? "text-white/50 border-white/10" : "text-gray-500 border-gray-100"}`}>
+                    {tier.tagline}
+                  </p>
+                  <ul className="space-y-2.5 flex-1">
+                    {tier.features.map((f) => (
+                      <li key={f} className={`flex items-start gap-2 text-xs ${featured ? "text-white/80" : "text-gray-600"}`}>
+                        <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={CALENDLY}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={
+                      featured
+                        ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
+                        : "mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 hover:border-orange hover:text-orange transition-colors"
+                    }
+                  >
+                    {tier.cta}
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
