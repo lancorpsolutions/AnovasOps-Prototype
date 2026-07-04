@@ -70,7 +70,7 @@ const tiers = [
 
 const workflow = [
   { title: "Content Calendar", body: "We build a monthly calendar aligned to your services, offers, and seasonal demand." },
-  { title: "Copy & Graphics", body: "Our Content Agent drafts copy. Dez produces the graphics. Josh reviews both." },
+  { title: "Copy & Graphics", body: "Copy is drafted and graphics are produced to match your brand. Everything is reviewed internally before it reaches you." },
   { title: "Your Approval", body: "Nothing goes live without your sign-off on copy and creative." },
   { title: "Post & Report", body: "We schedule, post, and send you a monthly performance recap." },
 ];

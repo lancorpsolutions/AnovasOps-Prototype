@@ -22,14 +22,14 @@ const included = [
   "Social media links and profiles connected",
   "Basic on-page SEO setup",
   "Booking integration (where applicable)",
-  "AI-drafted copy, Josh-reviewed before a single page is built",
+  "Copy drafted and reviewed before a single page is built",
   "2–3 week delivery from approved copy",
 ];
 
 const process = [
   { step: "01", title: "Brief & Intake", body: "We send a short intake form covering your services, service areas, and brand assets." },
-  { step: "02", title: "Copy First", body: "Our Content Agent drafts all website copy. Josh reviews and approves it before build starts." },
-  { step: "03", title: "Design & Build", body: "Dez builds the site to brief — mobile-first, fast, and optimized for lead capture." },
+  { step: "02", title: "Copy First", body: "All website copy is drafted and reviewed before build starts — so the site is built around your message, not retrofitted around a template." },
+  { step: "03", title: "Design & Build", body: "The site is built to brief — mobile-first, fast, and optimized for lead capture." },
   { step: "04", title: "Review & Launch", body: "You review a staging version. Revisions handled. We launch on your timeline." },
 ];
 

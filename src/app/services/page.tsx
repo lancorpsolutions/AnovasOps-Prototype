@@ -105,7 +105,7 @@ const professionalServices = [
     icon: Globe,
     name: "Website Design & Development",
     summary:
-      "A mobile-optimized, lead-converting website built in two weeks — complete with working contact forms, booking integration, GMB link, and social connections. Copy is drafted by our Content Agent and approved by Josh before Dez builds a single page.",
+      "A mobile-optimized, lead-converting website built in 2–3 weeks — complete with working contact forms, booking integration, GMB link, and social connections. Copy is drafted and reviewed before a single page is built.",
     tag: "Project",
     href: "/services/website-design",
   },
@@ -129,7 +129,7 @@ const professionalServices = [
     icon: Share2,
     name: "Social Media Management",
     summary:
-      "End-to-end monthly social media management — content calendar, post production, graphics, scheduling, and performance reporting. Starter tier: 8 posts/month. Standard: 12. Growth: 20 posts + Reels. Nothing goes live without Josh's approval on both copy and graphics.",
+      "End-to-end monthly social media management — content calendar, post production, graphics, scheduling, and performance reporting. Three tiers from $500/mo. Nothing goes live without your approval on copy and graphics.",
     tag: "Monthly Retainer",
     href: "/services/social-media",
   },
@@ -137,7 +137,7 @@ const professionalServices = [
     icon: FileText,
     name: "Content Creation",
     summary:
-      "SEO-optimized blog posts, service pages, email sequences, and ad copy — written for your brand voice and reviewed before delivery. Available as a standalone package or as part of an SEO or social media retainer. Our Content Agent drafts; Josh approves everything.",
+      "Blog posts, service pages, email sequences, and ad copy — written in your brand voice and reviewed before delivery. Available standalone or bundled with SEO or social media at a reduced rate.",
     tag: "Project / Retainer",
     href: "/services/content-creation",
   },

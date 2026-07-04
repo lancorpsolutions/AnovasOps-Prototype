@@ -53,7 +53,7 @@ export default function GraphicDesignPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Graphic Design</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            On-demand graphic design for social media, print, and digital — handled by Dez, briefed through a consistent process, and approved by Josh before anything reaches a client or goes live.
+            On-demand graphic design for social media, print, and digital — briefed through a consistent process and reviewed before anything reaches a client or goes live.
           </p>
         </div>
       </section>
