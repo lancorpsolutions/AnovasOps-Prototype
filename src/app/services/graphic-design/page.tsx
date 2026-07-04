@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Graphic Design — Anovas Integrated Systems",
+  title: "Graphic Design | Anovas Integrated Systems",
   description:
-    "Monthly graphic design retainer and one-off projects for local service businesses — social graphics, flyers, door hangers, truck wraps, and marketing collateral. Three tiers from $500/mo.",
+    "Monthly graphic design retainer and one-off projects for local service businesses: social graphics, flyers, door hangers, truck wraps, and marketing collateral. Three tiers from $500/mo.",
   alternates: { canonical: "/services/graphic-design" },
 };
 
@@ -28,7 +28,7 @@ const tiers = [
       "All files delivered print-ready and web-ready",
       "1 revision round per piece",
     ],
-    cta: "Get Started — $500/mo",
+    cta: "Get Started – $500/mo",
   },
   {
     name: "Pro Design Pack",
@@ -41,11 +41,11 @@ const tiers = [
       "Everything in Basic",
       "Ad creative for paid campaigns",
       "Branded presentation and proposal templates",
-      "Print materials — flyers, door hangers, postcards",
+      "Print materials: flyers, door hangers, postcards",
       "2 revision rounds per piece",
       "Priority turnaround",
     ],
-    cta: "Get Started — $1,200/mo",
+    cta: "Get Started – $1,200/mo",
   },
   {
     name: "Elite Design Pack",
@@ -95,7 +95,7 @@ export default function GraphicDesignPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Graphic Design</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            On-demand graphic design for social media, print, and digital — briefed through a consistent process and reviewed internally before anything reaches you or goes live.
+            On-demand graphic design for social media, print, and digital, briefed through a consistent process and reviewed internally before anything reaches you or goes live.
           </p>
         </div>
       </section>
@@ -104,7 +104,7 @@ export default function GraphicDesignPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Monthly Retainer Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include brand-consistent output and file delivery.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, all including brand-consistent output and file delivery.</h2>
           <p className="text-sm text-gray-500 mb-8">No setup fee. Cancel anytime. Work is scoped at the start of each month.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {

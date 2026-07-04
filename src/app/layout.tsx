@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Anovas Integrated Systems",
     description:
-      "Software and growth services for local and home service businesses — AnovasOS, Anovas Autopilot, branding, web design, and strategy.",
+      "Software and growth services for local and home service businesses: AnovasOS, Anovas Autopilot, branding, web design, and strategy.",
   },
   icons: {
     icon: "/branding/anovas-phoenix-icon.png",

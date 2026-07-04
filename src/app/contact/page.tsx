@@ -33,7 +33,7 @@ export default function ContactPage() {
               Let&apos;s talk about your business.
             </h1>
             <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-lg mb-6">
-              Tell us where things are slipping — quotes, scheduling, crews, billing — and we&apos;ll
+              Tell us where things are slipping: quotes, scheduling, crews, billing, and we&apos;ll
               show you which of our products and services fits your operation.
             </p>
             <p className="text-white/40 text-xs">

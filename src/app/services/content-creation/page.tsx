@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Content Creation — Anovas Integrated Systems",
+  title: "Content Creation | Anovas Integrated Systems",
   description:
-    "Monthly content creation for local service businesses — posts, reel scripts, carousels, email, and blog content written in your brand voice. Three tiers from $750/mo.",
+    "Monthly content creation for local service businesses: posts, reel scripts, carousels, email, and blog content written in your brand voice. Three tiers from $750/mo.",
   alternates: { canonical: "/services/content-creation" },
 };
 
@@ -28,7 +28,7 @@ const tiers = [
       "Basic graphics coordination",
       "Monthly content calendar",
     ],
-    cta: "Get Started — $750/mo",
+    cta: "Get Started – $750/mo",
   },
   {
     name: "Content Growth",
@@ -46,7 +46,7 @@ const tiers = [
       "Offer and educational post mix",
       "Monthly performance recap",
     ],
-    cta: "Get Started — $1,500/mo",
+    cta: "Get Started – $1,500/mo",
   },
   {
     name: "Content Engine",
@@ -69,9 +69,9 @@ const tiers = [
 ];
 
 const formats = [
-  { name: "Captions & Posts", desc: "Platform-native copy written in your brand voice — educational, offer, and engagement posts." },
-  { name: "Reel & Video Scripts", desc: "Short-form video scripts with hook, body, and CTA — ready for filming or voiceover." },
-  { name: "Carousels", desc: "Slide-by-slide outlines for multi-image posts — structured to teach, build trust, and drive saves." },
+  { name: "Captions & Posts", desc: "Platform-native copy written in your brand voice: educational, offer, and engagement posts." },
+  { name: "Reel & Video Scripts", desc: "Short-form video scripts with hook, body, and CTA, ready for filming or voiceover." },
+  { name: "Carousels", desc: "Slide-by-slide outlines for multi-image posts, structured to teach, build trust, and drive saves." },
   { name: "Blog & Email Content", desc: "Long-form content that supports SEO, nurtures leads, and positions your expertise." },
 ];
 
@@ -116,7 +116,7 @@ export default function ContentCreationPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include strategy, copy, and review.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, all including strategy, copy, and review.</h2>
           <p className="text-sm text-gray-500 mb-8">Every piece is reviewed before delivery. One revision round included on all content.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {
@@ -171,7 +171,7 @@ export default function ContentCreationPage() {
 
       <section className="bg-gradient-to-br from-navy to-navy-light">
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
-          <p className="text-white/60 text-sm mb-6">Already running SEO or social with us? Content is often bundled at a reduced rate — ask on the call.</p>
+          <p className="text-white/60 text-sm mb-6">Already running SEO or social with us? Content is often bundled at a reduced rate. Ask on the call.</p>
           <Button asChild variant="primary" size="lg">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Book a Discovery Call <ArrowRight size={16} />

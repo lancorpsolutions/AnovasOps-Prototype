@@ -4,9 +4,9 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { GrowthScoreQuiz } from "@/components/marketing/growth-score-quiz";
 
 export const metadata: Metadata = {
-  title: "AROS Growth Score — Free Business Diagnostic for Local Service Businesses",
+  title: "AROS Growth Score: Free Business Diagnostic for Local Service Businesses",
   description:
-    "Answer 10 questions about your business and get a free personalized score across Acquisition, Revenue, Operations, and Systems — plus a clear recommendation for what to fix first.",
+    "Answer 10 questions about your business and get a free personalized score across Acquisition, Revenue, Operations, and Systems, plus a clear recommendation for what to fix first.",
   keywords: [
     "free business diagnostic for contractors",
     "AROS Growth Score",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/aros-growth-score" },
   openGraph: {
-    title: "AROS Growth Score — Free Business Diagnostic",
+    title: "AROS Growth Score: Free Business Diagnostic",
     description:
-      "10 questions. Instant score. A clear picture of where your business is leaving revenue on the table — and what to fix first.",
+      "10 questions. Instant score. A clear picture of where your business is leaving revenue on the table, and what to fix first.",
     url: "/aros-growth-score",
     type: "website",
   },
@@ -42,8 +42,8 @@ export default function ArosGrowthScorePage() {
             See exactly where your business is leaving money on the table.
           </h1>
           <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
-            The AROS Growth Score benchmarks your business across four pillars —
-            Acquisition, Revenue, Operations, and Systems — and tells you which
+            The AROS Growth Score benchmarks your business across four pillars:
+            Acquisition, Revenue, Operations, and Systems, and tells you which
             gap is costing you the most. Takes about 3 minutes.
           </p>
 

@@ -8,7 +8,7 @@ export function MarketingFooter() {
           <p className="font-bold text-sm">Anovas Integrated Systems</p>
           <p className="text-white/40 text-xs mt-2 max-w-xs leading-relaxed">
             We build and run the software and growth systems behind local and home service
-            businesses — from revenue protection to full-scale growth marketing.
+            businesses, from revenue protection to full-scale growth marketing.
           </p>
         </div>
         <div>

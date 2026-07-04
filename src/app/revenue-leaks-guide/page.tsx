@@ -5,7 +5,7 @@ import { LeadCaptureForm } from "@/components/forms/lead-capture-form";
 export const metadata: Metadata = {
   title: "5 Hidden Revenue Leaks in Home Service Businesses | Free Guide",
   description:
-    "A free guide for HVAC, plumbing, electrical, roofing, landscaping, and pest control operators on the 5 revenue leaks quietly draining their business — and how to plug them.",
+    "A free guide for HVAC, plumbing, electrical, roofing, landscaping, and pest control operators on the 5 revenue leaks quietly draining their business, and how to plug them.",
   keywords: [
     "revenue leaks home service business",
     "free guide for contractors",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "5 Hidden Revenue Leaks in Home Service Businesses | Free Guide",
     description:
-      "A free guide on the 5 revenue leaks quietly draining local service businesses — and how to plug them.",
+      "A free guide on the 5 revenue leaks quietly draining local service businesses, and how to plug them.",
     url: "/revenue-leaks-guide",
     type: "website",
   },
@@ -30,7 +30,7 @@ const leaks = [
   {
     icon: AlertTriangle,
     title: "The Schedule Slip",
-    summary: "Jobs that drift behind plan while waiting on materials, customers, or crews — unnoticed until it's late.",
+    summary: "Jobs that drift behind plan while waiting on materials, customers, or crews, unnoticed until it's late.",
   },
   {
     icon: Users2,
@@ -45,7 +45,7 @@ const leaks = [
   {
     icon: ShieldAlert,
     title: "The Quiet Collections Gap",
-    summary: "Overdue invoices and unresolved escalations with no owner — until they turn into churn.",
+    summary: "Overdue invoices and unresolved escalations with no owner, until they turn into churn.",
   },
 ];
 
@@ -71,7 +71,7 @@ export default function RevenueLeaksLandingPage() {
               <span className="font-bold text-white">
                 Anovas<span className="text-orange-light">OS</span>
               </span>{" "}
-              — Anovas Integrated Systems
+              , Anovas Integrated Systems
             </p>
           </div>
           <div className="md:max-w-sm md:ml-auto w-full">

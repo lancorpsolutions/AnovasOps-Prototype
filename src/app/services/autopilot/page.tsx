@@ -15,9 +15,9 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { AutopilotInquiryForm } from "@/components/forms/autopilot-inquiry-form";
 
 export const metadata: Metadata = {
-  title: "Anovas Autopilot — Revenue Protection System for Local Service Businesses",
+  title: "Anovas Autopilot: Revenue Protection System for Local Service Businesses",
   description:
-    "Anovas Autopilot is a revenue protection system for local service businesses — missed-call text-back, lead follow-up, booking reminders, invoice nudges, and review generation running automatically around the clock.",
+    "Anovas Autopilot is a revenue protection system for local service businesses: missed-call text-back, lead follow-up, booking reminders, invoice nudges, and review generation running automatically around the clock.",
   keywords: [
     "Anovas Autopilot",
     "revenue protection system for contractors",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services/autopilot" },
   openGraph: {
-    title: "Anovas Autopilot — Revenue Protection System for Local Service Businesses",
+    title: "Anovas Autopilot: Revenue Protection System for Local Service Businesses",
     description:
-      "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation — protecting your revenue around the clock.",
+      "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation, protecting your revenue around the clock.",
     url: "/services/autopilot",
     type: "website",
   },
@@ -195,7 +195,7 @@ export default function AutopilotPage() {
             Your revenue, protected on autopilot.
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
-            Anovas Autopilot is a revenue protection system for local service businesses — catching
+            Anovas Autopilot is a revenue protection system for local service businesses, catching
             the missed calls, cold leads, unpaid invoices, and missing reviews that quietly
             cost you revenue when nobody&apos;s watching.
           </p>
@@ -309,7 +309,7 @@ export default function AutopilotPage() {
             {[
               "Built for local service businesses, not generic SMB software",
               "Five automations working together, not five disconnected tools",
-              "Most owners spend less than 2 hours total on setup — we handle the build",
+              "Most owners spend less than 2 hours total on setup; we handle the build",
               "The missed-call text-back alone typically recovers enough jobs in month one to cover the fee",
               "Backed by the same team that builds AnovasOS and our growth services",
             ].map((item) => (
@@ -332,7 +332,7 @@ export default function AutopilotPage() {
             Let&apos;s size the right plan for your operation.
           </h2>
           <p className="text-sm text-gray-500 max-w-md mx-auto">
-            Tell us about your business and we&apos;ll walk you through exactly what gets automated — no pressure, no pitch until you&apos;ve seen what it looks like for you.
+            Tell us about your business and we&apos;ll walk you through exactly what gets automated. No pressure, no pitch until you&apos;ve seen what it looks like for you.
           </p>
         </div>
         <AutopilotInquiryForm />

@@ -37,7 +37,7 @@ const values = [
     icon: ClipboardCheck,
     title: "Built for operators",
     summary:
-      "Every product and engagement is designed around how local service businesses actually run — not generic software.",
+      "Every product and engagement is designed around how local service businesses actually run, not generic software.",
   },
 ];
 
@@ -56,7 +56,7 @@ export default function AboutPage() {
             We&apos;re the team behind the systems that run service businesses.
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-            Anovas Integrated Systems builds the software — AnovasOS and Anovas Autopilot — and
+            Anovas Integrated Systems builds the software, AnovasOS and Anovas Autopilot, and
             provides the strategy and implementation work that local and home service businesses
             need to grow, without piecing it together themselves.
           </p>
@@ -68,12 +68,12 @@ export default function AboutPage() {
         <p className="text-sm text-gray-500 leading-relaxed mb-4">
           Local and home service businesses run on a lot of moving parts: leads, quotes,
           schedules, crews, invoices, and customers, all happening at once. When that information
-          lives in spreadsheets, group chats, and someone&apos;s memory, revenue leaks quietly —
-          a missed call here, a cold quote there, an invoice nobody sent.
+          lives in spreadsheets, group chats, and someone&apos;s memory, revenue leaks quietly.
+          A missed call here, a cold quote there, an invoice nobody sent.
         </p>
         <p className="text-sm text-gray-500 leading-relaxed">
-          Anovas Integrated Systems exists to close that gap — with software that automates the
-          protects revenue and drives growth, and a team that helps you put it to work. We give
+          Anovas Integrated Systems exists to close that gap. We build software that protects
+          revenue and drives growth, backed by a team that helps you put it to work. We give
           operators one place to see what&apos;s actually happening, automate the follow-ups and
           handoffs that shouldn&apos;t require a human, and catch the leaks before they become
           lost revenue.
@@ -107,7 +107,7 @@ export default function AboutPage() {
         <h2 className="text-xl font-bold text-charcoal mb-3">Who we serve</h2>
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl mx-auto">
           HVAC, plumbing, electrical, roofing, landscaping, pest control, and other local service
-          businesses across the U.S. — from owner-operators running their first few crews to
+          businesses across the U.S., from owner-operators running their first few crews to
           multi-location operations that need executive-level visibility and accountability
           across the board.
         </p>

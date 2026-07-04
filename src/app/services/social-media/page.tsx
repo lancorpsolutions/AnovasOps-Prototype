@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Social Media Management — Anovas Integrated Systems",
+  title: "Social Media Management | Anovas Integrated Systems",
   description:
-    "Monthly social media management for local service businesses — content calendar, post production, graphics, scheduling, and performance reporting. Three tiers from $500/mo.",
+    "Monthly social media management for local service businesses: content calendar, post production, graphics, scheduling, and performance reporting. Three tiers from $500/mo.",
   alternates: { canonical: "/services/social-media" },
 };
 
@@ -29,7 +29,7 @@ const tiers = [
       "Content calendar",
       "Monthly performance recap",
     ],
-    cta: "Get Started — $500/mo",
+    cta: "Get Started – $500/mo",
   },
   {
     name: "Pro",
@@ -46,7 +46,7 @@ const tiers = [
       "Platform optimization",
       "Monthly performance review",
     ],
-    cta: "Get Started — $1,000/mo",
+    cta: "Get Started – $1,000/mo",
   },
   {
     name: "Elite",
@@ -94,7 +94,7 @@ export default function SocialMediaPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Social Media Management</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            This is not just posting. It&apos;s visibility, trust-building, and audience education — handled consistently so your business stays top-of-mind before prospects are ready to buy.
+            This is not just posting. It&apos;s visibility, trust-building, and audience education, handled consistently so your business stays top-of-mind before prospects are ready to buy.
           </p>
         </div>
       </section>
@@ -117,7 +117,7 @@ export default function SocialMediaPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include copy, graphics, and approval workflow.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, all including copy, graphics, and approval workflow.</h2>
           <p className="text-sm text-gray-500 mb-8">No setup fee on any tier. You approve everything before it goes live.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {

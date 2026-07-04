@@ -8,7 +8,7 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Insights on growing local and home service businesses — automation, lead follow-up, branding, and the strategy behind AnovasOS and Anovas Autopilot.",
+    "Insights on growing local and home service businesses: automation, lead follow-up, branding, and the strategy behind AnovasOS and Anovas Autopilot.",
   keywords: [
     "home service business blog",
     "local service business growth tips",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blog",
     description:
-      "Insights on growing local and home service businesses — automation, lead follow-up, branding, and growth strategy.",
+      "Insights on growing local and home service businesses: automation, lead follow-up, branding, and growth strategy.",
     url: "/blog",
     type: "website",
   },

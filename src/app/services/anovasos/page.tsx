@@ -17,7 +17,7 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { PLANS } from "@/lib/plans";
 
 export const metadata: Metadata = {
-  title: "AnovasOS — The Business Growth Platform for Local Service Businesses",
+  title: "AnovasOS: The Business Growth Platform for Local Service Businesses",
   description:
     "AnovasOS gives HVAC, plumbing, electrical, roofing, landscaping, and pest control operators one place to see what's happening, fix what's stuck, and protect revenue.",
   keywords: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services/anovasos" },
   openGraph: {
-    title: "AnovasOS — The Business Growth Platform for Local Service Businesses",
+    title: "AnovasOS: The Business Growth Platform for Local Service Businesses",
     description:
       "One command center for HVAC, plumbing, electrical, roofing, and pest control operators to see what's happening, fix what's stuck, and protect revenue.",
     url: "/services/anovasos",
@@ -115,7 +115,7 @@ export default function AnovasOSPage() {
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
             AnovasOS is the business growth platform for HVAC, plumbing, electrical, roofing,
-            landscaping, and pest control teams — one place to see what&apos;s happening, fix
+            landscaping, and pest control teams. One place to see what&apos;s happening, fix
             what&apos;s stuck, and protect revenue before small issues become bigger problems.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -159,7 +159,7 @@ export default function AnovasOSPage() {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <h2 className="text-xl font-bold text-charcoal mb-2 text-center">What AnovasOS gives you</h2>
           <p className="text-sm text-gray-500 mb-10 max-w-xl mx-auto text-center">
-            Visibility, automation, and accountability — built specifically for trades businesses.
+            Visibility, automation, and accountability, built specifically for trades businesses.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {features.map((feature) => {
@@ -189,7 +189,7 @@ export default function AnovasOSPage() {
           </h2>
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
             Pick the plan that matches where your business is today. Every plan includes a real
-            optimization review with our team — not just software.
+            optimization review with our team, not just software.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">

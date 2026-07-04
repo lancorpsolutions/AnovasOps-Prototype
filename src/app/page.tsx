@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     absolute: "Anovas Integrated Systems | Software & Growth Systems for Local Service Businesses",
   },
   description:
-    "Anovas Integrated Systems builds the software and runs the strategy behind growing local and home service businesses — from revenue protection to full-scale growth marketing.",
+    "Anovas Integrated Systems builds the software and runs the strategy behind growing local and home service businesses, from revenue protection to full-scale growth marketing.",
   keywords: [
     "home service business software",
     "local service business growth platform",
@@ -41,7 +41,7 @@ const offerings = [
     name: "AnovasOS",
     tagline: "Business growth platform",
     summary:
-      "Demand generation, content creation, campaign management, SEO, lead nurturing, and consumer intelligence — one command center for growing your business.",
+      "Demand generation, content creation, campaign management, SEO, lead nurturing, and consumer intelligence. One command center for growing your business.",
     href: "/services/anovasos",
   },
   {
@@ -49,7 +49,7 @@ const offerings = [
     name: "Anovas Autopilot",
     tagline: "Revenue Protection System",
     summary:
-      "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation — running automatically in the background.",
+      "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation, running automatically in the background.",
     href: "/services/autopilot",
   },
   {
@@ -64,7 +64,7 @@ const offerings = [
 
 const proof = [
   "Built specifically for local and home service businesses",
-  "Software and strategy under one roof — not just another tool",
+  "Software and strategy under one roof, not just another tool",
   "A real team behind the platform, not a support ticket queue",
 ];
 
@@ -84,7 +84,7 @@ export default function HomePage() {
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
             We build AI-powered automation and growth software for local and home service
-            businesses, and back it with a real team that helps you put it to work — so nothing
+            businesses, and back it with a real team that helps you put it to work, so nothing
             slips through the cracks and nothing gets left on the table.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -107,7 +107,7 @@ export default function HomePage() {
             One company, three ways to grow.
           </h2>
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
-            Pick the product that fits where your business is today — or lean on our team to
+            Pick the product that fits where your business is today, or lean on our team to
             build the whole system around you.
           </p>
         </div>
@@ -146,7 +146,7 @@ export default function HomePage() {
             </h2>
             <p className="text-sm text-gray-500 leading-relaxed mb-4">
               HVAC, plumbing, electrical, roofing, landscaping, pest control, and other local
-              service businesses across the U.S. — from owner-operators running their first few
+              service businesses across the U.S., from owner-operators running their first few
               crews to multi-location operations that need executive-level visibility.
             </p>
             <p className="text-sm text-gray-500 leading-relaxed">

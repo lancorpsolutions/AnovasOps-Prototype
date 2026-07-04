@@ -17,7 +17,7 @@ export default function TermsPage() {
         </p>
 
         <h1 className="text-2xl font-bold text-charcoal mb-1">
-          Terms of Service — Anovas Integrated Systems
+          Terms of Service | Anovas Integrated Systems
         </h1>
         <p className="text-sm text-gray-500 mb-1">
           <strong>Effective Date:</strong> June 23, 2026

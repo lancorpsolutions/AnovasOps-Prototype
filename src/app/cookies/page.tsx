@@ -17,7 +17,7 @@ export default function CookiesPage() {
         </p>
 
         <h1 className="text-2xl font-bold text-charcoal mb-1">
-          Cookie Policy — Anovas Integrated Systems
+          Cookie Policy | Anovas Integrated Systems
         </h1>
         <p className="text-sm text-gray-500 mb-1">
           <strong>Effective Date:</strong> June 23, 2026

@@ -21,9 +21,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Services — Anovas Integrated Systems",
+  title: "Services | Anovas Integrated Systems",
   description:
-    "AnovasOS, Anovas Autopilot, and a full suite of professional services — brand identity, website design, local SEO, social media management, content creation, paid advertising, and Google My Business management — built for local service businesses.",
+    "AnovasOS, Anovas Autopilot, and a full suite of professional services: brand identity, website design, local SEO, social media management, content creation, paid advertising, and Google My Business management, built for local service businesses.",
   keywords: [
     "local service business marketing agency",
     "website design for contractors",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services — Anovas Integrated Systems",
+    title: "Services | Anovas Integrated Systems",
     description:
-      "AnovasOS, Anovas Autopilot, and professional services — brand identity, web design, SEO, social media, content, and paid advertising for local service businesses.",
+      "AnovasOS, Anovas Autopilot, and professional services: brand identity, web design, SEO, social media, content, and paid advertising for local service businesses.",
     url: "/services",
     type: "website",
   },
@@ -51,7 +51,7 @@ const products = [
     name: "AnovasOS",
     tagline: "Business growth platform",
     summary:
-      "The full growth management platform for local service businesses — AI-powered marketing execution, analytics, reporting, and ongoing management in one command center.",
+      "The full growth management platform for local service businesses: AI-powered marketing execution, analytics, reporting, and ongoing management in one command center.",
     bullets: [
       "Live dashboard for jobs, crews, and revenue",
       "AI agents handling 70%+ of execution",
@@ -65,7 +65,7 @@ const products = [
     name: "Anovas Autopilot",
     tagline: "Revenue Protection System",
     summary:
-      "An always-on revenue protection system that catches missed calls, follows up cold leads, sends booking reminders, nudges unpaid invoices, and generates reviews — automatically, around the clock.",
+      "An always-on revenue protection system that catches missed calls, follows up cold leads, sends booking reminders, nudges unpaid invoices, and generates reviews, automatically, around the clock.",
     bullets: [
       "Missed-call text-back",
       "Lead and quote follow-up sequences",
@@ -81,7 +81,7 @@ const professionalServices = [
     icon: Building2,
     name: "Business & Corporate Structure",
     summary:
-      "A 90-minute consultation with a written action plan delivered within 48 hours. We walk through your current entity setup, identify gaps and compliance risks, and give you a clear prioritized action list — whether you're forming your first LLC or restructuring an established operation.",
+      "A 90-minute consultation with a written action plan delivered within 48 hours. We walk through your current entity setup, identify gaps and compliance risks, and give you a clear prioritized action list, whether you're forming your first LLC or restructuring an established operation.",
     tag: "One-Time",
     href: "/services/business-structure",
   },
@@ -89,7 +89,7 @@ const professionalServices = [
     icon: Sparkles,
     name: "Brand Identity Design",
     summary:
-      "A complete brand identity package — logo, color palette, typography system, and a brand style guide that keeps every piece of collateral consistent. Delivered with source files (SVG, PNG, PDF) and a walkthrough call so you know exactly how to use it.",
+      "A complete brand identity package: logo, color palette, typography system, and a brand style guide that keeps every piece of collateral consistent. Delivered with source files (SVG, PNG, PDF) and a walkthrough call so you know exactly how to use it.",
     tag: "Project",
     href: "/services/brand-identity",
   },
@@ -97,7 +97,7 @@ const professionalServices = [
     icon: PenTool,
     name: "Graphic Design",
     summary:
-      "One-off and ongoing graphic design for social media, print, and digital — social graphics, flyers, door hangers, truck wraps, trade show materials, and marketing collateral. Every project starts with a detailed brief and nothing ships without a QA review.",
+      "One-off and ongoing graphic design for social media, print, and digital: social graphics, flyers, door hangers, truck wraps, trade show materials, and marketing collateral. Every project starts with a detailed brief and nothing ships without a QA review.",
     tag: "Project / Retainer",
     href: "/services/graphic-design",
   },
@@ -105,7 +105,7 @@ const professionalServices = [
     icon: Globe,
     name: "Website Design & Development",
     summary:
-      "A mobile-optimized, lead-converting website built in 2 weeks — complete with working contact forms, booking integration, GMB link, and social connections. Copy is drafted and reviewed before a single page is built.",
+      "A mobile-optimized, lead-converting website built in 2 weeks, complete with working contact forms, booking integration, GMB link, and social connections. Copy is drafted and reviewed before a single page is built.",
     tag: "Project",
     href: "/services/website-design",
   },
@@ -113,7 +113,7 @@ const professionalServices = [
     icon: Search,
     name: "SEO / AEO / GEO",
     summary:
-      "Monthly search optimization that goes beyond traditional SEO — covering local keyword rankings and citations (SEO), optimizing for AI-powered answer engines like Google SGE and voice search (AEO), and positioning your business in AI-generated results from ChatGPT and Perplexity (GEO). Monthly reporting included.",
+      "Monthly search optimization that goes beyond traditional SEO, covering local keyword rankings and citations (SEO), optimizing for AI-powered answer engines like Google SGE and voice search (AEO), and positioning your business in AI-generated results from ChatGPT and Perplexity (GEO). Monthly reporting included.",
     tag: "Monthly Retainer",
     href: "/services/seo",
   },
@@ -121,7 +121,7 @@ const professionalServices = [
     icon: MapPin,
     name: "Google My Business Management",
     summary:
-      "Monthly GMB management — 2 keyword-optimized posts per week, photo updates, review responses within 24 hours, Q&A monitoring, and profile accuracy checks across directories. Your GMB is often the first thing a prospect sees; we make sure it's working for you.",
+      "Monthly GMB management: 2 keyword-optimized posts per week, photo updates, review responses within 24 hours, Q&A monitoring, and profile accuracy checks across directories. Your GMB is often the first thing a prospect sees; we make sure it's working for you.",
     tag: "Monthly Retainer",
     href: "/services/google-my-business",
   },
@@ -129,7 +129,7 @@ const professionalServices = [
     icon: Share2,
     name: "Social Media Management",
     summary:
-      "End-to-end monthly social media management — content calendar, post production, graphics, scheduling, and performance reporting. Three tiers from $500/mo. Nothing goes live without your approval on copy and graphics.",
+      "End-to-end monthly social media management: content calendar, post production, graphics, scheduling, and performance reporting. Three tiers from $500/mo. Nothing goes live without your approval on copy and graphics.",
     tag: "Monthly Retainer",
     href: "/services/social-media",
   },
@@ -137,7 +137,7 @@ const professionalServices = [
     icon: FileText,
     name: "Content Creation",
     summary:
-      "Blog posts, service pages, email sequences, and ad copy — written in your brand voice and reviewed before delivery. Available standalone or bundled with SEO or social media at a reduced rate.",
+      "Blog posts, service pages, email sequences, and ad copy, written in your brand voice and reviewed before delivery. Available standalone or bundled with SEO or social media at a reduced rate.",
     tag: "Project / Retainer",
     href: "/services/content-creation",
   },
@@ -145,7 +145,7 @@ const professionalServices = [
     icon: Megaphone,
     name: "Paid Advertising",
     summary:
-      "Facebook, Instagram, and Google ad campaigns built, launched, and managed for you — including ad copy, creative, audience targeting, and monthly performance reporting. No set-it-and-forget-it: campaigns are actively monitored and optimized every month.",
+      "Facebook, Instagram, and Google ad campaigns built, launched, and managed for you, including ad copy, creative, audience targeting, and monthly performance reporting. No set-it-and-forget-it: campaigns are actively monitored and optimized every month.",
     tag: "Monthly Retainer",
     href: "/services/paid-advertising",
   },
@@ -160,7 +160,7 @@ const faqs = [
   {
     question: "How are services priced?",
     answer:
-      "Every service has tiered pricing — typically Basic, Pro, and Elite — so you can start at the right level and scale up. One-time projects (website, brand identity, business structure) are flat-fee. Monthly services (SEO, social media, graphic design) are retainers with no setup fee on most plans.",
+      "Every service has tiered pricing, typically Basic, Pro, and Elite, so you can start at the right level and scale up. One-time projects (website, brand identity, business structure) are flat-fee. Monthly services (SEO, social media, graphic design) are retainers with no setup fee on most plans.",
   },
   {
     question: "What's the difference between SEO, AEO, and GEO?",
@@ -170,12 +170,12 @@ const faqs = [
   {
     question: "How long does a website build take?",
     answer:
-      "Most website projects are delivered in 2 weeks from approved copy. Copy is drafted and reviewed before a single page is built — the site is built around your message, not retrofitted around a template.",
+      "Most website projects are delivered in 2 weeks from approved copy. Copy is drafted and reviewed before a single page is built; the site is built around your message, not retrofitted around a template.",
   },
   {
     question: "How do I know which services my business actually needs?",
     answer:
-      "Start with the AROS Growth Score — a free 10-question diagnostic that benchmarks your business across Acquisition, Revenue, Operations, and Systems. It tells you exactly which gap is costing you the most and recommends the right service to address it.",
+      "Start with the AROS Growth Score, a free 10-question diagnostic that benchmarks your business across Acquisition, Revenue, Operations, and Systems. It tells you exactly which gap is costing you the most and recommends the right service to address it.",
   },
 ];
 
@@ -192,11 +192,11 @@ export default function ServicesPage() {
             Services &amp; Offerings
           </p>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            Everything your business needs to grow — under one roof.
+            Everything your business needs to grow, under one roof.
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-            Two AI-powered platforms plus a full suite of professional services — brand, web,
-            SEO, social, content, and paid advertising — built exclusively for local service
+            Two AI-powered platforms plus a full suite of professional services: brand, web,
+            SEO, social, content, and paid advertising, built exclusively for local service
             businesses. No generalist agency handoffs. One team handles all of it.
           </p>
         </div>
@@ -212,7 +212,7 @@ export default function ServicesPage() {
             Two products built for the trades.
           </h2>
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
-            AnovasOS manages your growth. Autopilot protects your revenue. Both are built exclusively for local service businesses — not adapted from generic SMB software.
+            AnovasOS manages your growth. Autopilot protects your revenue. Both are built exclusively for local service businesses, not adapted from generic SMB software.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
@@ -261,7 +261,7 @@ export default function ServicesPage() {
               The full digital foundation, built and managed for you.
             </h2>
             <p className="text-sm text-gray-500 max-w-xl mx-auto">
-              Brand, web, search, social, content, and advertising — done right, done consistently,
+              Brand, web, search, social, content, and advertising, done right, done consistently,
               and done by a team that only works with service businesses.
             </p>
           </div>
@@ -307,7 +307,7 @@ export default function ServicesPage() {
             <p className="text-lg font-bold text-white mb-1">Not sure where to start?</p>
             <p className="text-sm text-white/60 leading-relaxed">
               The AROS Growth Score benchmarks your business across four pillars in 10 questions
-              and tells you exactly which gap is costing you the most — then recommends the right
+              and tells you exactly which gap is costing you the most, then recommends the right
               service to fix it.
             </p>
           </div>

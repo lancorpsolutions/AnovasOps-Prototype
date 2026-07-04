@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Paid Advertising — Anovas Integrated Systems",
+  title: "Paid Advertising | Anovas Integrated Systems",
   description:
-    "Facebook, Instagram, and Google ad campaigns built, launched, and actively managed for local service businesses. Management fee from $750/mo — ad spend billed separately.",
+    "Facebook, Instagram, and Google ad campaigns built, launched, and actively managed for local service businesses. Management fee from $750/mo; ad spend billed separately.",
   alternates: { canonical: "/services/paid-advertising" },
 };
 
@@ -28,7 +28,7 @@ const tiers = [
       "Basic optimization",
       "Monthly reporting",
     ],
-    cta: "Get Started — $750/mo",
+    cta: "Get Started – $750/mo",
   },
   {
     name: "Ad Growth",
@@ -45,7 +45,7 @@ const tiers = [
       "Conversion tracking review",
       "Monthly performance report",
     ],
-    cta: "Get Started — $1,500/mo",
+    cta: "Get Started – $1,500/mo",
   },
   {
     name: "Ad Scale",
@@ -69,15 +69,15 @@ const tiers = [
 const platforms = [
   {
     name: "Meta (Facebook & Instagram)",
-    desc: "Awareness, lead generation, and retargeting campaigns — targeted by zip code, service area, and homeowner demographics.",
+    desc: "Awareness, lead generation, and retargeting campaigns, targeted by zip code, service area, and homeowner demographics.",
   },
   {
     name: "Google Ads",
-    desc: "Search campaigns targeting high-intent keywords — people actively searching for your services right now in your area.",
+    desc: "Search campaigns targeting high-intent keywords: people actively searching for your services right now in your area.",
   },
   {
     name: "Retargeting",
-    desc: "Follow-up campaigns that reach people who visited your site but didn't call — keeping you top-of-mind until they're ready.",
+    desc: "Follow-up campaigns that reach people who visited your site but didn't call, keeping you top-of-mind until they're ready.",
   },
 ];
 
@@ -100,7 +100,7 @@ export default function PaidAdvertisingPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Paid Advertising</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            Paid ads don&apos;t fix a broken business — they amplify what&apos;s already there. We make sure your offer, page, tracking, and follow-up are ready before the budget gets burned. Then we build campaigns that actually convert.
+            Paid ads don&apos;t fix a broken business; they amplify what&apos;s already there. We make sure your offer, page, tracking, and follow-up are ready before the budget gets burned. Then we build campaigns that actually convert.
           </p>
         </div>
       </section>
@@ -122,8 +122,8 @@ export default function PaidAdvertisingPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Management Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — management fee only.</h2>
-          <p className="text-sm text-gray-500 mb-8">Ad spend goes directly to the platforms — not marked up. You own your ad accounts at all times.</p>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, management fee only.</h2>
+          <p className="text-sm text-gray-500 mb-8">Ad spend goes directly to the platforms, not marked up. You own your ad accounts at all times.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {
               const featured = tier.badge === "Most Popular";

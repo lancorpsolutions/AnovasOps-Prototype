@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Brand Identity Design — Anovas Integrated Systems",
+  title: "Brand Identity Design | Anovas Integrated Systems",
   description:
-    "Brand identity packages for local service businesses — logo, color palette, typography, and brand style guide. Three tiers from $750, delivered with source files and a walkthrough call.",
+    "Brand identity packages for local service businesses: logo, color palette, typography, and brand style guide. Three tiers from $750, delivered with source files and a walkthrough call.",
   alternates: { canonical: "/services/brand-identity" },
 };
 
@@ -92,7 +92,7 @@ export default function BrandIdentityPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Brand Identity Design</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            A brand that earns trust before anyone picks up the phone. Logo, palette, typography, and a style guide that keeps everything consistent — whether it&apos;s your truck wrap, your website, or your social profiles.
+            A brand that earns trust before anyone picks up the phone. Logo, palette, typography, and a style guide that keeps everything consistent, whether it&apos;s your truck wrap, your website, or your social profiles.
           </p>
         </div>
       </section>
@@ -101,7 +101,7 @@ export default function BrandIdentityPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include source files and a delivery walkthrough.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, all including source files and a delivery walkthrough.</h2>
           <p className="text-sm text-gray-500 mb-8">Flat-fee pricing. No surprises after the project starts.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {

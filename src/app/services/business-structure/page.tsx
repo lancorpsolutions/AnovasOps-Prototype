@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Business & Corporate Structure Consulting — Anovas Integrated Systems",
+  title: "Business & Corporate Structure Consulting | Anovas Integrated Systems",
   description:
-    "Business structure consulting for local service businesses — entity setup, compliance review, and written action plan. Three tiers from $499.",
+    "Business structure consulting for local service businesses: entity setup, compliance review, and written action plan. Three tiers from $499.",
   alternates: { canonical: "/services/business-structure" },
 };
 
@@ -92,7 +92,7 @@ export default function BusinessStructurePage() {
             Business &amp; Corporate Structure
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            A single focused engagement that maps your current structure, surfaces the gaps, and gives you a clear written action plan — so you know exactly what to fix and in what order.
+            A single focused engagement that maps your current structure, surfaces the gaps, and gives you a clear written action plan, so you know exactly what to fix and in what order.
           </p>
         </div>
       </section>
@@ -101,7 +101,7 @@ export default function BusinessStructurePage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include a written action plan within 48 hours.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, all including a written action plan within 48 hours.</h2>
           <p className="text-sm text-gray-500 mb-8">One-time flat fee. No recurring commitment.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {

@@ -19,17 +19,17 @@ const QUESTIONS = [
     pillar: "A",
     text: "How are most of your new customers finding you right now?",
     options: [
-      "Mostly word of mouth and referrals — I don't do much active marketing",
+      "Mostly word of mouth and referrals; I don't do much active marketing",
       "I have a Google listing but I'm not sure how well it's working",
       "I'm active on social media and get some leads from it",
-      "I have multiple lead sources working consistently — GMB, social, ads, and referrals",
+      "I have multiple lead sources working consistently: GMB, social, ads, and referrals",
     ],
   },
   {
     pillar: "A",
     text: "When someone searches for your type of business in your city, what happens?",
     options: [
-      "Honestly I don't know — I've never checked",
+      "Honestly I don't know; I've never checked",
       "I show up sometimes but I'm not near the top",
       "I show up in Google Maps results pretty regularly",
       "I consistently rank at the top for my main services in my area",
@@ -41,8 +41,8 @@ const QUESTIONS = [
     options: [
       "No website, or just a Facebook page",
       "I have a website but it's outdated or I'm not sure it's generating leads",
-      "Yes — a website with a contact form",
-      "Yes — a website with a contact form, booking system, and it generates leads regularly",
+      "Yes, a website with a contact form",
+      "Yes, a website with a contact form, booking system, and it generates leads regularly",
     ],
   },
   // R — Revenue
@@ -50,7 +50,7 @@ const QUESTIONS = [
     pillar: "R",
     text: "What happens when a new lead reaches out to you?",
     options: [
-      "I get back to them when I can — sometimes it takes a day or two",
+      "I get back to them when I can; sometimes it takes a day or two",
       "I try to respond same day but it's not always consistent",
       "I respond within a few hours and follow up if I don't hear back",
       "An automated system responds immediately and follows up on its own",
@@ -60,10 +60,10 @@ const QUESTIONS = [
     pillar: "R",
     text: "Do you know what percentage of your leads turn into paying customers?",
     options: [
-      "No idea — I don't track that",
+      "No idea; I don't track that",
       "I have a rough guess but nothing documented",
       "I track it loosely and have a general sense of my close rate",
-      "Yes — I track my close rate and actively work to improve it",
+      "Yes, I track my close rate and actively work to improve it",
     ],
   },
   {
@@ -81,10 +81,10 @@ const QUESTIONS = [
     pillar: "O",
     text: "Can your business run without you being physically present?",
     options: [
-      "No — everything depends on me",
+      "No, everything depends on me",
       "It can handle small things but I'm needed for most decisions",
       "My team handles day-to-day work but I handle problems and sales",
-      "Yes — I have systems and a team that can operate independently",
+      "Yes, I have systems and a team that can operate independently",
     ],
   },
   {
@@ -102,20 +102,20 @@ const QUESTIONS = [
     pillar: "S",
     text: "Do you use a CRM or any tool to track your leads and customers?",
     options: [
-      "No — customers are tracked in my head or in my phone",
-      "Spreadsheets or notes — nothing purpose-built",
+      "No, customers are tracked in my head or in my phone",
+      "Spreadsheets or notes, nothing purpose-built",
       "I have a CRM but I don't use it consistently",
-      "Yes — I actively use a CRM to manage leads, follow-ups, and customer history",
+      "Yes, I actively use a CRM to manage leads, follow-ups, and customer history",
     ],
   },
   {
     pillar: "S",
     text: "How much of your business runs automatically vs. requiring your manual attention?",
     options: [
-      "Almost nothing is automated — I do everything manually",
+      "Almost nothing is automated; I do everything manually",
       "A few things run automatically but most requires my attention",
       "I have some automation in place but there's a lot more I could do",
-      "My key workflows — leads, follow-ups, scheduling, reporting — run without me",
+      "My key workflows, leads, follow-ups, scheduling, reporting, run without me",
     ],
   },
 ] as const;
@@ -144,10 +144,10 @@ function calcOverall(answers: number[]) {
 }
 
 function getBand(score: number) {
-  if (score <= 25) return { label: "Foundation Stage", dot: "bg-red-500", text: "text-red-400", bar: "bg-red-500", desc: "Real gaps in the basics — they're costing you leads and money every week whether you see it or not." };
+  if (score <= 25) return { label: "Foundation Stage", dot: "bg-red-500", text: "text-red-400", bar: "bg-red-500", desc: "Real gaps in the basics; they're costing you leads and money every week whether you see it or not." };
   if (score <= 50) return { label: "Building Stage", dot: "bg-orange", text: "text-orange", bar: "bg-orange", desc: "You've got momentum, but inconsistent systems are bleeding revenue. The right fixes here have outsized ROI." };
   if (score <= 75) return { label: "Growth Stage", dot: "bg-yellow-400", text: "text-yellow-400", bar: "bg-yellow-400", desc: "Strong foundation. Targeted improvements in your weakest pillar will unlock the next level of growth." };
-  return { label: "Scale Stage", dot: "bg-emerald-500", text: "text-emerald-400", bar: "bg-emerald-500", desc: "You're running a well-built operation. The next move is scaling what's already working — faster and without adding to your plate." };
+  return { label: "Scale Stage", dot: "bg-emerald-500", text: "text-emerald-400", bar: "bg-emerald-500", desc: "You're running a well-built operation. The next move is scaling what's already working, faster and without adding to your plate." };
 }
 
 function getRoute(scores: { A: number; R: number; O: number; S: number }): Route {
@@ -168,7 +168,7 @@ const ROUTE_CONTENT: Record<Route, {
   "autopilot-r": {
     label: "Anovas Autopilot",
     headline: "Your biggest gap: leads going cold",
-    body: "You're generating interest but losing it before it converts. Slow response times, missed calls, and no follow-up system are the culprit — and every one is a job that went to a competitor. Anovas Autopilot responds to every missed call, follows up on every quote, and nudges every outstanding invoice automatically, so revenue stops leaking while you're heads-down on the job.",
+    body: "You're generating interest but losing it before it converts. Slow response times, missed calls, and no follow-up system are the culprit, and every one is a job that went to a competitor. Anovas Autopilot responds to every missed call, follows up on every quote, and nudges every outstanding invoice automatically, so revenue stops leaking while you're heads-down on the job.",
     primaryCta: "Book an Autopilot Demo",
     primaryHref: CALENDLY,
     learnHref: "/services/autopilot",
@@ -176,7 +176,7 @@ const ROUTE_CONTENT: Record<Route, {
   "autopilot-o": {
     label: "Anovas Autopilot",
     headline: "Your biggest gap: the business runs on you",
-    body: "If you step away, things start to slip — scheduling, follow-ups, customer communication. That's not a people problem, it's a systems problem. Anovas Autopilot handles the revenue protection layer that shouldn't require a human: booking confirmations, appointment reminders, post-job review requests, and invoice nudges. Less of the day-to-day in your head, more of it running on its own.",
+    body: "If you step away, things start to slip: scheduling, follow-ups, customer communication. That's not a people problem, it's a systems problem. Anovas Autopilot handles the revenue protection layer that shouldn't require a human: booking confirmations, appointment reminders, post-job review requests, and invoice nudges. Less of the day-to-day in your head, more of it running on its own.",
     primaryCta: "Book an Autopilot Demo",
     primaryHref: CALENDLY,
     learnHref: "/services/autopilot",
@@ -184,7 +184,7 @@ const ROUTE_CONTENT: Record<Route, {
   services: {
     label: "Digital Presence Services",
     headline: "Your biggest gap: not enough of the right leads",
-    body: "You do good work but the pipeline is too thin or too unpredictable. The root cause is almost always visibility — a weak web presence, a GMB profile that isn't working, no local search footprint. We fix that with website builds, local SEO, and brand identity that actually earns trust before anyone calls you. Our team has done this specifically for local service businesses, not generic SMBs.",
+    body: "You do good work but the pipeline is too thin or too unpredictable. The root cause is almost always visibility: a weak web presence, a GMB profile that isn't working, no local search footprint. We fix that with website builds, local SEO, and brand identity that actually earns trust before anyone calls you. Our team has done this specifically for local service businesses, not generic SMBs.",
     primaryCta: "Book a Discovery Call",
     primaryHref: CALENDLY,
     learnHref: "/services",
@@ -192,7 +192,7 @@ const ROUTE_CONTENT: Record<Route, {
   anovasos: {
     label: "AnovasOS",
     headline: "Your biggest gap: growth that doesn't compound",
-    body: "Your fundamentals are solid — leads come in, jobs get done, customers are happy. But every growth initiative still runs through you, and without a system to track, measure, and execute consistently, you're leaving compounding on the table. AnovasOS brings AI-powered marketing execution, performance dashboards, and reporting under one roof — so you can see what's working, hand off the execution, and actually get out of the day-to-day.",
+    body: "Your fundamentals are solid: leads come in, jobs get done, customers are happy. But every growth initiative still runs through you, and without a system to track, measure, and execute consistently, you're leaving compounding on the table. AnovasOS brings AI-powered marketing execution, performance dashboards, and reporting under one roof, so you can see what's working, hand off the execution, and actually get out of the day-to-day.",
     primaryCta: "Book an AnovasOS Demo",
     primaryHref: CALENDLY,
     learnHref: "/services/anovasos",
@@ -301,7 +301,7 @@ function IntakeStep({ intake, setIntake, onSubmit }: {
           Start My Free Growth Score <ArrowRight size={16} />
         </Button>
         <p className="text-[11px] text-white/30 text-center">
-          Free diagnostic — takes about 3 minutes. You&apos;ll see your results instantly before we ever talk.
+          Free diagnostic, takes about 3 minutes. You&apos;ll see your results instantly before we ever talk.
         </p>
       </form>
     </div>
@@ -448,9 +448,9 @@ function ResultsStep({ overall, band, scores, route, firstName }: {
       <div className="rounded-2xl bg-white/5 border border-white/10 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="flex-1">
           <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-1">Upgrade to Full Diagnosis</p>
-          <p className="text-sm font-bold text-white mb-1">We do the audit for you — with a custom roadmap.</p>
+          <p className="text-sm font-bold text-white mb-1">We do the audit for you, with a custom roadmap.</p>
           <p className="text-xs text-white/50 leading-relaxed">
-            The AROS Revenue Audit goes beyond the score. We analyze your business top-to-bottom, benchmark it against comparable operations, and deliver a custom growth roadmap on a strategy call — specific actions, in priority order.
+            The AROS Revenue Audit goes beyond the score. We analyze your business top-to-bottom, benchmark it against comparable operations, and deliver a custom growth roadmap on a strategy call, with specific actions in priority order.
           </p>
         </div>
         <a
@@ -529,7 +529,7 @@ export function GrowthScoreQuiz() {
           recommendation: route,
         }),
       });
-    } catch { /* results still show — silent failure */ }
+    } catch { /* results still show -- silent failure */ }
   }
 
   if (phase === "intake") {

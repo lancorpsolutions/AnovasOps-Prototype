@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Local SEO / AEO / GEO — Anovas Integrated Systems",
+  title: "Local SEO / AEO / GEO | Anovas Integrated Systems",
   description:
-    "Monthly search optimization for local service businesses — local SEO, AI answer engine optimization, and generative engine positioning. Three tiers from $750/mo.",
+    "Monthly search optimization for local service businesses: local SEO, AI answer engine optimization, and generative engine positioning. Three tiers from $750/mo.",
   alternates: { canonical: "/services/seo" },
 };
 
@@ -18,17 +18,17 @@ const disciplines = [
   {
     abbr: "SEO",
     name: "Search Engine Optimization",
-    desc: "Local keyword rankings, Google Maps visibility, citation building, on-page optimization, and GMB content — the foundation of local search presence.",
+    desc: "Local keyword rankings, Google Maps visibility, citation building, on-page optimization, and GMB content, the foundation of local search presence.",
   },
   {
     abbr: "AEO",
     name: "Answer Engine Optimization",
-    desc: "Structured content optimized for Google AI Overviews, featured snippets, and voice search — capturing queries that return a spoken answer instead of a link list.",
+    desc: "Structured content optimized for Google AI Overviews, featured snippets, and voice search, capturing queries that return a spoken answer instead of a link list.",
   },
   {
     abbr: "GEO",
     name: "Generative Engine Optimization",
-    desc: "Positioning your business to appear in AI-generated answers from ChatGPT, Perplexity, and similar platforms — where more buying decisions are now being researched.",
+    desc: "Positioning your business to appear in AI-generated answers from ChatGPT, Perplexity, and similar platforms, where more buying decisions are now being researched.",
   },
 ];
 
@@ -47,7 +47,7 @@ const tiers = [
       "2 SEO-optimized posts/month",
       "Monthly ranking report",
     ],
-    cta: "Get Started — $750/mo",
+    cta: "Get Started – $750/mo",
   },
   {
     name: "Search Growth",
@@ -64,7 +64,7 @@ const tiers = [
       "Review response management",
       "Monthly strategy call",
     ],
-    cta: "Get Started — $1,500/mo",
+    cta: "Get Started – $1,500/mo",
   },
   {
     name: "Authority Engine",
@@ -104,7 +104,7 @@ export default function SeoPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">SEO / AEO / GEO</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            Search has three channels now — Google, AI-powered answer engines, and generative results from tools like ChatGPT. We manage all three so your business shows up where the decision is being made.
+            Search has three channels now: Google, AI-powered answer engines, and generative results from tools like ChatGPT. We manage all three so your business shows up where the decision is being made.
           </p>
         </div>
       </section>
@@ -127,7 +127,7 @@ export default function SeoPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include monthly reporting and active management.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, all including monthly reporting and active management.</h2>
           <p className="text-sm text-gray-500 mb-8">No setup fee on any tier. Cancel with 30 days notice.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {

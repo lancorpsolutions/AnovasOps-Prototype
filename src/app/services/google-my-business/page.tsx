@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Google Business Profile Management — Anovas Integrated Systems",
+  title: "Google Business Profile Management | Anovas Integrated Systems",
   description:
-    "Google Business Profile management for local service businesses — one-time cleanup or monthly management. Three tiers from $300. Posts, reviews, photos, and citation accuracy handled for you.",
+    "Google Business Profile management for local service businesses: one-time cleanup or monthly management. Three tiers from $300. Posts, reviews, photos, and citation accuracy handled for you.",
   alternates: { canonical: "/services/google-my-business" },
 };
 
@@ -45,7 +45,7 @@ const tiers = [
       "Profile accuracy maintenance",
       "Monthly performance snapshot",
     ],
-    cta: "Get Started — $500/mo",
+    cta: "Get Started – $500/mo",
   },
   {
     name: "Local Visibility System",
@@ -85,7 +85,7 @@ export default function GoogleMyBusinessPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Google Business Profile Management</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            Your GBP is often the first thing a prospect sees before they call. We keep it active, accurate, and optimized — posts, photos, reviews, and Q&amp;A handled consistently every week.
+            Your GBP is often the first thing a prospect sees before they call. We keep it active, accurate, and optimized: posts, photos, reviews, and Q&amp;A handled consistently every week.
           </p>
         </div>
       </section>
@@ -94,7 +94,7 @@ export default function GoogleMyBusinessPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three options — from a one-time cleanup to full monthly management.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three options, from a one-time cleanup to full monthly management.</h2>
           <p className="text-sm text-gray-500 mb-8">GBP management is also included in our Local SEO retainers.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {
@@ -151,7 +151,7 @@ export default function GoogleMyBusinessPage() {
               <Link href="/services/seo" className="text-orange font-semibold hover:underline">
                 Local SEO retainers
               </Link>
-              . If you&apos;re already on an SEO plan, your GBP is covered — no separate fee needed.
+              . If you&apos;re already on an SEO plan, your GBP is covered; no separate fee needed.
             </p>
           </div>
         </div>

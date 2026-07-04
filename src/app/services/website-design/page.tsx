@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "Website Design & Development — Anovas Integrated Systems",
+  title: "Website Design & Development | Anovas Integrated Systems",
   description:
-    "Mobile-optimized, lead-converting websites for local service businesses — three tiers from $1,250. Built in 2 weeks with contact forms, booking integration, and SEO-ready copy.",
+    "Mobile-optimized, lead-converting websites for local service businesses. Three tiers from $1,250. Built in 2 weeks with contact forms, booking integration, and SEO-ready copy.",
   alternates: { canonical: "/services/website-design" },
 };
 
@@ -28,7 +28,7 @@ const tiers = [
       "Google My Business link",
       "Social media links connected",
       "Basic on-page SEO setup",
-      "2–3 week delivery",
+      "2 week delivery",
     ],
     cta: "Book a Discovery Call",
   },
@@ -79,8 +79,8 @@ const addons = [
 
 const process = [
   { step: "01", title: "Brief & Intake", body: "A short intake form covering your services, service areas, and brand assets." },
-  { step: "02", title: "Copy First", body: "All website copy is drafted and reviewed before build starts — the site is built around your message, not retrofitted around a template." },
-  { step: "03", title: "Design & Build", body: "Built to brief — mobile-first, fast, and optimized for lead capture." },
+  { step: "02", title: "Copy First", body: "All website copy is drafted and reviewed before build starts. The site is built around your message, not retrofitted around a template." },
+  { step: "03", title: "Design & Build", body: "Built to brief: mobile-first, fast, and optimized for lead capture." },
   { step: "04", title: "Review & Launch", body: "You review a staging version. Revisions handled. We launch on your timeline." },
 ];
 
@@ -103,7 +103,7 @@ export default function WebsiteDesignPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Website Design &amp; Development</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            A site that looks like you mean business and converts visitors into calls. Copy first, design second — built in 2 weeks, mobile-optimized, and ready to generate leads from day one.
+            A site that looks like you mean business and converts visitors into calls. Copy first, design second, built in 2 weeks, mobile-optimized, and ready to generate leads from day one.
           </p>
         </div>
       </section>
@@ -126,7 +126,7 @@ export default function WebsiteDesignPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include copy review and mobile-optimized design.</h2>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers, all including copy review and mobile-optimized design.</h2>
           <p className="text-sm text-gray-500 mb-8">Hosting and maintenance available as an add-on after launch.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {
