@@ -8,7 +8,7 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 export const metadata: Metadata = {
   title: "Social Media Management — Anovas Integrated Systems",
   description:
-    "End-to-end monthly social media management for local service businesses — content calendar, post production, graphics, scheduling, and performance reporting.",
+    "Monthly social media management for local service businesses — content calendar, post production, graphics, scheduling, and performance reporting. Three tiers from $500/mo.",
   alternates: { canonical: "/services/social-media" },
 };
 
@@ -16,55 +16,60 @@ const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/sales-demo-call";
 
 const tiers = [
   {
-    name: "Starter",
-    volume: "8 posts/month",
+    name: "Basic",
+    price: "$500",
+    period: "/mo",
     badge: null,
-    tagline: "For businesses establishing a consistent social presence.",
+    tagline: "For businesses that need a consistent, professional social presence.",
     features: [
-      "8 posts per month",
-      "Custom branded graphics for each post",
-      "Content calendar delivered monthly",
-      "Caption copy drafted + approved",
-      "Scheduling and posting handled",
+      "2 platforms",
+      "8–12 posts/month",
+      "Post writing and captions",
+      "Basic scheduling",
+      "Content calendar",
       "Monthly performance recap",
     ],
-    cta: "Contact for Pricing",
+    cta: "Get Started — $500/mo",
   },
   {
-    name: "Standard",
-    volume: "12 posts/month",
+    name: "Pro",
+    price: "$1,000",
+    period: "/mo",
+    badge: "Most Popular",
+    tagline: "For businesses building consistent visibility across multiple channels.",
+    features: [
+      "2–3 platforms",
+      "16–20 posts/month",
+      "Everything in Basic",
+      "Custom branded graphics",
+      "Offer and CTA rotation",
+      "Platform optimization",
+      "Monthly performance review",
+    ],
+    cta: "Get Started — $1,000/mo",
+  },
+  {
+    name: "Elite",
+    price: "$2,000+",
+    period: "/mo",
     badge: null,
-    tagline: "For businesses actively building an audience and engaging followers.",
+    tagline: "For businesses using social as a primary authority and lead channel.",
     features: [
-      "12 posts per month",
-      "Everything in Starter",
-      "Story content included",
-      "Hashtag research and optimization",
-      "Engagement monitoring",
-      "Bi-weekly performance check-in",
-    ],
-    cta: "Contact for Pricing",
-  },
-  {
-    name: "Growth",
-    volume: "20 posts + 4 Reels/month",
-    badge: "Most Active",
-    tagline: "For businesses using social as a primary lead and brand channel.",
-    features: [
-      "20 posts per month",
-      "4 short-form Reels per month",
-      "Everything in Standard",
+      "3–5 platforms",
+      "High-frequency posting",
+      "Everything in Pro",
+      "Campaign strategy",
+      "Engagement support",
       "Audience growth strategy",
-      "Competitor content analysis",
+      "Full performance reporting",
       "Monthly strategy call",
-      "Priority turnaround",
     ],
-    cta: "Get Started — $1,200/mo",
+    cta: "Book a Discovery Call",
   },
 ];
 
 const workflow = [
-  { title: "Content Calendar", body: "We build a monthly calendar aligned to your services and seasonal demand." },
+  { title: "Content Calendar", body: "We build a monthly calendar aligned to your services, offers, and seasonal demand." },
   { title: "Copy & Graphics", body: "Our Content Agent drafts copy. Dez produces the graphics. Josh reviews both." },
   { title: "Your Approval", body: "Nothing goes live without your sign-off on copy and creative." },
   { title: "Post & Report", body: "We schedule, post, and send you a monthly performance recap." },
@@ -85,11 +90,11 @@ export default function SocialMediaPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/20 text-orange-light">
               <Share2 size={22} />
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer · No Setup Fee</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer · No Setup Fee · From $500/mo</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Social Media Management</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            Content calendar, post production, graphics, scheduling, and reporting — all handled. You approve everything before it goes live.
+            This is not just posting. It&apos;s visibility, trust-building, and audience education — handled consistently so your business stays top-of-mind before prospects are ready to buy.
           </p>
         </div>
       </section>
@@ -112,11 +117,11 @@ export default function SocialMediaPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include graphics, copy, and approval workflow.</h2>
-          <p className="text-sm text-gray-500 mb-8">Growth tier pricing is confirmed. Starter and Standard pricing is available on request — book a call and we&apos;ll size the right tier for your output needs.</p>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include copy, graphics, and approval workflow.</h2>
+          <p className="text-sm text-gray-500 mb-8">No setup fee on any tier. You approve everything before it goes live.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => {
-              const featured = tier.badge === "Most Active";
+              const featured = tier.badge === "Most Popular";
               return (
                 <div
                   key={tier.name}
@@ -128,11 +133,13 @@ export default function SocialMediaPage() {
                 >
                   {featured && (
                     <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
-                      Most Active
+                      Most Popular
                     </span>
                   )}
                   <p className={`text-base font-bold mb-0.5 ${featured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
-                  <p className={`text-sm font-semibold mb-1 ${featured ? "text-orange" : "text-orange"}`}>{tier.volume}</p>
+                  <p className={`text-2xl font-black mb-0.5 ${featured ? "text-orange" : "text-charcoal"}`}>
+                    {tier.price}<span className={`text-sm font-semibold ${featured ? "text-orange/60" : "text-gray-400"}`}>{tier.period}</span>
+                  </p>
                   <p className={`text-xs mt-1 mb-4 pb-4 border-b leading-relaxed ${featured ? "text-white/50 border-white/10" : "text-gray-500 border-gray-100"}`}>
                     {tier.tagline}
                   </p>
@@ -165,7 +172,7 @@ export default function SocialMediaPage() {
 
       <section className="bg-gradient-to-br from-navy to-navy-light">
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
-          <p className="text-white/60 text-sm mb-6">Not sure which tier fits your output needs? Let&apos;s talk.</p>
+          <p className="text-white/60 text-sm mb-6">Social media should not be random posting. It should build trust, explain your value, and keep your business visible before people are ready to buy.</p>
           <Button asChild variant="primary" size="lg">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Book a Discovery Call <ArrowRight size={16} />

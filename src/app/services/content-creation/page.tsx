@@ -8,36 +8,71 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 export const metadata: Metadata = {
   title: "Content Creation — Anovas Integrated Systems",
   description:
-    "SEO-optimized blog posts, service pages, email sequences, and ad copy written for local service businesses. Available as a standalone project or bundled with SEO and social media.",
+    "Monthly content creation for local service businesses — posts, reel scripts, carousels, email, and blog content written in your brand voice. Three tiers from $750/mo.",
   alternates: { canonical: "/services/content-creation" },
 };
 
 const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/sales-demo-call";
 
-const contentTypes = [
+const tiers = [
   {
-    name: "Blog Posts",
-    desc: "SEO-optimized articles targeting local search keywords — written in your brand voice, structured for AI answer engines, and reviewed before delivery.",
+    name: "Content Starter",
+    price: "$750",
+    period: "/mo",
+    badge: null,
+    tagline: "For businesses getting consistent with content and building early authority.",
+    features: [
+      "8–10 content pieces/month",
+      "Captions and posts",
+      "Hooks and messaging",
+      "Basic graphics coordination",
+      "Monthly content calendar",
+    ],
+    cta: "Get Started — $750/mo",
   },
   {
-    name: "Service Pages",
-    desc: "Conversion-focused pages for each service you offer — written to rank and built to turn readers into callers.",
+    name: "Content Growth",
+    price: "$1,500",
+    period: "/mo",
+    badge: "Most Popular",
+    tagline: "For businesses building real audience momentum across multiple channels.",
+    features: [
+      "16–20 pieces/month",
+      "Everything in Starter",
+      "Reel and video scripts",
+      "Carousel outlines",
+      "Email or blog content",
+      "Graphics coordination",
+      "Offer and educational post mix",
+      "Monthly performance recap",
+    ],
+    cta: "Get Started — $1,500/mo",
   },
   {
-    name: "Email Sequences",
-    desc: "Lead follow-up, onboarding, and re-engagement sequences — written for the trades, not repurposed from generic templates.",
-  },
-  {
-    name: "Ad Copy",
-    desc: "Facebook, Instagram, and Google ad copy — headline, body, and CTA variations ready for testing.",
+    name: "Content Engine",
+    price: "$3,000+",
+    period: "/mo",
+    badge: null,
+    tagline: "For businesses that need content across every channel at authority scale.",
+    features: [
+      "30+ assets/month",
+      "Everything in Growth",
+      "Long-form + short-form content",
+      "Repurposing strategy",
+      "Campaign-based content",
+      "Thought leadership positioning",
+      "Performance review",
+      "Content strategy sessions",
+    ],
+    cta: "Book a Discovery Call",
   },
 ];
 
-const process = [
-  "Content Agent drafts all copy based on your brand voice and service details",
-  "Josh reviews and approves everything before it reaches you",
-  "One revision round included on every piece",
-  "Delivered in whatever format you need — Google Doc, HTML, plain text",
+const formats = [
+  { name: "Captions & Posts", desc: "Platform-native copy written in your brand voice — educational, offer, and engagement posts." },
+  { name: "Reel & Video Scripts", desc: "Short-form video scripts with hook, body, and CTA — ready for filming or voiceover." },
+  { name: "Carousels", desc: "Slide-by-slide outlines for multi-image posts — structured to teach, build trust, and drive saves." },
+  { name: "Blog & Email Content", desc: "Long-form content that supports SEO, nurtures leads, and positions your expertise." },
 ];
 
 export default function ContentCreationPage() {
@@ -55,66 +90,88 @@ export default function ContentCreationPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/20 text-orange-light">
               <FileText size={22} />
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Project · Retainer · Custom Pricing</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer · From $750/mo</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Content Creation</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            Blog posts, service pages, email sequences, and ad copy — written in your brand voice and reviewed before delivery. Available standalone or bundled with SEO and social media.
+            Content is how your business teaches the market what problem you solve before they ever get on the phone. We produce written, video, and educational content that attracts attention, builds trust, and converts prospects.
           </p>
         </div>
       </section>
 
-      {/* Content types */}
+      {/* Formats */}
       <section className="max-w-4xl mx-auto px-6 py-14">
-        <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-8">What We Write</p>
+        <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-8">Content Formats</p>
         <div className="grid sm:grid-cols-2 gap-5">
-          {contentTypes.map((c) => (
-            <div key={c.name} className="rounded-xl border border-gray-200 bg-white p-5">
-              <p className="text-sm font-semibold text-charcoal mb-2">{c.name}</p>
-              <p className="text-xs text-gray-500 leading-relaxed">{c.desc}</p>
+          {formats.map((f) => (
+            <div key={f.name} className="rounded-xl border border-gray-200 bg-white p-5">
+              <p className="text-sm font-semibold text-charcoal mb-2">{f.name}</p>
+              <p className="text-xs text-gray-500 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* How it works + pricing */}
+      {/* Tiers */}
       <section className="bg-white border-y border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 py-14 grid md:grid-cols-2 gap-10">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-orange mb-4">How It Works</p>
-            <ul className="space-y-3">
-              {process.map((p) => (
-                <li key={p} className="flex items-start gap-3 text-sm text-gray-700">
-                  <CheckCircle size={15} className="text-orange shrink-0 mt-0.5" />
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 flex flex-col justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-charcoal mb-1">Pricing</p>
-              <p className="text-xl font-bold text-charcoal mb-3">Custom quote</p>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                Pricing is based on content type, volume, and whether you need a one-time project or ongoing monthly output. Available standalone or bundled with an SEO or social media retainer at a reduced rate.
-              </p>
-            </div>
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center text-sm font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-xl py-3 hover:opacity-90 transition-opacity"
-            >
-              Book a Discovery Call <ArrowRight size={15} className="inline ml-1" />
-            </a>
+        <div className="max-w-5xl mx-auto px-6 py-14">
+          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Plans</p>
+          <h2 className="text-xl font-bold text-charcoal mb-2">Three tiers — all include strategy, copy, and review.</h2>
+          <p className="text-sm text-gray-500 mb-8">Every piece is reviewed before delivery. One revision round included on all content.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {tiers.map((tier) => {
+              const featured = tier.badge === "Most Popular";
+              return (
+                <div
+                  key={tier.name}
+                  className={
+                    featured
+                      ? "rounded-2xl border-2 border-orange bg-navy p-6 flex flex-col relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]"
+                      : "rounded-2xl border border-gray-200 bg-background p-6 flex flex-col"
+                  }
+                >
+                  {featured && (
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+                      Most Popular
+                    </span>
+                  )}
+                  <p className={`text-base font-bold mb-0.5 ${featured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
+                  <p className={`text-2xl font-black mb-0.5 ${featured ? "text-orange" : "text-charcoal"}`}>
+                    {tier.price}<span className={`text-sm font-semibold ${featured ? "text-orange/60" : "text-gray-400"}`}>{tier.period}</span>
+                  </p>
+                  <p className={`text-xs mt-1 mb-4 pb-4 border-b leading-relaxed ${featured ? "text-white/50 border-white/10" : "text-gray-500 border-gray-100"}`}>
+                    {tier.tagline}
+                  </p>
+                  <ul className="space-y-2.5 flex-1">
+                    {tier.features.map((f) => (
+                      <li key={f} className={`flex items-start gap-2 text-xs ${featured ? "text-white/80" : "text-gray-600"}`}>
+                        <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={CALENDLY}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={
+                      featured
+                        ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
+                        : "mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 hover:border-orange hover:text-orange transition-colors"
+                    }
+                  >
+                    {tier.cta}
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-navy to-navy-light">
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
-          <p className="text-white/60 text-sm mb-6">Already running SEO or social with us? Content is often bundled at a lower rate — ask on the call.</p>
+          <p className="text-white/60 text-sm mb-6">Already running SEO or social with us? Content is often bundled at a reduced rate — ask on the call.</p>
           <Button asChild variant="primary" size="lg">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Book a Discovery Call <ArrowRight size={16} />
