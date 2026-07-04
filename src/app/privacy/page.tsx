@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           <strong>Last Updated:</strong> June 23, 2026
         </p>
         <p className="text-sm text-gray-500 mb-8">
-          Anovas Integrated Systems LLC · North Little Rock, Arkansas ·{" "}
+          Anovas Integrated Systems LLC · Little Rock, Arkansas ·{" "}
           support@anovasintegratedsystems.com
         </p>
 
@@ -258,7 +258,7 @@ export default function PrivacyPage() {
           <p>
             <strong>Anovas Integrated Systems LLC</strong>
             <br />
-            North Little Rock, Arkansas
+            Little Rock, Arkansas
             <br />
             support@anovasintegratedsystems.com
           </p>

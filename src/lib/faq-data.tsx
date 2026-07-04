@@ -57,7 +57,7 @@ export const faqSections: FaqSection[] = [
       },
       {
         question: "Where is Anovas based?",
-        answer: <p>North Little Rock, Arkansas. We work with businesses locally and nationally.</p>,
+        answer: <p>Little Rock, Arkansas. We work with businesses locally and nationally.</p>,
       },
     ],
   },
@@ -69,8 +69,8 @@ export const faqSections: FaqSection[] = [
         question: "What is Anovas Autopilot?",
         answer: (
           <p>
-            Anovas Autopilot is your AI-powered back office. It runs five core automations that
-            handle the most time-consuming, revenue-critical tasks in your business — automatically,
+            Anovas Autopilot is your revenue protection system — an always-on follow-up engine that
+            handles the most time-consuming, revenue-critical tasks in your business automatically,
             around the clock. See full plan details on the{" "}
             <Link href="/services/autopilot" className="text-orange font-medium">
               Autopilot page
@@ -222,7 +222,7 @@ export const faqSections: FaqSection[] = [
           <p>
             AnovasOS is the growth management platform for local service businesses — AI-powered
             marketing execution, analytics, reporting, and ongoing management in one command center.
-            While Autopilot runs your back office, AnovasOS generates demand and gives you full
+            While Autopilot protects your revenue, AnovasOS generates demand and gives you full
             visibility into what is working.
           </p>
         ),

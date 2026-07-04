@@ -73,7 +73,7 @@ export default function AboutPage() {
         </p>
         <p className="text-sm text-gray-500 leading-relaxed">
           Anovas Integrated Systems exists to close that gap — with software that automates the
-          back office and drives growth, and a team that helps you put it to work. We give
+          protects revenue and drives growth, and a team that helps you put it to work. We give
           operators one place to see what&apos;s actually happening, automate the follow-ups and
           handoffs that shouldn&apos;t require a human, and catch the leaks before they become
           lost revenue.

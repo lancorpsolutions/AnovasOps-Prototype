@@ -8,7 +8,7 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 export const metadata: Metadata = {
   title: "Website Design & Development — Anovas Integrated Systems",
   description:
-    "Mobile-optimized, lead-converting websites for local service businesses — three tiers from $1,250. Built in 2–3 weeks with contact forms, booking integration, and SEO-ready copy.",
+    "Mobile-optimized, lead-converting websites for local service businesses — three tiers from $1,250. Built in 2 weeks with contact forms, booking integration, and SEO-ready copy.",
   alternates: { canonical: "/services/website-design" },
 };
 
@@ -103,7 +103,7 @@ export default function WebsiteDesignPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Website Design &amp; Development</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            A site that looks like you mean business and converts visitors into calls. Copy first, design second — built in 2–3 weeks, mobile-optimized, and ready to generate leads from day one.
+            A site that looks like you mean business and converts visitors into calls. Copy first, design second — built in 2 weeks, mobile-optimized, and ready to generate leads from day one.
           </p>
         </div>
       </section>

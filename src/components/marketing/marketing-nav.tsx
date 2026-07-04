@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 const services = [
   { href: "/services/anovasos", label: "AnovasOS", summary: "Business growth platform" },
-  { href: "/services/autopilot", label: "Anovas Autopilot", summary: "AI back-office automation" },
+  { href: "/services/autopilot", label: "Anovas Autopilot", summary: "Revenue Protection System" },
 ];
 
 const resources = [

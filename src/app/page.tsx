@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     absolute: "Anovas Integrated Systems | Software & Growth Systems for Local Service Businesses",
   },
   description:
-    "Anovas Integrated Systems builds the software and runs the strategy behind growing local and home service businesses — from AI back-office automation to full-scale growth marketing.",
+    "Anovas Integrated Systems builds the software and runs the strategy behind growing local and home service businesses — from revenue protection to full-scale growth marketing.",
   keywords: [
     "home service business software",
     "local service business growth platform",
-    "AI back office automation for contractors",
+    "revenue protection system for contractors",
     "missed call text back software",
     "HVAC plumbing electrical roofing software",
     "service business growth strategy",
@@ -47,7 +47,7 @@ const offerings = [
   {
     icon: Bot,
     name: "Anovas Autopilot",
-    tagline: "AI back-office automation",
+    tagline: "Revenue Protection System",
     summary:
       "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation — running automatically in the background.",
     href: "/services/autopilot",
@@ -150,7 +150,7 @@ export default function HomePage() {
               crews to multi-location operations that need executive-level visibility.
             </p>
             <p className="text-sm text-gray-500 leading-relaxed">
-              Whether you need software that runs the back office, a growth engine that fills the
+              Whether you need a revenue protection system, a growth engine that fills the
               pipeline, or a team to build the whole strategy with you, Anovas Integrated Systems
               is the operator behind the operator.
             </p>

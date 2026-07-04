@@ -63,9 +63,9 @@ const products = [
   {
     icon: Bot,
     name: "Anovas Autopilot",
-    tagline: "AI back-office automation",
+    tagline: "Revenue Protection System",
     summary:
-      "An AI-powered back office automation platform that handles missed calls, lead follow-up, booking reminders, invoice nudges, and review generation — automatically, in the background.",
+      "An always-on revenue protection system that catches missed calls, follows up cold leads, sends booking reminders, nudges unpaid invoices, and generates reviews — automatically, around the clock.",
     bullets: [
       "Missed-call text-back",
       "Lead and quote follow-up sequences",
@@ -105,7 +105,7 @@ const professionalServices = [
     icon: Globe,
     name: "Website Design & Development",
     summary:
-      "A mobile-optimized, lead-converting website built in 2–3 weeks — complete with working contact forms, booking integration, GMB link, and social connections. Copy is drafted and reviewed before a single page is built.",
+      "A mobile-optimized, lead-converting website built in 2 weeks — complete with working contact forms, booking integration, GMB link, and social connections. Copy is drafted and reviewed before a single page is built.",
     tag: "Project",
     href: "/services/website-design",
   },
@@ -170,7 +170,7 @@ const faqs = [
   {
     question: "How long does a website build take?",
     answer:
-      "Most website projects are delivered in 2–3 weeks from approved copy. Copy is drafted and reviewed before a single page is built — the site is built around your message, not retrofitted around a template.",
+      "Most website projects are delivered in 2 weeks from approved copy. Copy is drafted and reviewed before a single page is built — the site is built around your message, not retrofitted around a template.",
   },
   {
     question: "How do I know which services my business actually needs?",
@@ -212,7 +212,7 @@ export default function ServicesPage() {
             Two products built for the trades.
           </h2>
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
-            AnovasOS manages your growth. Autopilot runs your back office. Both are built exclusively for local service businesses — not adapted from generic SMB software.
+            AnovasOS manages your growth. Autopilot protects your revenue. Both are built exclusively for local service businesses — not adapted from generic SMB software.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">

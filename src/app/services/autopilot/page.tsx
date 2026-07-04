@@ -15,12 +15,12 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { AutopilotInquiryForm } from "@/components/forms/autopilot-inquiry-form";
 
 export const metadata: Metadata = {
-  title: "Anovas Autopilot — AI Back-Office Automation for Local Service Businesses",
+  title: "Anovas Autopilot — Revenue Protection System for Local Service Businesses",
   description:
-    "Anovas Autopilot is an AI-powered back office automation platform for local service businesses — missed-call text-back, lead follow-up, booking reminders, invoice nudges, and review generation.",
+    "Anovas Autopilot is a revenue protection system for local service businesses — missed-call text-back, lead follow-up, booking reminders, invoice nudges, and review generation running automatically around the clock.",
   keywords: [
     "Anovas Autopilot",
-    "AI back office automation for contractors",
+    "revenue protection system for contractors",
     "missed call text back software",
     "lead follow-up automation for service businesses",
     "review generation software for contractors",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services/autopilot" },
   openGraph: {
-    title: "Anovas Autopilot — AI Back-Office Automation for Local Service Businesses",
+    title: "Anovas Autopilot — Revenue Protection System for Local Service Businesses",
     description:
-      "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation — running automatically in the background.",
+      "Missed-call text-back, lead and quote follow-up, booking reminders, invoice nudges, and review generation — protecting your revenue around the clock.",
     url: "/services/autopilot",
     type: "website",
   },
@@ -43,7 +43,7 @@ const autopilotJsonLd = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   description:
-    "Anovas Autopilot is an AI-powered back office automation platform for local service businesses, delivering missed-call text-back, lead and quote follow-up, booking and reminder automation, invoice and payment nudges, and review generation.",
+    "Anovas Autopilot is a revenue protection system for local service businesses, delivering missed-call text-back, lead and quote follow-up, booking and reminder automation, invoice and payment nudges, and review generation.",
   brand: { "@type": "Organization", name: "Anovas Integrated Systems" },
   offers: [
     { "@type": "Offer", name: "Basic" },
@@ -192,11 +192,11 @@ export default function AutopilotPage() {
             A Product of Anovas Integrated Systems
           </p>
           <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-5">
-            Your back office, running on autopilot.
+            Your revenue, protected on autopilot.
           </h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
-            Anovas Autopilot is an AI-powered back office automation platform for local service
-            businesses — handling the missed calls, follow-ups, reminders, and nudges that quietly
+            Anovas Autopilot is a revenue protection system for local service businesses — catching
+            the missed calls, cold leads, unpaid invoices, and missing reviews that quietly
             cost you revenue when nobody&apos;s watching.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

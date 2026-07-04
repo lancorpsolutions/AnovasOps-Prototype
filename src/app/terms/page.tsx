@@ -26,7 +26,7 @@ export default function TermsPage() {
           <strong>Last Updated:</strong> June 23, 2026
         </p>
         <p className="text-sm text-gray-500 mb-8">
-          Anovas Integrated Systems LLC · North Little Rock, Arkansas ·{" "}
+          Anovas Integrated Systems LLC · Little Rock, Arkansas ·{" "}
           support@anovasintegratedsystems.com
         </p>
 
@@ -47,7 +47,7 @@ export default function TermsPage() {
 
         <Section title="2. Description of Services">
           <p>
-            <strong>Anovas Autopilot</strong> is an AI-powered back office automation platform
+            <strong>Anovas Autopilot</strong> is an revenue protection system
             designed for local service businesses. It delivers five core automations:
             missed-call text-back, lead and quote follow-up, booking and reminder automation,
             invoice and payment nudges, and review generation. Available in Basic, Pro, Elite,

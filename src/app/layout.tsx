@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   keywords: [
     "home service business software",
     "local service business growth platform",
-    "AI back office automation for contractors",
+    "revenue protection system for contractors",
     "missed call text back software",
     "HVAC plumbing electrical roofing software",
     "business formation services",
@@ -69,7 +69,7 @@ const organizationJsonLd = {
   email: "support@anovasintegratedsystems.com",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "North Little Rock",
+    addressLocality: "Little Rock",
     addressRegion: "AR",
     addressCountry: "US",
   },

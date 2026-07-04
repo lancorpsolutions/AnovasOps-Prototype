@@ -176,7 +176,7 @@ const ROUTE_CONTENT: Record<Route, {
   "autopilot-o": {
     label: "Anovas Autopilot",
     headline: "Your biggest gap: the business runs on you",
-    body: "If you step away, things start to slip — scheduling, follow-ups, customer communication. That's not a people problem, it's a systems problem. Anovas Autopilot handles the operational back office that shouldn't require a human: booking confirmations, appointment reminders, post-job review requests, and invoice nudges. Less of the day-to-day in your head, more of it running on its own.",
+    body: "If you step away, things start to slip — scheduling, follow-ups, customer communication. That's not a people problem, it's a systems problem. Anovas Autopilot handles the revenue protection layer that shouldn't require a human: booking confirmations, appointment reminders, post-job review requests, and invoice nudges. Less of the day-to-day in your head, more of it running on its own.",
     primaryCta: "Book an Autopilot Demo",
     primaryHref: CALENDLY,
     learnHref: "/services/autopilot",
