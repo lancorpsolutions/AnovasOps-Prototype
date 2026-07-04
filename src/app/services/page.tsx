@@ -14,6 +14,7 @@ import {
   FileText,
   Megaphone,
   Gauge,
+  ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
@@ -82,6 +83,7 @@ const professionalServices = [
     summary:
       "A 90-minute consultation with a written action plan delivered within 48 hours. We walk through your current entity setup, identify gaps and compliance risks, and give you a clear prioritized action list — whether you're forming your first LLC or restructuring an established operation.",
     tag: "One-Time",
+    href: "/services/business-structure",
   },
   {
     icon: Sparkles,
@@ -89,6 +91,7 @@ const professionalServices = [
     summary:
       "A complete brand identity package — logo, color palette, typography system, and a brand style guide that keeps every piece of collateral consistent. Delivered with source files (SVG, PNG, PDF) and a walkthrough call so you know exactly how to use it.",
     tag: "Project",
+    href: "/services/brand-identity",
   },
   {
     icon: PenTool,
@@ -96,6 +99,7 @@ const professionalServices = [
     summary:
       "One-off and ongoing graphic design for social media, print, and digital — social graphics, flyers, door hangers, truck wraps, trade show materials, and marketing collateral. Every project starts with a detailed brief and nothing ships without a QA review.",
     tag: "Project / Retainer",
+    href: "/services/graphic-design",
   },
   {
     icon: Globe,
@@ -103,6 +107,7 @@ const professionalServices = [
     summary:
       "A mobile-optimized, lead-converting website built in two weeks — complete with working contact forms, booking integration, GMB link, and social connections. Copy is drafted by our Content Agent and approved by Josh before Dez builds a single page.",
     tag: "Project",
+    href: "/services/website-design",
   },
   {
     icon: Search,
@@ -110,6 +115,7 @@ const professionalServices = [
     summary:
       "Monthly search optimization that goes beyond traditional SEO — covering local keyword rankings and citations (SEO), optimizing for AI-powered answer engines like Google SGE and voice search (AEO), and positioning your business in AI-generated results from ChatGPT and Perplexity (GEO). Monthly reporting included.",
     tag: "Monthly Retainer",
+    href: "/services/seo",
   },
   {
     icon: MapPin,
@@ -117,6 +123,7 @@ const professionalServices = [
     summary:
       "Monthly GMB management — 2 keyword-optimized posts per week, photo updates, review responses within 24 hours, Q&A monitoring, and profile accuracy checks across directories. Your GMB is often the first thing a prospect sees; we make sure it's working for you.",
     tag: "Monthly Retainer",
+    href: "/services/google-my-business",
   },
   {
     icon: Share2,
@@ -124,6 +131,7 @@ const professionalServices = [
     summary:
       "End-to-end monthly social media management — content calendar, post production, graphics, scheduling, and performance reporting. Starter tier: 8 posts/month. Standard: 12. Growth: 20 posts + Reels. Nothing goes live without Josh's approval on both copy and graphics.",
     tag: "Monthly Retainer",
+    href: "/services/social-media",
   },
   {
     icon: FileText,
@@ -131,6 +139,7 @@ const professionalServices = [
     summary:
       "SEO-optimized blog posts, service pages, email sequences, and ad copy — written for your brand voice and reviewed before delivery. Available as a standalone package or as part of an SEO or social media retainer. Our Content Agent drafts; Josh approves everything.",
     tag: "Project / Retainer",
+    href: "/services/content-creation",
   },
   {
     icon: Megaphone,
@@ -138,6 +147,7 @@ const professionalServices = [
     summary:
       "Facebook, Instagram, and Google ad campaigns built, launched, and managed for you — including ad copy, creative, audience targeting, and monthly performance reporting. No set-it-and-forget-it: campaigns are actively monitored and optimized every month.",
     tag: "Monthly Retainer",
+    href: "/services/paid-advertising",
   },
 ];
 
@@ -259,9 +269,10 @@ export default function ServicesPage() {
             {professionalServices.map((service) => {
               const Icon = service.icon;
               return (
-                <div
+                <Link
                   key={service.name}
-                  className="rounded-xl border border-gray-200 bg-background p-5 hover:shadow-md transition-shadow flex flex-col"
+                  href={service.href}
+                  className="rounded-xl border border-gray-200 bg-background p-5 hover:shadow-md hover:border-orange/40 transition-all flex flex-col group"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <span className="flex h-9 w-9 items-center justify-center rounded-md bg-orange/10 text-orange shrink-0">
@@ -272,8 +283,11 @@ export default function ServicesPage() {
                     </span>
                   </div>
                   <p className="text-sm font-semibold text-charcoal mb-1.5">{service.name}</p>
-                  <p className="text-xs text-gray-500 leading-relaxed">{service.summary}</p>
-                </div>
+                  <p className="text-xs text-gray-500 leading-relaxed flex-1">{service.summary}</p>
+                  <p className="text-xs font-semibold text-orange mt-3 flex items-center gap-1 group-hover:gap-2 transition-all">
+                    View packages <ChevronRight size={12} />
+                  </p>
+                </Link>
               );
             })}
           </div>

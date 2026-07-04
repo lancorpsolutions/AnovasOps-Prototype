@@ -128,7 +128,7 @@ const PILLAR_META = {
 };
 
 type Pillar = "A" | "R" | "O" | "S";
-type Route = "autopilot" | "services" | "anovasos";
+type Route = "autopilot-r" | "autopilot-o" | "services" | "anovasos";
 
 function calcPillarScores(answers: number[]) {
   return {
@@ -144,44 +144,55 @@ function calcOverall(answers: number[]) {
 }
 
 function getBand(score: number) {
-  if (score <= 25) return { label: "Foundation Stage", dot: "bg-red-500", text: "text-red-400", bar: "bg-red-500", desc: "Core systems are missing and significant revenue is being left on the table." };
-  if (score <= 50) return { label: "Building Stage", dot: "bg-orange", text: "text-orange", bar: "bg-orange", desc: "Some pieces are in place but gaps are actively costing you leads and money." };
-  if (score <= 75) return { label: "Growth Stage", dot: "bg-yellow-400", text: "text-yellow-400", bar: "bg-yellow-400", desc: "Solid foundation — clear opportunities to optimize and meaningfully move the needle." };
-  return { label: "Scale Stage", dot: "bg-emerald-500", text: "text-emerald-400", bar: "bg-emerald-500", desc: "Strong systems. The focus now is optimizing and accelerating what's already working." };
+  if (score <= 25) return { label: "Foundation Stage", dot: "bg-red-500", text: "text-red-400", bar: "bg-red-500", desc: "Real gaps in the basics — they're costing you leads and money every week whether you see it or not." };
+  if (score <= 50) return { label: "Building Stage", dot: "bg-orange", text: "text-orange", bar: "bg-orange", desc: "You've got momentum, but inconsistent systems are bleeding revenue. The right fixes here have outsized ROI." };
+  if (score <= 75) return { label: "Growth Stage", dot: "bg-yellow-400", text: "text-yellow-400", bar: "bg-yellow-400", desc: "Strong foundation. Targeted improvements in your weakest pillar will unlock the next level of growth." };
+  return { label: "Scale Stage", dot: "bg-emerald-500", text: "text-emerald-400", bar: "bg-emerald-500", desc: "You're running a well-built operation. The next move is scaling what's already working — faster and without adding to your plate." };
 }
 
 function getRoute(scores: { A: number; R: number; O: number; S: number }): Route {
-  // Priority order: R and O gaps → Autopilot; A gap → Services; S gap → AnovasOS
   const ranked = (["R", "O", "A", "S"] as Pillar[])
     .map((k) => ({ k, v: scores[k] }))
     .sort((a, b) => a.v - b.v);
   const lowest = ranked[0].k;
-  if (lowest === "R" || lowest === "O") return "autopilot";
+  if (lowest === "R") return "autopilot-r";
+  if (lowest === "O") return "autopilot-o";
   if (lowest === "A") return "services";
   return "anovasos";
 }
 
-const ROUTE_CONTENT = {
-  autopilot: {
+const ROUTE_CONTENT: Record<Route, {
+  label: string; headline: string; body: string;
+  primaryCta: string; primaryHref: string; learnHref: string;
+}> = {
+  "autopilot-r": {
     label: "Anovas Autopilot",
-    headline: "Your biggest gap: revenue operations",
-    body: "You're leaving money on the table because of slow follow-up, missed calls, and manual processes. Anovas Autopilot handles your back office automatically — missed-call text-back, lead follow-up sequences, booking reminders, invoice nudges — so no lead goes cold while you're on a job.",
+    headline: "Your biggest gap: leads going cold",
+    body: "You're generating interest but losing it before it converts. Slow response times, missed calls, and no follow-up system are the culprit — and every one is a job that went to a competitor. Anovas Autopilot responds to every missed call, follows up on every quote, and nudges every outstanding invoice automatically, so revenue stops leaking while you're heads-down on the job.",
+    primaryCta: "Book an Autopilot Demo",
+    primaryHref: CALENDLY,
+    learnHref: "/services/autopilot",
+  },
+  "autopilot-o": {
+    label: "Anovas Autopilot",
+    headline: "Your biggest gap: the business runs on you",
+    body: "If you step away, things start to slip — scheduling, follow-ups, customer communication. That's not a people problem, it's a systems problem. Anovas Autopilot handles the operational back office that shouldn't require a human: booking confirmations, appointment reminders, post-job review requests, and invoice nudges. Less of the day-to-day in your head, more of it running on its own.",
     primaryCta: "Book an Autopilot Demo",
     primaryHref: CALENDLY,
     learnHref: "/services/autopilot",
   },
   services: {
     label: "Digital Presence Services",
-    headline: "Your biggest gap: getting found",
-    body: "You're not capturing enough of the right leads because prospects can't find you or don't trust what they see. The gap is your digital presence — website, local search visibility, and brand. We fix that with website builds, local SEO, and design that converts.",
+    headline: "Your biggest gap: not enough of the right leads",
+    body: "You do good work but the pipeline is too thin or too unpredictable. The root cause is almost always visibility — a weak web presence, a GMB profile that isn't working, no local search footprint. We fix that with website builds, local SEO, and brand identity that actually earns trust before anyone calls you. Our team has done this specifically for local service businesses, not generic SMBs.",
     primaryCta: "Book a Discovery Call",
     primaryHref: CALENDLY,
     learnHref: "/services",
   },
   anovasos: {
     label: "AnovasOS",
-    headline: "Your biggest gap: systematized growth",
-    body: "Your fundamentals are solid, but growth still depends too much on you personally. AnovasOS is the full growth management platform — AI-powered execution, marketing, analytics, and reporting — that lets your business scale without adding to your plate.",
+    headline: "Your biggest gap: growth that doesn't compound",
+    body: "Your fundamentals are solid — leads come in, jobs get done, customers are happy. But every growth initiative still runs through you, and without a system to track, measure, and execute consistently, you're leaving compounding on the table. AnovasOS brings AI-powered marketing execution, performance dashboards, and reporting under one roof — so you can see what's working, hand off the execution, and actually get out of the day-to-day.",
     primaryCta: "Book an AnovasOS Demo",
     primaryHref: CALENDLY,
     learnHref: "/services/anovasos",
@@ -290,7 +301,7 @@ function IntakeStep({ intake, setIntake, onSubmit }: {
           Start My Free Growth Score <ArrowRight size={16} />
         </Button>
         <p className="text-[11px] text-white/30 text-center">
-          Free diagnostic — takes about 3 minutes. No sales pitch until you&apos;ve seen your results.
+          Free diagnostic — takes about 3 minutes. You&apos;ll see your results instantly before we ever talk.
         </p>
       </form>
     </div>
@@ -436,9 +447,10 @@ function ResultsStep({ overall, band, scores, route, firstName }: {
       {/* Revenue Audit upsell */}
       <div className="rounded-2xl bg-white/5 border border-white/10 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="flex-1">
-          <p className="text-sm font-bold text-white mb-1">Want a deeper diagnosis first?</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-1">Upgrade to Full Diagnosis</p>
+          <p className="text-sm font-bold text-white mb-1">We do the audit for you — with a custom roadmap.</p>
           <p className="text-xs text-white/50 leading-relaxed">
-            The AROS Revenue Audit is a full diagnostic — we analyze your business, build a benchmark report, and walk you through a custom growth roadmap on a strategy call.
+            The AROS Revenue Audit goes beyond the score. We analyze your business top-to-bottom, benchmark it against comparable operations, and deliver a custom growth roadmap on a strategy call — specific actions, in priority order.
           </p>
         </div>
         <a
