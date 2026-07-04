@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
+        has: [{ type: "host", value: "anovas-ops-prototype.vercel.app" }],
         destination: "/anovasos",
         permanent: false,
       },
