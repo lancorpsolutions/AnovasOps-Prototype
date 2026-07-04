@@ -6,9 +6,9 @@ import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 
 export const metadata: Metadata = {
-  title: "SEO / AEO / GEO Services — Anovas Integrated Systems",
+  title: "Local SEO Management — Anovas Integrated Systems",
   description:
-    "Local SEO, Answer Engine Optimization, and Generative Engine Optimization for local service businesses. Monthly retainer — rank in Google, voice search, and AI-generated results.",
+    "Monthly local SEO, AEO, and GEO management for local service businesses — GMB optimization, SEO content, citation building, keyword tracking, and monthly ranking reports.",
   alternates: { canonical: "/services/seo" },
 };
 
@@ -18,66 +18,29 @@ const disciplines = [
   {
     abbr: "SEO",
     name: "Search Engine Optimization",
-    desc: "Traditional local search — Google Maps rankings, organic positions, citation building, on-page optimization, and local keyword targeting.",
+    desc: "Local keyword rankings, Google Maps visibility, citation building, on-page optimization, and GMB content — the foundation of local search presence.",
   },
   {
     abbr: "AEO",
     name: "Answer Engine Optimization",
-    desc: "Optimizing for AI-powered search features — Google AI Overviews, featured snippets, and voice search queries that give spoken answers instead of a list of links.",
+    desc: "Structured content optimized for Google AI Overviews, featured snippets, and voice search — capturing the queries that return a spoken answer instead of a link list.",
   },
   {
     abbr: "GEO",
     name: "Generative Engine Optimization",
-    desc: "Positioning your business in AI-generated answers from ChatGPT, Perplexity, and similar platforms. Search is no longer just Google — we cover all three channels.",
+    desc: "Positioning your business to appear in AI-generated answers from ChatGPT, Perplexity, and similar platforms — where more buying decisions are now being researched.",
   },
 ];
 
-const tiers = [
-  {
-    name: "Local",
-    price: "$750/mo",
-    badge: null,
-    tagline: "For single-location businesses establishing their local search presence.",
-    features: [
-      "Up to 10 target keywords",
-      "1 service area / location",
-      "On-page SEO optimization",
-      "Google Business Profile sync",
-      "Citation building & cleanup",
-      "Monthly performance report",
-    ],
-  },
-  {
-    name: "Growth",
-    price: "$1,250/mo",
-    badge: "Most Popular",
-    tagline: "For growing businesses that want to dominate local search and capture AI results.",
-    features: [
-      "Up to 25 target keywords",
-      "Up to 3 service areas",
-      "Everything in Local",
-      "AEO content optimization",
-      "Featured snippet targeting",
-      "Schema markup implementation",
-      "Bi-monthly strategy call",
-    ],
-  },
-  {
-    name: "Authority",
-    price: "$2,000/mo",
-    badge: null,
-    tagline: "Full SEO + AEO + GEO stack for established businesses competing aggressively.",
-    features: [
-      "Unlimited target keywords",
-      "Multi-location coverage",
-      "Everything in Growth",
-      "GEO content optimization",
-      "AI platform citation building",
-      "Competitor gap analysis",
-      "Monthly strategy call",
-      "Priority reporting + consulting",
-    ],
-  },
+const included = [
+  "Google My Business optimization and weekly posts",
+  "On-page SEO updates and technical fixes",
+  "SEO content production (blog posts, service pages)",
+  "Citation building and cleanup across major directories",
+  "Local keyword tracking and rank monitoring",
+  "AEO content structure and schema markup",
+  "GEO content positioning and AI platform citations",
+  "Monthly ranking and performance report",
 ];
 
 export default function SeoPage() {
@@ -95,18 +58,18 @@ export default function SeoPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/20 text-orange-light">
               <Search size={22} />
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer · $500 Setup + $750/mo</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">SEO / AEO / GEO</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            Search has three channels now — Google, AI-powered answers, and generative results from tools like ChatGPT. We manage all three so your business shows up where the decision is being made.
+            Search has three channels now — Google, AI-powered answer engines, and generative results from tools like ChatGPT. We manage all three so your business shows up where the decision is being made.
           </p>
         </div>
       </section>
 
       {/* Three disciplines */}
       <section className="max-w-4xl mx-auto px-6 py-14">
-        <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-8">Three Disciplines, One Service</p>
+        <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-8">Three Disciplines, One Monthly Service</p>
         <div className="grid md:grid-cols-3 gap-5">
           {disciplines.map((d) => (
             <div key={d.abbr} className="rounded-xl border border-gray-200 bg-white p-5">
@@ -118,63 +81,45 @@ export default function SeoPage() {
         </div>
       </section>
 
-      {/* Tiers */}
+      {/* Pricing */}
       <section className="bg-white border-y border-gray-200">
-        <div className="max-w-5xl mx-auto px-6 py-14">
-          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Monthly Plans</p>
-          <h2 className="text-xl font-bold text-charcoal mb-8">Pick the right coverage for your market.</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {tiers.map((tier) => {
-              const featured = tier.badge === "Most Popular";
-              return (
-                <div
-                  key={tier.name}
-                  className={
-                    featured
-                      ? "rounded-2xl border-2 border-orange bg-navy p-6 flex flex-col relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]"
-                      : "rounded-2xl border border-gray-200 bg-background p-6 flex flex-col"
-                  }
-                >
-                  {featured && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
-                      Most Popular
-                    </span>
-                  )}
-                  <p className={`text-base font-bold mb-0.5 ${featured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
-                  <p className="text-2xl font-black text-orange">{tier.price}</p>
-                  <p className={`text-xs mt-1 mb-4 pb-4 border-b leading-relaxed ${featured ? "text-white/50 border-white/10" : "text-gray-500 border-gray-100"}`}>
-                    {tier.tagline}
-                  </p>
-                  <ul className="space-y-2.5 flex-1">
-                    {tier.features.map((f) => (
-                      <li key={f} className={`flex items-start gap-2 text-xs ${featured ? "text-white/80" : "text-gray-600"}`}>
-                        <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={
-                      featured
-                        ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
-                        : "mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 hover:border-orange hover:text-orange transition-colors"
-                    }
-                  >
-                    Get Started with {tier.name}
-                  </a>
-                </div>
-              );
-            })}
+        <div className="max-w-3xl mx-auto px-6 py-16">
+          <div className="rounded-2xl border-2 border-orange bg-navy p-8 relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-6 mb-6 pb-6 border-b border-white/10">
+              <div>
+                <p className="text-white font-bold text-lg mb-1">Local SEO Management</p>
+                <p className="text-xs text-white/40 leading-relaxed max-w-sm">
+                  Full SEO + AEO + GEO coverage — handled monthly, reported monthly, and adjusted as your rankings and market evolve.
+                </p>
+              </div>
+              <div className="shrink-0 text-right">
+                <p className="text-3xl font-black text-orange">$750<span className="text-base font-semibold text-orange/60">/mo</span></p>
+                <p className="text-xs text-white/30">$500 one-time setup</p>
+              </div>
+            </div>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+              {included.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-xs text-white/80">
+                  <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 block text-center text-sm font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-xl py-3 hover:opacity-90 transition-opacity"
+            >
+              Book a Discovery Call <ArrowRight size={15} className="inline ml-1" />
+            </a>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-navy to-navy-light">
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
-          <p className="text-white/60 text-sm mb-6">Not sure which tier fits your market? Book a call and we&apos;ll audit your current visibility first.</p>
+          <p className="text-white/60 text-sm mb-6">Not sure where your current visibility stands? We&apos;ll audit it on the call before you commit.</p>
           <Button asChild variant="primary" size="lg">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Book a Discovery Call <ArrowRight size={16} />

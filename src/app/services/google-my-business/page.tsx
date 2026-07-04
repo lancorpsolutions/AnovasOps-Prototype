@@ -8,7 +8,7 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 export const metadata: Metadata = {
   title: "Google My Business Management — Anovas Integrated Systems",
   description:
-    "Monthly GMB management for local service businesses — keyword-optimized posts, review responses, photo updates, Q&A monitoring, and citation accuracy across directories.",
+    "Monthly GMB management for local service businesses — keyword-optimized posts, review responses, photo updates, Q&A monitoring, and citation accuracy. Included in Local SEO or as a standalone add-on.",
   alternates: { canonical: "/services/google-my-business" },
 };
 
@@ -20,27 +20,8 @@ const included = [
   "Review responses within 24 hours",
   "Q&A section monitoring and responses",
   "Profile accuracy checks across major directories",
-  "Category and service optimization",
+  "Category and service area optimization",
   "Monthly performance snapshot",
-];
-
-const tiers = [
-  {
-    name: "Single Location",
-    price: "$300/mo",
-    tagline: "Full GMB management for one location.",
-    features: included,
-  },
-  {
-    name: "Multi-Location",
-    price: "$225/mo per location",
-    tagline: "For businesses with 2+ locations. Minimum 2 locations.",
-    features: [
-      ...included,
-      "Centralized reporting across all locations",
-      "Cross-location consistency audit",
-    ],
-  },
 ];
 
 export default function GoogleMyBusinessPage() {
@@ -58,7 +39,7 @@ export default function GoogleMyBusinessPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/20 text-orange-light">
               <MapPin size={22} />
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Included in Local SEO · Also Available Standalone</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Google My Business Management</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
@@ -67,35 +48,48 @@ export default function GoogleMyBusinessPage() {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-8">
-        {tiers.map((tier) => (
-          <div key={tier.name} className="rounded-2xl border border-gray-200 bg-white p-7">
-            <p className="text-lg font-bold text-charcoal mb-0.5">{tier.name}</p>
-            <p className="text-2xl font-black text-orange mb-1">{tier.price}</p>
-            <p className="text-xs text-gray-500 mb-5 pb-5 border-b border-gray-100">{tier.tagline}</p>
-            <ul className="space-y-3">
-              {tier.features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5 text-sm text-gray-700">
-                  <CheckCircle size={14} className="text-orange shrink-0 mt-0.5" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 block text-center text-sm font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-xl py-3 hover:opacity-90 transition-opacity"
-            >
-              Get Started
-            </a>
+      <section className="max-w-4xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-orange mb-4">What&apos;s Managed Monthly</p>
+          <ul className="space-y-3">
+            {included.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-sm text-gray-700">
+                <CheckCircle size={15} className="text-orange shrink-0 mt-0.5" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="space-y-5">
+          <div className="rounded-xl border border-orange/30 bg-orange/5 p-5">
+            <p className="text-xs font-bold uppercase tracking-widest text-orange mb-2">Included in Local SEO Management</p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              GMB management is included as part of our{" "}
+              <Link href="/services/seo" className="text-orange font-semibold hover:underline">
+                Local SEO Management
+              </Link>{" "}
+              retainer ($500 setup + $750/mo). If you&apos;re already doing SEO with us, your GMB is covered.
+            </p>
           </div>
-        ))}
+
+          <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+            <p className="text-xs font-bold uppercase tracking-widest text-charcoal mb-2">Standalone GMB Management</p>
+            <p className="text-sm text-gray-700 leading-relaxed mb-3">
+              Need GMB management without the full SEO retainer? We offer standalone GMB management for clients who already have SEO handled elsewhere or want to start here first.
+            </p>
+            <p className="text-xs text-gray-500">Pricing quoted on request based on number of locations.</p>
+          </div>
+        </div>
       </section>
 
       <section className="bg-gradient-to-br from-navy to-navy-light">
-        <div className="max-w-3xl mx-auto px-6 py-14 text-center">
-          <p className="text-white/60 text-sm mb-6">Questions or managing multiple locations? Book a call first.</p>
+        <div className="max-w-3xl mx-auto px-6 py-16 text-center">
+          <p className="text-orange-light text-xs font-semibold uppercase tracking-widest mb-3">Ready to Get Started?</p>
+          <h2 className="text-2xl font-bold text-white mb-3">Let&apos;s talk about your GMB.</h2>
+          <p className="text-white/60 text-sm mb-8 max-w-md mx-auto">
+            Book a call and we&apos;ll audit your current profile and tell you exactly what&apos;s missing before you commit.
+          </p>
           <Button asChild variant="primary" size="lg">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Book a Discovery Call <ArrowRight size={16} />

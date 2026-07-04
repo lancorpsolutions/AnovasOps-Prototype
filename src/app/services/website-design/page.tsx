@@ -8,68 +8,28 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 export const metadata: Metadata = {
   title: "Website Design & Development — Anovas Integrated Systems",
   description:
-    "Mobile-optimized, lead-converting websites for local service businesses — built in two weeks with contact forms, booking integration, GMB links, and SEO-ready copy.",
+    "Mobile-optimized, lead-converting websites for local service businesses — built in 2–3 weeks with contact forms, booking integration, GMB links, and SEO-ready copy.",
   alternates: { canonical: "/services/website-design" },
 };
 
 const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/sales-demo-call";
 
-const tiers = [
-  {
-    name: "Starter",
-    price: "$2,500",
-    setup: "One-time",
-    badge: null,
-    tagline: "A clean, fast lead-gen site for businesses that need to get online quickly.",
-    features: [
-      "Up to 5 pages",
-      "Mobile-optimized responsive design",
-      "Contact form with email notification",
-      "Google My Business link integration",
-      "Social media links",
-      "Basic on-page SEO setup",
-      "2-week delivery",
-    ],
-  },
-  {
-    name: "Professional",
-    price: "$4,500",
-    setup: "One-time",
-    badge: "Most Popular",
-    tagline: "A full conversion-focused site built to rank and turn visitors into calls.",
-    features: [
-      "Up to 10 pages",
-      "Everything in Starter",
-      "Online booking integration",
-      "AI-drafted copy reviewed before build",
-      "Service area pages (up to 3)",
-      "Reviews/testimonials section",
-      "Google Analytics setup",
-      "2-week delivery",
-    ],
-  },
-  {
-    name: "Custom",
-    price: "From $7,500",
-    setup: "One-time",
-    badge: null,
-    tagline: "For multi-location operations, complex services, or custom integrations.",
-    features: [
-      "Unlimited pages",
-      "Everything in Professional",
-      "Custom functionality or integrations",
-      "Multi-location or franchise structure",
-      "Advanced SEO architecture",
-      "CRM / scheduling system integration",
-      "Dedicated project manager",
-    ],
-  },
+const included = [
+  "Custom design — mobile-optimized and built to convert",
+  "Service pages, contact page, and about page",
+  "Working contact form with email notification",
+  "Google My Business link integration",
+  "Social media links and profiles connected",
+  "Basic on-page SEO setup",
+  "Booking integration (where applicable)",
+  "AI-drafted copy, Josh-reviewed before a single page is built",
+  "2–3 week delivery from approved copy",
 ];
 
 const process = [
-  { step: "01", title: "Brief & Content", body: "We send a short intake form. Our Content Agent drafts the copy." },
-  { step: "02", title: "Copy Review", body: "You review and approve the copy before a single page is built." },
-  { step: "03", title: "Design & Build", body: "Dez builds the site to spec — mobile-first, fast, and ready to convert." },
+  { step: "01", title: "Brief & Intake", body: "We send a short intake form covering your services, service areas, and brand assets." },
+  { step: "02", title: "Copy First", body: "Our Content Agent drafts all website copy. Josh reviews and approves it before build starts." },
+  { step: "03", title: "Design & Build", body: "Dez builds the site to brief — mobile-first, fast, and optimized for lead capture." },
   { step: "04", title: "Review & Launch", body: "You review a staging version. Revisions handled. We launch on your timeline." },
 ];
 
@@ -88,11 +48,11 @@ export default function WebsiteDesignPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/20 text-orange-light">
               <Globe size={22} />
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Project · One-Time</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Project · $1,500 Setup + $150/mo</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Website Design &amp; Development</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            A site that looks like you mean business and converts visitors into calls. Copy first, design second — built in two weeks, mobile-optimized, and ready to generate leads from day one.
+            A site that looks like you mean business and converts visitors into calls. Copy first, design second — built in 2–3 weeks, mobile-optimized, and ready to generate leads from day one.
           </p>
         </div>
       </section>
@@ -111,64 +71,47 @@ export default function WebsiteDesignPage() {
         </div>
       </section>
 
-      {/* Tiers */}
+      {/* Pricing */}
       <section className="bg-white border-y border-gray-200">
-        <div className="max-w-5xl mx-auto px-6 py-14">
-          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Packages</p>
-          <h2 className="text-xl font-bold text-charcoal mb-8">Choose your scope.</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {tiers.map((tier) => {
-              const featured = tier.badge === "Most Popular";
-              return (
-                <div
-                  key={tier.name}
-                  className={
-                    featured
-                      ? "rounded-2xl border-2 border-orange bg-navy p-6 flex flex-col relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]"
-                      : "rounded-2xl border border-gray-200 bg-background p-6 flex flex-col"
-                  }
-                >
-                  {featured && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
-                      Most Popular
-                    </span>
-                  )}
-                  <p className={`text-base font-bold mb-0.5 ${featured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
-                  <p className="text-2xl font-black text-orange">{tier.price}</p>
-                  <p className={`text-[11px] mb-1 ${featured ? "text-white/30" : "text-gray-400"}`}>{tier.setup}</p>
-                  <p className={`text-xs mt-1 mb-4 pb-4 border-b leading-relaxed ${featured ? "text-white/50 border-white/10" : "text-gray-500 border-gray-100"}`}>
-                    {tier.tagline}
-                  </p>
-                  <ul className="space-y-2.5 flex-1">
-                    {tier.features.map((f) => (
-                      <li key={f} className={`flex items-start gap-2 text-xs ${featured ? "text-white/80" : "text-gray-600"}`}>
-                        <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={
-                      featured
-                        ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
-                        : "mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 hover:border-orange hover:text-orange transition-colors"
-                    }
-                  >
-                    Get Started with {tier.name}
-                  </a>
-                </div>
-              );
-            })}
+        <div className="max-w-3xl mx-auto px-6 py-16">
+          <div className="rounded-2xl border-2 border-orange bg-navy p-8 relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-6 mb-6 pb-6 border-b border-white/10">
+              <div>
+                <p className="text-white font-bold text-lg mb-1">Website Design &amp; Build</p>
+                <p className="text-xs text-white/40 leading-relaxed max-w-sm">
+                  Everything you need to go from no web presence (or a bad one) to a site that actively generates leads.
+                </p>
+              </div>
+              <div className="shrink-0 text-right">
+                <p className="text-3xl font-black text-orange">$1,500</p>
+                <p className="text-xs text-white/30">one-time setup</p>
+                <p className="text-base font-bold text-orange mt-1">+ $150/mo</p>
+                <p className="text-xs text-white/30">hosting &amp; maintenance</p>
+              </div>
+            </div>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+              {included.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-xs text-white/80">
+                  <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 block text-center text-sm font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-xl py-3 hover:opacity-90 transition-opacity"
+            >
+              Book a Discovery Call <ArrowRight size={15} className="inline ml-1" />
+            </a>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-navy to-navy-light">
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
-          <p className="text-white/60 text-sm mb-6">Questions about your project scope? Let&apos;s talk it through.</p>
+          <p className="text-white/60 text-sm mb-6">Questions about your project? Let&apos;s talk it through before you commit to anything.</p>
           <Button asChild variant="primary" size="lg">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Book a Discovery Call <ArrowRight size={16} />

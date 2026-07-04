@@ -8,58 +8,30 @@ import { MarketingFooter } from "@/components/marketing/marketing-footer";
 export const metadata: Metadata = {
   title: "Graphic Design — Anovas Integrated Systems",
   description:
-    "One-off and ongoing graphic design for local service businesses — social graphics, flyers, door hangers, truck wraps, and marketing collateral. Project and retainer options.",
+    "Monthly graphic design retainer and one-off projects for local service businesses — social graphics, flyers, door hangers, truck wraps, and marketing collateral.",
   alternates: { canonical: "/services/graphic-design" },
 };
 
 const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/sales-demo-call";
 
-const projectItems = [
-  { name: "Social graphic (single)", price: "$75–$150" },
-  { name: "Flyer or door hanger", price: "$150–$250" },
-  { name: "Business card (design only)", price: "$100–$175" },
-  { name: "Truck wrap concept (2 sides)", price: "$350–$600" },
-  { name: "Trade show banner or display", price: "$200–$400" },
-  { name: "Email header / ad creative", price: "$100–$200" },
+const retainerIncludes = [
+  "Social media graphics (volume based on content plan)",
+  "Print materials — flyers, door hangers, postcards",
+  "Ad creative for paid campaigns",
+  "Branded presentation and proposal templates",
+  "Monthly design requests — quoted per volume",
+  "All files delivered in print and digital formats",
+  "One revision round per piece included",
 ];
 
-const retainerTiers = [
-  {
-    name: "Essentials",
-    price: "$600/mo",
-    tagline: "For businesses that need consistent social and digital assets each month.",
-    features: [
-      "8 social media graphics/month",
-      "2 additional design requests",
-      "48-hour turnaround",
-      "2 revision rounds per asset",
-    ],
-  },
-  {
-    name: "Growth",
-    price: "$1,000/mo",
-    badge: "Best Value",
-    tagline: "For businesses actively running campaigns and printing materials.",
-    features: [
-      "16 social media graphics/month",
-      "4 additional design requests",
-      "Print-ready file delivery",
-      "24-hour turnaround",
-      "3 revision rounds per asset",
-    ],
-  },
-  {
-    name: "Full-Service",
-    price: "$1,500/mo",
-    tagline: "For high-output operations with ongoing campaign and collateral needs.",
-    features: [
-      "Unlimited social graphics",
-      "8 additional design requests/mo",
-      "Print + digital format delivery",
-      "Same-day turnaround on priority items",
-      "Dedicated designer assignment",
-    ],
-  },
+const projectTypes = [
+  "Social media graphics",
+  "Flyers, door hangers, direct mail",
+  "Business cards and letterhead",
+  "Truck wrap concepts",
+  "Trade show banners and displays",
+  "Ad creative (Facebook, Instagram, Google)",
+  "Email headers and digital collateral",
 ];
 
 export default function GraphicDesignPage() {
@@ -77,87 +49,75 @@ export default function GraphicDesignPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/20 text-orange-light">
               <PenTool size={22} />
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Project · Monthly Retainer</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-orange-light">Monthly Retainer · One-Off Projects</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Graphic Design</h1>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-            One-off assets or ongoing design support — social graphics, print materials, ad creative, and marketing collateral. Every piece starts with a brief and ships with a QA review.
+            On-demand graphic design for social media, print, and digital — handled by Dez, briefed through a consistent process, and approved by Josh before anything reaches a client or goes live.
           </p>
         </div>
       </section>
 
-      {/* Project pricing */}
-      <section className="max-w-4xl mx-auto px-6 py-14">
-        <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">One-Off Projects</p>
-        <h2 className="text-xl font-bold text-charcoal mb-6">Need a single asset?</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projectItems.map((item) => (
-            <div key={item.name} className="rounded-xl border border-gray-200 bg-white p-4">
-              <p className="text-sm font-semibold text-charcoal">{item.name}</p>
-              <p className="text-sm font-bold text-orange mt-1">{item.price}</p>
-            </div>
-          ))}
+      <section className="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
+        {/* Retainer */}
+        <div className="rounded-2xl border-2 border-orange bg-navy p-7 flex flex-col relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]">
+          <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+            Monthly Retainer
+          </span>
+          <p className="text-white font-bold text-lg mb-0.5">Design On Tap</p>
+          <p className="text-2xl font-black text-orange mb-0.5">$500<span className="text-base font-semibold text-orange/60">/mo</span></p>
+          <p className="text-[11px] text-white/30 mb-4 pb-4 border-b border-white/10">No setup fee · Cancel anytime</p>
+          <p className="text-xs text-white/50 leading-relaxed mb-5">
+            Ongoing design support for businesses that need consistent output every month. Work is scoped at the start of each month based on what&apos;s on your content calendar.
+          </p>
+          <ul className="space-y-2.5 flex-1">
+            {retainerIncludes.map((f) => (
+              <li key={f} className="flex items-start gap-2 text-xs text-white/80">
+                <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
+          >
+            Get Started
+          </a>
         </div>
-        <p className="text-xs text-gray-400 mt-4">Prices vary by complexity. Custom quotes for multi-piece campaigns or vehicle wraps.</p>
-      </section>
 
-      {/* Retainer tiers */}
-      <section className="bg-white border-y border-gray-200">
-        <div className="max-w-5xl mx-auto px-6 py-14">
-          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">Monthly Retainer</p>
-          <h2 className="text-xl font-bold text-charcoal mb-6">Need design on tap?</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {retainerTiers.map((tier) => {
-              const featured = tier.badge === "Best Value";
-              return (
-                <div
-                  key={tier.name}
-                  className={
-                    featured
-                      ? "rounded-2xl border-2 border-orange bg-navy p-6 flex flex-col relative shadow-[0_0_40px_-8px_rgba(242,88,30,0.35)]"
-                      : "rounded-2xl border border-gray-200 bg-background p-6 flex flex-col"
-                  }
-                >
-                  {featured && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange to-orange-light text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
-                      Best Value
-                    </span>
-                  )}
-                  <p className={`text-base font-bold mb-0.5 ${featured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
-                  <p className="text-2xl font-black text-orange">{tier.price}</p>
-                  <p className={`text-xs mt-1 mb-4 pb-4 border-b leading-relaxed ${featured ? "text-white/50 border-white/10" : "text-gray-500 border-gray-100"}`}>
-                    {tier.tagline}
-                  </p>
-                  <ul className="space-y-2.5 flex-1">
-                    {tier.features.map((f) => (
-                      <li key={f} className={`flex items-start gap-2 text-xs ${featured ? "text-white/80" : "text-gray-600"}`}>
-                        <CheckCircle size={13} className="text-orange shrink-0 mt-0.5" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={
-                      featured
-                        ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
-                        : "mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 hover:border-orange hover:text-orange transition-colors"
-                    }
-                  >
-                    Get Started
-                  </a>
-                </div>
-              );
-            })}
-          </div>
+        {/* One-off */}
+        <div className="rounded-2xl border border-gray-200 bg-white p-7 flex flex-col">
+          <p className="text-charcoal font-bold text-lg mb-0.5">One-Off Projects</p>
+          <p className="text-2xl font-black text-orange mb-0.5">Quoted per project</p>
+          <p className="text-[11px] text-gray-400 mb-4 pb-4 border-b border-gray-100">3–5 business days turnaround</p>
+          <p className="text-xs text-gray-500 leading-relaxed mb-5">
+            Need a single asset or a small run? We quote each project based on type and complexity. One revision round included; additional rounds at $75/hr.
+          </p>
+          <ul className="space-y-2.5 flex-1">
+            {projectTypes.map((f) => (
+              <li key={f} className="flex items-start gap-2 text-xs text-gray-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-orange shrink-0 mt-1.5" />
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg py-2.5 hover:border-orange hover:text-orange transition-colors"
+          >
+            Request a Quote
+          </a>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-navy to-navy-light">
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
-          <p className="text-white/60 text-sm mb-6">Not sure whether you need project or retainer? Book a call — we&apos;ll figure it out.</p>
+          <p className="text-white/60 text-sm mb-6">Not sure whether retainer or project is right for you? Book a quick call.</p>
           <Button asChild variant="primary" size="lg">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Book a Discovery Call <ArrowRight size={16} />
