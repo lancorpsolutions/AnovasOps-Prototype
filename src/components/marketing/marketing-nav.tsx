@@ -3,12 +3,25 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const services = [
+const platforms = [
   { href: "/services/anovasos", label: "AnovasOS", summary: "Business growth platform" },
   { href: "/services/autopilot", label: "Anovas Autopilot", summary: "Revenue Protection System" },
+  { href: "/services/ai-agents", label: "AI Agent Services", summary: "Custom AI workforce for your operation" },
+];
+
+const professionalServices = [
+  { href: "/services/brand-identity", label: "Brand Identity Design" },
+  { href: "/services/website-design", label: "Website Design & Development" },
+  { href: "/services/seo", label: "SEO / AEO / GEO" },
+  { href: "/services/google-my-business", label: "Google My Business" },
+  { href: "/services/social-media", label: "Social Media Management" },
+  { href: "/services/content-creation", label: "Content Creation" },
+  { href: "/services/graphic-design", label: "Graphic Design" },
+  { href: "/services/paid-advertising", label: "Paid Advertising" },
+  { href: "/services/business-structure", label: "Business Structure Consulting" },
 ];
 
 const resources = [
@@ -16,17 +29,11 @@ const resources = [
   { href: "/blog", label: "Blog", summary: "Insights & updates" },
 ];
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
-];
-
 export function MarketingNav() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-navy/95 backdrop-blur-sm text-white border-b border-white/5">
@@ -38,7 +45,8 @@ export function MarketingNav() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7">
+        {/* Desktop nav — hidden below lg (1024px) */}
+        <nav className="hidden lg:flex items-center gap-7">
           <Link href="/" className="text-sm text-white/70 hover:text-white transition-colors">
             Home
           </Link>
@@ -46,6 +54,7 @@ export function MarketingNav() {
             About
           </Link>
 
+          {/* Services mega-menu */}
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
@@ -58,23 +67,51 @@ export function MarketingNav() {
               Services <ChevronDown size={14} />
             </Link>
             {servicesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64">
-                <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-2">
-                  {services.map((s) => (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[560px]">
+                <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-4">
+                  <div className="grid grid-cols-2 gap-x-6">
+                    {/* Left: Platforms */}
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2 px-2">Platforms</p>
+                      {platforms.map((s) => (
+                        <Link
+                          key={s.href}
+                          href={s.href}
+                          className="block rounded-lg px-2 py-2 hover:bg-white/10 transition-colors"
+                        >
+                          <p className="text-sm font-semibold text-white">{s.label}</p>
+                          <p className="text-xs text-white/50">{s.summary}</p>
+                        </Link>
+                      ))}
+                    </div>
+                    {/* Right: Professional Services */}
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2 px-2">Professional Services</p>
+                      {professionalServices.map((s) => (
+                        <Link
+                          key={s.href}
+                          href={s.href}
+                          className="block rounded-lg px-2 py-1.5 hover:bg-white/10 transition-colors"
+                        >
+                          <p className="text-sm text-white/80 hover:text-white">{s.label}</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-white/10">
                     <Link
-                      key={s.href}
-                      href={s.href}
-                      className="block rounded-lg px-3 py-2.5 hover:bg-white/10 transition-colors"
+                      href="/services"
+                      className="flex items-center gap-1.5 px-2 text-xs font-semibold text-orange-light hover:text-white transition-colors"
                     >
-                      <p className="text-sm font-semibold text-white">{s.label}</p>
-                      <p className="text-xs text-white/50">{s.summary}</p>
+                      View all services <ArrowRight size={12} />
                     </Link>
-                  ))}
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Resources dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setResourcesOpen(true)}
@@ -110,7 +147,7 @@ export function MarketingNav() {
           </Link>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <Link href="/anovasos/login" className="text-sm text-white/70 hover:text-white transition-colors">
             Log In
           </Link>
@@ -119,8 +156,9 @@ export function MarketingNav() {
           </Button>
         </div>
 
+        {/* Hamburger — visible below lg */}
         <button
-          className="md:hidden text-white"
+          className="lg:hidden text-white"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -128,45 +166,53 @@ export function MarketingNav() {
         </button>
       </div>
 
+      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm text-white/80 hover:text-white"
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="flex flex-col gap-2 pl-3 border-l border-white/10">
-            <p className="text-[11px] uppercase tracking-wide text-white/40">Services</p>
-            {services.map((s) => (
-              <Link
-                key={s.href}
-                href={s.href}
-                className="text-sm text-white/80 hover:text-white"
-                onClick={() => setOpen(false)}
-              >
-                {s.label}
+        <div className="lg:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+          <Link href="/" className="text-sm text-white/80 hover:text-white py-2" onClick={() => setOpen(false)}>Home</Link>
+          <Link href="/about" className="text-sm text-white/80 hover:text-white py-2" onClick={() => setOpen(false)}>About</Link>
+
+          {/* Services accordion */}
+          <button
+            className="flex items-center justify-between text-sm text-white/80 hover:text-white py-2 w-full text-left"
+            onClick={() => setMobileServicesOpen((v) => !v)}
+          >
+            Services
+            <ChevronDown size={14} className={`transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
+          </button>
+          {mobileServicesOpen && (
+            <div className="pl-3 border-l border-white/10 mb-1 flex flex-col gap-0.5">
+              <p className="text-[10px] uppercase tracking-wide text-white/30 pt-1 pb-0.5">Platforms</p>
+              {platforms.map((s) => (
+                <Link key={s.href} href={s.href} className="text-sm text-white/80 hover:text-white py-1.5" onClick={() => setOpen(false)}>
+                  {s.label}
+                </Link>
+              ))}
+              <p className="text-[10px] uppercase tracking-wide text-white/30 pt-2 pb-0.5">Professional Services</p>
+              {professionalServices.map((s) => (
+                <Link key={s.href} href={s.href} className="text-sm text-white/80 hover:text-white py-1" onClick={() => setOpen(false)}>
+                  {s.label}
+                </Link>
+              ))}
+              <Link href="/services" className="text-xs font-semibold text-orange-light py-2" onClick={() => setOpen(false)}>
+                View all services →
               </Link>
-            ))}
-          </div>
-          <div className="flex flex-col gap-2 pl-3 border-l border-white/10">
-            <p className="text-[11px] uppercase tracking-wide text-white/40">Resources</p>
+            </div>
+          )}
+
+          <div className="flex flex-col gap-0.5 pl-3 border-l border-white/10">
+            <p className="text-[10px] uppercase tracking-wide text-white/30 pt-1 pb-0.5">Resources</p>
             {resources.map((r) => (
-              <Link
-                key={r.href}
-                href={r.href}
-                className="text-sm text-white/80 hover:text-white"
-                onClick={() => setOpen(false)}
-              >
+              <Link key={r.href} href={r.href} className="text-sm text-white/80 hover:text-white py-1.5" onClick={() => setOpen(false)}>
                 {r.label}
               </Link>
             ))}
           </div>
-          <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
+
+          <Link href="/faq" className="text-sm text-white/80 hover:text-white py-2" onClick={() => setOpen(false)}>FAQ</Link>
+          <Link href="/contact" className="text-sm text-white/80 hover:text-white py-2" onClick={() => setOpen(false)}>Contact</Link>
+
+          <div className="flex flex-col gap-2 pt-3 border-t border-white/10 mt-1">
             <Link href="/anovasos/login" className="text-sm text-white/80 hover:text-white" onClick={() => setOpen(false)}>
               Log In
             </Link>

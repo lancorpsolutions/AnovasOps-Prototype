@@ -4,6 +4,7 @@ import {
   ArrowRight,
   LayoutDashboard,
   Bot,
+  Cpu,
   Building2,
   Sparkles,
   PenTool,
@@ -73,6 +74,20 @@ const products = [
     ],
     href: "/services/autopilot",
     cta: "Explore Autopilot",
+  },
+  {
+    icon: Cpu,
+    name: "AI Agent Services",
+    tagline: "Custom AI workforce",
+    summary:
+      "Purpose-built AI agents deployed for your specific workflows: lead follow-up, scheduling, reporting, customer onboarding, and operational tasks, running without adding headcount.",
+    bullets: [
+      "Single-agent builds or full multi-agent stacks",
+      "Integrated with your existing CRM and tools",
+      "Built, deployed, and monitored by our team",
+    ],
+    href: "/services/ai-agents",
+    cta: "Explore AI Agent Services",
   },
 ];
 
@@ -209,13 +224,13 @@ export default function ServicesPage() {
             Platforms
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-charcoal mb-3">
-            Two products built for the trades.
+            Three platforms built for the trades.
           </h2>
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
-            AnovasOS manages your growth. Autopilot protects your revenue. Both are built exclusively for local service businesses, not adapted from generic SMB software.
+            AnovasOS manages your growth. Autopilot protects your revenue. AI Agent Services handles the volume. All three are built exclusively for local service businesses.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {products.map((product) => {
             const Icon = product.icon;
             return (
