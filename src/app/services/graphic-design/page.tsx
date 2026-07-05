@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/graphic-design" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=websitehttps://calendly.com/d/cysq-pnv-zpx/discovery-call"utm_medium=ctahttps://calendly.com/d/cysq-pnv-zpx/discovery-call"utm_content=graphic-design";
+const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=graphic-design";
 
 const tiers = [
   {
