@@ -72,16 +72,25 @@ export function Sidebar() {
       )}
     >
       {/* Logo */}
-      <div className={cn("border-b border-white/10 flex items-center gap-2.5", collapsed ? "px-3 py-5 justify-center" : "px-5 py-5")}>
-        <Image src="/branding/anovas-phoenix-icon.png" alt="" width={28} height={28} className="shrink-0" />
-        {!collapsed && (
-          <div>
-            <p className="text-lg font-bold tracking-tight">
-              Anovas<span className="text-orange-light">OS</span>
-            </p>
-            <p className="text-[11px] text-white/50 mt-0.5">Operating system for home service businesses</p>
-          </div>
-        )}
+      <div className={cn("border-b border-white/10 flex items-center gap-2.5", collapsed ? "px-3 py-5 justify-between" : "px-5 py-5")}>
+        <div className="flex items-center gap-2.5">
+          <Image src="/branding/anovas-phoenix-icon.png" alt="" width={28} height={28} className="shrink-0" />
+          {!collapsed && (
+            <div>
+              <p className="text-lg font-bold tracking-tight">
+                Anovas<span className="text-orange-light">OS</span>
+              </p>
+              <p className="text-[11px] text-white/50 mt-0.5">Operating system for home service businesses</p>
+            </div>
+          )}
+        </div>
+        <button
+          onClick={toggleCollapsed}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          className="text-white/40 hover:text-white transition-colors cursor-pointer shrink-0"
+        >
+          {collapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+        </button>
       </div>
 
       {/* Nav */}
@@ -119,17 +128,6 @@ export function Sidebar() {
         >
           <LogOut size={17} className="shrink-0" />
           {!collapsed && "Log Out"}
-        </button>
-        <button
-          onClick={toggleCollapsed}
-          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className={cn(
-            "flex items-center rounded-lg px-2.5 py-2.5 text-sm font-medium text-white/40 hover:bg-white/10 hover:text-white transition-colors w-full cursor-pointer",
-            collapsed ? "justify-center" : "gap-3"
-          )}
-        >
-          {collapsed ? <PanelLeftOpen size={17} className="shrink-0" /> : <PanelLeftClose size={17} className="shrink-0" />}
-          {!collapsed && "Collapse"}
         </button>
       </div>
 
