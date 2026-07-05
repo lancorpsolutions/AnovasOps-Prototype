@@ -72,7 +72,7 @@ export function Sidebar() {
       )}
     >
       {/* Logo */}
-      <div className={cn("border-b border-white/10 flex items-center gap-2.5", collapsed ? "px-3 py-5 justify-between" : "px-5 py-5")}>
+      <div className={cn("border-b border-white/10", collapsed ? "px-3 py-4 flex flex-col items-center gap-3" : "px-5 py-5")}>
         <div className="flex items-center gap-2.5">
           <Image src="/branding/anovas-phoenix-icon.png" alt="" width={28} height={28} className="shrink-0" />
           {!collapsed && (
@@ -87,9 +87,12 @@ export function Sidebar() {
         <button
           onClick={toggleCollapsed}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="text-white/40 hover:text-white transition-colors cursor-pointer shrink-0"
+          className={cn(
+            "flex items-center gap-1.5 text-orange hover:text-orange-light transition-colors cursor-pointer",
+            collapsed ? "justify-center" : "mt-2"
+          )}
         >
-          {collapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+          {collapsed ? <PanelLeftOpen size={16} /> : <><PanelLeftClose size={15} /><span className="text-[11px] font-medium">Collapse</span></>}
         </button>
       </div>
 
