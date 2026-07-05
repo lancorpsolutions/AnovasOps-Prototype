@@ -24,25 +24,25 @@ export function OnboardingChecklist() {
   if (onboardingDismissed || allDone) return null;
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-5 border-t-2 border-t-navy">
+    <div className="rounded-xl p-5 bg-gradient-to-br from-orange to-orange-light shadow-md">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <span className="h-7 w-7 rounded-lg bg-navy flex items-center justify-center">
+          <span className="h-7 w-7 rounded-lg bg-white/20 flex items-center justify-center">
             <ListChecks size={15} className="text-white" />
           </span>
           <div>
-            <h3 className="text-sm font-semibold text-charcoal">Get Set Up</h3>
-            <p className="text-xs text-gray-500">{completedCount} of {steps.length} steps complete</p>
+            <h3 className="text-sm font-semibold text-white">Get Set Up</h3>
+            <p className="text-xs text-white/70">{completedCount} of {steps.length} steps complete</p>
           </div>
         </div>
-        <button onClick={dismissOnboarding} className="text-gray-400 hover:text-gray-600 cursor-pointer">
+        <button onClick={dismissOnboarding} className="text-white/60 hover:text-white cursor-pointer">
           <X size={16} />
         </button>
       </div>
 
-      <div className="h-1.5 w-full rounded-full bg-gray-100 mb-4 overflow-hidden">
+      <div className="h-1.5 w-full rounded-full bg-white/20 mb-4 overflow-hidden">
         <div
-          className="h-full bg-orange transition-all"
+          className="h-full bg-white transition-all"
           style={{ width: `${(completedCount / steps.length) * 100}%` }}
         />
       </div>
@@ -57,11 +57,11 @@ export function OnboardingChecklist() {
               className={cn(
                 "flex items-center gap-2 rounded-lg border px-3 py-2.5 text-sm transition-colors",
                 step.done
-                  ? "border-emerald-200 bg-emerald-50/40 text-gray-500"
-                  : "border-gray-200 hover:border-orange/40 hover:bg-orange/5 text-charcoal font-medium"
+                  ? "border-white/20 bg-white/10 text-white/60"
+                  : "border-white/30 bg-white/10 hover:bg-white/20 text-white font-medium"
               )}
             >
-              <StepIcon size={15} className={step.done ? "text-emerald-600" : "text-gray-400"} />
+              <StepIcon size={15} className={step.done ? "text-white/50" : "text-white"} />
               <span className={step.done ? "line-through" : ""}>{step.label}</span>
             </Link>
           );
