@@ -8,9 +8,10 @@ import { Input, Label, Select } from "@/components/ui/input";
 import { useStore } from "@/lib/store";
 import { useToast } from "@/components/ui/toast";
 import { Role, User, Company } from "@/lib/types";
-import { Check, Pencil, Plus, Trash2, X } from "lucide-react";
+import { Check, Pencil, Plus, Trash2, X, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PLANS as plans } from "@/lib/plans";
+import { useTheme } from "@/components/layout/theme-provider";
 
 const tierOrder: Company["subscriptionTier"][] = ["Startup", "Small Business", "Enterprise"];
 
@@ -289,11 +290,44 @@ function SubscriptionPlansCard() {
   );
 }
 
+function AppearanceCard() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <h3 className="text-sm font-semibold text-charcoal mb-4">Appearance</h3>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => setTheme("light")}
+          className={cn(
+            "flex flex-col items-center gap-2 rounded-xl border-2 px-6 py-4 transition-colors cursor-pointer",
+            theme === "light" ? "border-orange bg-orange/5" : "border-gray-200 hover:border-gray-300"
+          )}
+        >
+          <Sun size={20} className={theme === "light" ? "text-orange" : "text-gray-400"} />
+          <span className={cn("text-xs font-medium", theme === "light" ? "text-orange" : "text-gray-500")}>Light</span>
+        </button>
+        <button
+          onClick={() => setTheme("dark")}
+          className={cn(
+            "flex flex-col items-center gap-2 rounded-xl border-2 px-6 py-4 transition-colors cursor-pointer",
+            theme === "dark" ? "border-orange bg-orange/5" : "border-gray-200 hover:border-gray-300"
+          )}
+        >
+          <Moon size={20} className={theme === "dark" ? "text-orange" : "text-gray-400"} />
+          <span className={cn("text-xs font-medium", theme === "dark" ? "text-orange" : "text-gray-500")}>Dark</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function SettingsPage() {
   return (
     <div>
       <Header title="Settings" subtitle="Manage company details, team, service types, and subscription plan." />
       <div className="p-6 space-y-6">
+        <AppearanceCard />
         <CompanyInfoCard />
         <ServiceTypesCard />
         <UsersCard />
