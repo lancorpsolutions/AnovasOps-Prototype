@@ -12,8 +12,8 @@ import { formatCurrency } from "./utils";
 
 export interface DailyBriefing {
   summary: string;
-  topRisks: { text: string; impact: string }[];
-  recommendedActions: string[];
+  topRisks: { text: string; impact: string; href: string; severity: string }[];
+  recommendedActions: { text: string; href: string }[];
 }
 
 const severityOrder: Record<string, number> = { Critical: 0, High: 1, Medium: 2, Low: 3 };
@@ -52,29 +52,35 @@ export function generateDailyBriefing(
     return {
       text: `${r.type} — ${context}`,
       impact: formatCurrency(r.revenueAtRisk),
+      severity: r.severity,
+      href: "/anovasos/risks",
     };
   });
 
-  const recommendedActions: string[] = [];
+  const recommendedActions: { text: string; href: string }[] = [];
   if (overloadedCrews.length > 0) {
-    recommendedActions.push(
-      `Reassign jobs from ${overloadedCrews.map((c) => c.crewName).join(", ")} to balance crew workload.`
-    );
+    recommendedActions.push({
+      text: `Reassign jobs from ${overloadedCrews.map((c) => c.crewName).join(", ")} to balance crew workload.`,
+      href: "/anovasos/crews",
+    });
   }
   if (completedNotBilled.length > 0) {
-    recommendedActions.push(
-      `Create invoices for ${completedNotBilled.length} completed job${completedNotBilled.length === 1 ? "" : "s"} that haven't been billed.`
-    );
+    recommendedActions.push({
+      text: `Create invoices for ${completedNotBilled.length} completed job${completedNotBilled.length === 1 ? "" : "s"} that haven't been billed.`,
+      href: "/anovasos/invoices",
+    });
   }
   if (overdueEstimates.length > 0) {
-    recommendedActions.push(
-      `Follow up on ${overdueEstimates.length} overdue estimate${overdueEstimates.length === 1 ? "" : "s"} stuck in the pipeline.`
-    );
+    recommendedActions.push({
+      text: `Follow up on ${overdueEstimates.length} overdue estimate${overdueEstimates.length === 1 ? "" : "s"} stuck in the pipeline.`,
+      href: "/anovasos/sales",
+    });
   }
   if (overdueInvoices.length > 0) {
-    recommendedActions.push(
-      `Send payment reminders for ${overdueInvoices.length} overdue invoice${overdueInvoices.length === 1 ? "" : "s"}.`
-    );
+    recommendedActions.push({
+      text: `Send payment reminders for ${overdueInvoices.length} overdue invoice${overdueInvoices.length === 1 ? "" : "s"}.`,
+      href: "/anovasos/invoices",
+    });
   }
 
   return { summary, topRisks, recommendedActions: recommendedActions.slice(0, 4) };

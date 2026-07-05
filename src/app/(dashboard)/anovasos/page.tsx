@@ -25,6 +25,7 @@ import {
   DollarSign,
   Sparkles,
   CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -74,11 +75,23 @@ export default function DashboardPage() {
               {briefing.topRisks.length === 0 ? (
                 <p className="text-xs text-gray-400">No open risks right now.</p>
               ) : (
-                <ul className="space-y-1.5">
+                <ul className="space-y-2">
                   {briefing.topRisks.map((r, idx) => (
-                    <li key={idx} className="flex items-center justify-between text-sm gap-2">
-                      <span className="text-gray-700">{r.text}</span>
-                      <span className="text-xs font-medium text-red-600 whitespace-nowrap">{r.impact}</span>
+                    <li key={idx} className="flex items-center justify-between gap-2 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className={`shrink-0 text-[10px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                          r.severity === "Critical" ? "bg-red-100 text-red-700" :
+                          r.severity === "High" ? "bg-orange/10 text-orange" :
+                          "bg-gray-200 text-gray-600"
+                        }`}>{r.severity}</span>
+                        <span className="text-sm text-gray-700 truncate">{r.text}</span>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-xs font-medium text-red-600">{r.impact}</span>
+                        <Link href={r.href} className="flex items-center gap-1 text-xs font-semibold text-orange hover:text-orange/80 transition-colors whitespace-nowrap">
+                          Act <ArrowRight size={11} />
+                        </Link>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -89,11 +102,16 @@ export default function DashboardPage() {
               {briefing.recommendedActions.length === 0 ? (
                 <p className="text-xs text-gray-400">No actions needed today.</p>
               ) : (
-                <ul className="space-y-1.5">
+                <ul className="space-y-2">
                   {briefing.recommendedActions.map((a, idx) => (
-                    <li key={idx} className="flex items-start gap-1.5 text-sm text-gray-700">
-                      <CheckCircle2 size={14} className="text-emerald-600 mt-0.5 shrink-0" />
-                      {a}
+                    <li key={idx} className="flex items-center justify-between gap-2 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2">
+                      <div className="flex items-start gap-1.5 min-w-0">
+                        <CheckCircle2 size={14} className="text-emerald-600 mt-0.5 shrink-0" />
+                        <span className="text-sm text-gray-700">{a.text}</span>
+                      </div>
+                      <Link href={a.href} className="flex items-center gap-1 text-xs font-semibold text-orange hover:text-orange/80 transition-colors whitespace-nowrap shrink-0">
+                        Go <ArrowRight size={11} />
+                      </Link>
                     </li>
                   ))}
                 </ul>
