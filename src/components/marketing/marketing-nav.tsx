@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -32,11 +33,54 @@ const resources = [
 export function MarketingNav() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [servicesPos, setServicesPos] = useState({ top: 0, left: 0 });
+  const [resourcesPos, setResourcesPos] = useState({ top: 0, left: 0 });
   const navRef = useRef<HTMLDivElement>(null);
+  const servicesWrapRef = useRef<HTMLDivElement>(null);
+  const resourcesWrapRef = useRef<HTMLDivElement>(null);
+  const servicesPanelRef = useRef<HTMLDivElement>(null);
+  const resourcesPanelRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function cancelClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }
+  function scheduleClose(setOpen: (v: boolean) => void) {
+    closeTimer.current = setTimeout(() => setOpen(false), 150);
+  }
+
+  // The nav strip scrolls horizontally on narrow screens (overflow-x-auto),
+  // which per the CSS spec forces overflow-y to clip too — so the dropdown
+  // panels are portaled to <body> and positioned from the trigger's rect
+  // instead of being laid out as absolute descendants of the nav.
+  useLayoutEffect(() => {
+    if (servicesOpen && servicesWrapRef.current) {
+      const r = servicesWrapRef.current.getBoundingClientRect();
+      const panelWidth = Math.min(560, window.innerWidth * 0.9);
+      const left = Math.min(r.left, window.innerWidth - panelWidth - 16);
+      setServicesPos({ top: r.bottom + 12, left: Math.max(16, left) });
+    }
+  }, [servicesOpen]);
+
+  useLayoutEffect(() => {
+    if (resourcesOpen && resourcesWrapRef.current) {
+      const r = resourcesWrapRef.current.getBoundingClientRect();
+      const panelWidth = 256;
+      const centered = r.left + r.width / 2 - panelWidth / 2;
+      const left = Math.min(Math.max(16, centered), window.innerWidth - panelWidth - 16);
+      setResourcesPos({ top: r.bottom + 12, left });
+    }
+  }, [resourcesOpen]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent | TouchEvent) {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (
+        navRef.current &&
+        !navRef.current.contains(target) &&
+        !servicesPanelRef.current?.contains(target) &&
+        !resourcesPanelRef.current?.contains(target)
+      ) {
         setServicesOpen(false);
         setResourcesOpen(false);
       }
@@ -71,9 +115,10 @@ export function MarketingNav() {
 
           {/* Services mega-menu */}
           <div
+            ref={servicesWrapRef}
             className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => { setServicesOpen(false); }}
+            onMouseEnter={() => { cancelClose(); setServicesOpen(true); }}
+            onMouseLeave={() => scheduleClose(setServicesOpen)}
           >
             <button
               onClick={() => { setServicesOpen(!servicesOpen); setResourcesOpen(false); }}
@@ -81,8 +126,14 @@ export function MarketingNav() {
             >
               Services <ChevronDown size={12} className="shrink-0" />
             </button>
-            {servicesOpen && (
-              <div className="absolute left-0 top-full pt-3 w-[min(560px,90vw)]">
+            {servicesOpen && createPortal(
+              <div
+                ref={servicesPanelRef}
+                style={{ position: "fixed", top: servicesPos.top, left: servicesPos.left, width: "min(560px,90vw)" }}
+                className="z-[60]"
+                onMouseEnter={cancelClose}
+                onMouseLeave={() => scheduleClose(setServicesOpen)}
+              >
                 <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-4">
                   <div className="grid grid-cols-2 gap-x-6">
                     <div>
@@ -109,15 +160,17 @@ export function MarketingNav() {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </div>,
+              document.body
             )}
           </div>
 
           {/* Resources dropdown */}
           <div
+            ref={resourcesWrapRef}
             className="relative hidden sm:block"
-            onMouseEnter={() => setResourcesOpen(true)}
-            onMouseLeave={() => setResourcesOpen(false)}
+            onMouseEnter={() => { cancelClose(); setResourcesOpen(true); }}
+            onMouseLeave={() => scheduleClose(setResourcesOpen)}
           >
             <button
               onClick={() => { setResourcesOpen(!resourcesOpen); setServicesOpen(false); }}
@@ -125,8 +178,14 @@ export function MarketingNav() {
             >
               Resources <ChevronDown size={12} className="shrink-0" />
             </button>
-            {resourcesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64">
+            {resourcesOpen && createPortal(
+              <div
+                ref={resourcesPanelRef}
+                style={{ position: "fixed", top: resourcesPos.top, left: resourcesPos.left, width: 256 }}
+                className="z-[60]"
+                onMouseEnter={cancelClose}
+                onMouseLeave={() => scheduleClose(setResourcesOpen)}
+              >
                 <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-2">
                   {resources.map((r) => (
                     <Link key={r.href} href={r.href} onClick={() => setResourcesOpen(false)} className="block rounded-lg px-3 py-2.5 hover:bg-white/10 transition-colors">
@@ -135,7 +194,8 @@ export function MarketingNav() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div>,
+              document.body
             )}
           </div>
 
