@@ -285,12 +285,24 @@ export default function AutopilotPage() {
       {/* Topbar */}
       <header className="border-b border-slate-100 px-8 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-[#e85d04] flex items-center justify-center">
-            <span className="text-white text-xs font-black tracking-tighter">AP</span>
-          </div>
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-[15px] font-bold text-slate-900 tracking-tight">Autopilot</span>
-            <span className="text-xs text-slate-300 font-normal">by Anovas</span>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Outer arcs */}
+            <path d="M7 22 C7 13.7 13.7 7 22 7" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            <path d="M37 22 C37 30.3 30.3 37 22 37" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            {/* Mid arcs */}
+            <path d="M11 22 C11 15.9 15.9 11 22 11" stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            <path d="M33 22 C33 28.1 28.1 33 22 33" stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            {/* Inner circle */}
+            <circle cx="22" cy="22" r="5" stroke="#e85d04" strokeWidth="2.5" fill="none"/>
+            {/* Center dot */}
+            <circle cx="22" cy="22" r="2.5" fill="#e85d04"/>
+            {/* Side ticks */}
+            <path d="M3 19 L3 25" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round"/>
+            <path d="M41 19 L41 25" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round"/>
+          </svg>
+          <div className="flex items-baseline gap-1">
+            <span className="text-[16px] font-semibold text-slate-800 tracking-tight">Anovas Autopilot</span>
+            <span className="text-[#e85d04] text-lg font-black leading-none mb-0.5">·</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
