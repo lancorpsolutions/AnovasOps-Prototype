@@ -37,10 +37,18 @@ const FEED_ICON_STYLES: Record<string, { bg: string; color: string; icon: React.
 
 const DEFAULT_MESSAGE = "Hi! Thanks for calling — we missed you but we don't want to miss your business. Reply with your name, address, and what you need and we'll get back to you shortly.";
 
+const TIERS = [
+  { key: "basic", name: "Basic", setup: "$1,000", monthly: "$500/mo", desc: "Solo operators, just getting started" },
+  { key: "pro", name: "Pro", setup: "$2,500", monthly: "$1,000/mo", desc: "Growing businesses, 1–3 locations", recommended: true },
+  { key: "elite", name: "Elite", setup: "$5,000", monthly: "$2,000/mo", desc: "Established businesses, higher volume" },
+  { key: "enterprise", name: "Enterprise", setup: "Custom", monthly: "From $5,000/mo", desc: "Multi-location groups, custom buildouts" },
+];
+
 function OnboardingModal({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [phones, setPhones] = useState([""]);
+  const [selectedTier, setSelectedTier] = useState("");
   const [form, setForm] = useState({
     businessName: "",
     accountOwnerName: "",
@@ -83,9 +91,9 @@ function OnboardingModal({ onClose }: { onClose: () => void }) {
         {/* Modal header */}
         <div className="px-7 py-5 border-b border-slate-100 flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-[#e85d04] uppercase tracking-widest mb-0.5">Step {step} of 2</p>
+            <p className="text-[11px] font-bold text-[#e85d04] uppercase tracking-widest mb-0.5">Step {step} of 3</p>
             <h2 className="text-base font-extrabold text-slate-900">
-              {step === 1 ? "Your Business Info" : "Your Phone Numbers & Message"}
+              {step === 1 ? "Your Business Info" : step === 2 ? "Choose Your Plan" : "Your Phone Numbers & Message"}
             </h2>
           </div>
           <button onClick={onClose} className="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center transition-colors text-slate-400">
@@ -136,6 +144,40 @@ function OnboardingModal({ onClose }: { onClose: () => void }) {
 
             {step === 2 && (
               <>
+                <p className="text-xs text-slate-400 -mt-1 mb-1">All plans include the same five automations. What scales is capacity — leads, users, and locations.</p>
+                <div className="space-y-2.5">
+                  {TIERS.map(tier => (
+                    <button
+                      key={tier.key}
+                      type="button"
+                      onClick={() => setSelectedTier(tier.key)}
+                      className={`w-full text-left rounded-xl border px-4 py-3.5 transition-all ${
+                        selectedTier === tier.key
+                          ? "border-[#e85d04] ring-2 ring-[#e85d04]/20 bg-orange-50/40"
+                          : "border-slate-200 hover:border-slate-300 bg-white"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold text-slate-900">{tier.name}</span>
+                          {"recommended" in tier && tier.recommended && (
+                            <span className="text-[10px] font-bold text-[#e85d04] bg-orange-50 border border-orange-100 px-2 py-0.5 rounded-full">Recommended</span>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          <span className="text-sm font-bold text-slate-800">{tier.monthly}</span>
+                          {tier.setup !== "Custom" && <span className="text-[11px] text-slate-400 ml-1">+ {tier.setup} setup</span>}
+                        </div>
+                      </div>
+                      <p className="text-xs text-slate-400 mt-1">{tier.desc}</p>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {step === 3 && (
+              <>
                 <div>
                   <label className="block text-xs font-semibold text-slate-500 mb-1.5">Phone Number(s) to Monitor</label>
                   <p className="text-xs text-slate-400 mb-3">These are the numbers Autopilot will watch for missed calls.</p>
@@ -183,8 +225,8 @@ function OnboardingModal({ onClose }: { onClose: () => void }) {
 
           {/* Footer */}
           <div className="px-7 py-5 border-t border-slate-100 flex items-center justify-between">
-            {step === 2 ? (
-              <button type="button" onClick={() => setStep(1)} className="text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors">
+            {step > 1 ? (
+              <button type="button" onClick={() => setStep(s => s - 1)} className="text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors">
                 ← Back
               </button>
             ) : <span />}
@@ -194,6 +236,17 @@ function OnboardingModal({ onClose }: { onClose: () => void }) {
                 onClick={() => {
                   if (!form.businessName || !form.accountOwnerName || !form.email) return;
                   setStep(2);
+                }}
+                className="flex items-center gap-2 bg-[#e85d04] hover:bg-[#cf5200] text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-colors"
+              >
+                Continue <ArrowRight size={14} />
+              </button>
+            ) : step === 2 ? (
+              <button
+                type="button"
+                onClick={() => {
+                  if (!selectedTier) return;
+                  setStep(3);
                 }}
                 className="flex items-center gap-2 bg-[#e85d04] hover:bg-[#cf5200] text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-colors"
               >
