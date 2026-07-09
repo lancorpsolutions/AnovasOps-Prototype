@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Phone, MessageSquare, UserCheck, DollarSign, Clock, CheckCircle, ArrowRight, ArrowUpRight, X, Plus, Trash2 } from "lucide-react";
 
 const LEADS = [
@@ -285,8 +284,14 @@ export default function AutopilotPage() {
 
       {/* Topbar */}
       <header className="border-b border-slate-100 px-8 py-4 flex items-center justify-between">
-        <div className="flex items-center">
-          <Image src="/logo.png" alt="Anovas Autopilot" width={220} height={98} priority />
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-[#e85d04] flex items-center justify-center">
+            <span className="text-white text-xs font-black tracking-tighter">AP</span>
+          </div>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-[15px] font-bold text-slate-900 tracking-tight">Autopilot</span>
+            <span className="text-xs text-slate-300 font-normal">by Anovas</span>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <span className={`w-2 h-2 rounded-full bg-emerald-400 transition-opacity duration-500 ${pulse ? "opacity-100" : "opacity-30"}`} />
