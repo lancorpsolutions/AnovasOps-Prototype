@@ -6,6 +6,10 @@ import {
   Bot,
   Compass,
   Check,
+  Search,
+  ClipboardCheck,
+  Rocket,
+  TrendingUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
@@ -68,6 +72,37 @@ const proof = [
   "A real team behind the platform, not a support ticket queue",
 ];
 
+const process = [
+  {
+    icon: Search,
+    step: "01",
+    title: "Tell us where you're at",
+    summary:
+      "Take the free AROS Growth Score or book a call. We benchmark your business across Acquisition, Revenue, Operations, and Systems to find out exactly where you're leaking revenue.",
+  },
+  {
+    icon: ClipboardCheck,
+    step: "02",
+    title: "We build the plan",
+    summary:
+      "No generic packages. We map what's actually costing you money to the right fix, whether that's AnovasOS, Autopilot, a professional service, or a combination, and lay out the scope and timeline up front.",
+  },
+  {
+    icon: Rocket,
+    step: "03",
+    title: "We implement it",
+    summary:
+      "Our team builds and configures the work, software setup, automations, brand, website, campaigns, so it's running and doing its job. You're not left with a login and a getting-started guide.",
+  },
+  {
+    icon: TrendingUp,
+    step: "04",
+    title: "We stay on it",
+    summary:
+      "Ongoing monitoring, reporting, and adjustments. As your business changes, the system and the strategy change with it. We don't disappear after launch.",
+  },
+];
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
@@ -85,7 +120,9 @@ export default function HomePage() {
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
             We build AI-powered automation and growth software for local and home service
             businesses, and back it with a real team that helps you put it to work, so nothing
-            slips through the cracks and nothing gets left on the table.
+            slips through the cracks and nothing gets left on the table. Revenue protection,
+            demand generation, and the professional services that hold it all together, run by
+            one team instead of five vendors who don&apos;t talk to each other.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild variant="primary" size="lg">
@@ -149,10 +186,15 @@ export default function HomePage() {
               service businesses across the U.S., from owner-operators running their first few
               crews to multi-location operations that need executive-level visibility.
             </p>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <p className="text-sm text-gray-500 leading-relaxed mb-4">
               Whether you need a revenue protection system, a growth engine that fills the
               pipeline, or a team to build the whole strategy with you, Anovas Integrated Systems
               is the operator behind the operator.
+            </p>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Not sure which of that applies to you? That&apos;s the point of the AROS Growth
+              Score, a free 10-question diagnostic that tells you exactly which gap, acquisition,
+              revenue, operations, or systems, is costing you the most right now.
             </p>
           </div>
           <div className="rounded-2xl bg-gradient-to-br from-navy to-navy-light text-white p-8 shadow-md">
@@ -168,6 +210,45 @@ export default function HomePage() {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-12">
+          <p className="text-orange text-xs font-semibold uppercase tracking-widest mb-3">How To Get Started</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-charcoal mb-3">
+            From first conversation to a system that runs itself.
+          </h2>
+          <p className="text-sm text-gray-500 max-w-xl mx-auto">
+            No long onboarding, no black box. Here&apos;s exactly what working with us looks like.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {process.map((step) => {
+            const Icon = step.icon;
+            return (
+              <div key={step.step} className="relative rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-navy to-navy-light text-white shadow-sm">
+                    <Icon size={20} />
+                  </span>
+                  <span className="text-2xl font-bold text-gray-100">{step.step}</span>
+                </div>
+                <p className="text-sm font-bold text-charcoal mb-2">{step.title}</p>
+                <p className="text-xs text-gray-500 leading-relaxed">{step.summary}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+          <Button asChild variant="primary" size="lg">
+            <Link href="/aros-growth-score">
+              Take the Free Growth Score <ArrowRight size={16} />
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/contact">Talk to Our Team</Link>
+          </Button>
         </div>
       </section>
 

@@ -63,7 +63,7 @@ export function MarketingNav() {
         </Link>
 
         {/* Nav tabs — always visible, compress on small screens */}
-        <nav className="flex items-center gap-1 xs:gap-2 sm:gap-4 lg:gap-6 overflow-x-auto">
+        <nav className="flex items-center gap-1 xs:gap-2 sm:gap-4 lg:gap-6 overflow-x-auto overflow-y-visible">
 
           <Link href="/about" className="text-xs sm:text-sm text-white/70 hover:text-white transition-colors whitespace-nowrap">
             About
@@ -115,7 +115,7 @@ export function MarketingNav() {
 
           {/* Resources dropdown */}
           <div
-            className="relative hidden sm:block"
+            className="relative"
             onMouseEnter={() => setResourcesOpen(true)}
             onMouseLeave={() => setResourcesOpen(false)}
           >
@@ -126,7 +126,7 @@ export function MarketingNav() {
               Resources <ChevronDown size={12} className="shrink-0" />
             </button>
             {resourcesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64">
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64 max-w-[85vw]">
                 <div className="rounded-xl border border-white/10 bg-navy-light shadow-xl p-2">
                   {resources.map((r) => (
                     <Link key={r.href} href={r.href} onClick={() => setResourcesOpen(false)} className="block rounded-lg px-3 py-2.5 hover:bg-white/10 transition-colors">
