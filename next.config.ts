@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         destination: "/anovasos",
         permanent: false,
       },
+      {
+        source: "/growth-score",
+        destination: "/aros-growth-score",
+        permanent: true,
+      },
     ];
   },
 };
