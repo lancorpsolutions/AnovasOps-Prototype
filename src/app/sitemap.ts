@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services", priority: 0.9, changeFrequency: "monthly" },
     { path: "/services/anovasos", priority: 0.9, changeFrequency: "monthly" },
     { path: "/services/autopilot", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/aros-growth-score", priority: 0.8, changeFrequency: "monthly" },
     { path: "/revenue-leaks-guide", priority: 0.8, changeFrequency: "monthly" },
     { path: "/blog", priority: 0.6, changeFrequency: "weekly" },
     { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
