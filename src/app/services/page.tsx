@@ -52,11 +52,11 @@ const products = [
     name: "AnovasOS",
     tagline: "Business growth platform",
     summary:
-      "The full growth management platform for local service businesses: AI-powered marketing execution, analytics, reporting, and ongoing management in one command center.",
+      "The business growth platform for local service businesses: your sales pipeline, jobs, scheduling, crews, and invoices in one command center, with recurring reviews from our team.",
     bullets: [
-      "Live dashboard for jobs, crews, and revenue",
-      "AI agents handling 70%+ of execution",
-      "Automation rules, SOPs, and operational risk tracking",
+      "Live dashboard for pipeline, jobs, crews, and invoices",
+      "Automation rules and SOP library",
+      "Operational risk tracking and reports",
     ],
     href: "/services/anovasos",
     cta: "Explore AnovasOS",
@@ -198,6 +198,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
       <MarketingNav />
+      <main id="main">
 
       {/* Hero */}
       <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy via-navy to-navy-light text-white">
@@ -351,6 +352,8 @@ export default function ServicesPage() {
           ))}
         </div>
       </section>
+
+      </main>
 
       <MarketingFooter />
 

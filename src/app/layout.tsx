@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/toast";
+import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Anovas Integrated Systems",
   },
   description:
-    "Anovas Integrated Systems builds AnovasOS and Anovas Autopilot, and provides business formation, branding, web design, and growth strategy for HVAC, plumbing, electrical, roofing, landscaping, and other local and home service businesses.",
+    "Anovas Integrated Systems connects marketing, CRM, automation, and operations for HVAC, plumbing, electrical, roofing, landscaping, and other local and home service businesses, through AnovasOS, Anovas Autopilot, and hands-on implementation.",
   keywords: [
     "home service business software",
     "local service business growth platform",
@@ -97,6 +98,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <ToastProvider>{children}</ToastProvider>
+        <AnalyticsProvider />
       </body>
     </html>
   );

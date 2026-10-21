@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import Link from "next/link";
 import { Loader2, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Select, Textarea } from "@/components/ui/input";
+import { LeadSubmitError, newSubmissionId, submitLead } from "@/lib/leads/client";
+import { ROUTES } from "@/lib/site/config";
+import { FieldError, Honeypot } from "./honeypot";
 
 const businessTypes = [
   "HVAC",
@@ -28,27 +32,33 @@ export function AutopilotInquiryForm() {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [website, setWebsite] = useState("");
+  const submissionId = useRef(newSubmissionId());
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
+    setFieldErrors({});
     try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      await submitLead(
+        "autopilot-inquiry",
+        {
           name: `${firstName} ${lastName}`.trim(),
           email,
           company: businessName,
           phone,
           industry: businessType,
-          biggestPain: challenge,
-        }),
-      });
+          message: challenge || undefined,
+          website,
+        },
+        submissionId.current
+      );
       setSent(true);
-    } catch {
-      setError("Something went wrong. Please try again or email us directly.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again or email us directly.");
+      if (err instanceof LeadSubmitError) setFieldErrors(err.fieldErrors);
     } finally {
       setSubmitting(false);
     }
@@ -56,7 +66,7 @@ export function AutopilotInquiryForm() {
 
   if (sent) {
     return (
-      <div className="rounded-2xl bg-white border border-gray-200 shadow-sm p-8 text-center">
+      <div role="status" className="rounded-2xl bg-white border border-gray-200 shadow-sm p-8 text-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange/10 mx-auto mb-4">
           <CheckCircle className="text-orange" size={28} />
         </div>
@@ -64,7 +74,11 @@ export function AutopilotInquiryForm() {
           You&apos;re on our radar, {firstName || "there"}.
         </p>
         <p className="text-sm text-gray-500 max-w-xs mx-auto">
-          We&apos;ll be in touch within 24 hours to schedule your free Admin Audit.
+          We&apos;ll be in touch within one business day to schedule your free Admin Audit.
+        </p>
+        <p className="mt-4 text-sm text-muted-ink">
+          Rather pick a time yourself?{" "}
+          <Link href={`${ROUTES.book}?from=autopilot`} className="font-medium text-navy underline">Book it now</Link>.
         </p>
       </div>
     );
@@ -73,7 +87,8 @@ export function AutopilotInquiryForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl bg-white border border-gray-200 shadow-sm p-6 md:p-8 space-y-4"
+      data-hs-do-not-collect="true"
+      className="relative rounded-2xl bg-white border border-gray-200 shadow-sm p-6 md:p-8 space-y-4"
     >
       <div className="flex items-center gap-2.5 mb-1">
         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-orange to-orange-light text-white shadow-sm">
@@ -89,7 +104,7 @@ export function AutopilotInquiryForm() {
             />
           </svg>
         </span>
-        <p className="text-sm font-bold text-charcoal">Book your free Admin Audit</p>
+        <p className="text-sm font-bold text-charcoal">Request your free Admin Audit</p>
       </div>
       <p className="text-xs text-gray-500 -mt-2">
         We&apos;ll map out exactly what&apos;s costing your business — and show you what Autopilot fixes.
@@ -147,7 +162,10 @@ export function AutopilotInquiryForm() {
             onChange={(e) => setPhone(e.target.value)}
             placeholder="(501) 555-0100"
             required
+            aria-invalid={!!fieldErrors.phone}
+            aria-describedby="ap-phone-err"
           />
+          <FieldError id="ap-phone-err" message={fieldErrors.phone} />
         </div>
         <div>
           <Label htmlFor="ap-email">Email</Label>
@@ -158,7 +176,10 @@ export function AutopilotInquiryForm() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="jane@titanhvac.com"
             required
+            aria-invalid={!!fieldErrors.email}
+            aria-describedby="ap-email-err"
           />
+          <FieldError id="ap-email-err" message={fieldErrors.email} />
         </div>
       </div>
 
@@ -175,7 +196,8 @@ export function AutopilotInquiryForm() {
         />
       </div>
 
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      <Honeypot id="ap-website" value={website} onChange={setWebsite} />
+      {error && <p role="alert" className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
 
       <Button type="submit" variant="primary" size="lg" className="w-full" disabled={submitting}>
         {submitting ? (
@@ -184,11 +206,11 @@ export function AutopilotInquiryForm() {
             Sending...
           </>
         ) : (
-          "Book My Autopilot Demo"
+          "Request My Admin Audit"
         )}
       </Button>
 
-      <p className="text-[11px] text-gray-400 text-center">
+      <p className="text-xs text-muted-ink text-center">
         No pitch, no pressure. We&apos;ll show you the numbers before you commit to anything.
       </p>
     </form>

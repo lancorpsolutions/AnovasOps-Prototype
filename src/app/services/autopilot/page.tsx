@@ -13,6 +13,9 @@ import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { AutopilotInquiryForm } from "@/components/forms/autopilot-inquiry-form";
+import { OfferingFactsPanel } from "@/components/site/offering-facts";
+import { SectionHeader } from "@/components/site/section";
+import { OFFERINGS } from "@/lib/site/offerings";
 
 export const metadata: Metadata = {
   title: "Anovas Autopilot: Revenue Protection System for Local Service Businesses",
@@ -184,6 +187,7 @@ export default function AutopilotPage() {
   return (
     <div className="min-h-screen bg-background">
       <MarketingNav />
+      <main id="main">
 
       <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy via-navy to-navy-light text-white">
         <div className="absolute inset-0 hero-grid opacity-50" />
@@ -212,6 +216,11 @@ export default function AutopilotPage() {
         </div>
       </section>
 
+      <section className="max-w-6xl mx-auto px-6 pt-16" aria-labelledby="glance-title">
+        <SectionHeader id="glance-title" eyebrow="At a glance" title="A managed service, not another app to learn." lead="We set up and run the automations with you. Here's exactly what's included and what we need from you." />
+        <OfferingFactsPanel offering={OFFERINGS.autopilot} />
+      </section>
+
       {/* Five automations */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
@@ -221,7 +230,7 @@ export default function AutopilotPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-charcoal mb-3">
             It runs the parts of the day that don&apos;t need a human.
           </h2>
-          <p className="text-sm text-gray-500 max-w-xl mx-auto">
+          <p className="text-sm text-muted-ink max-w-xl mx-auto">
             Every Autopilot plan includes all five automations. What scales between tiers is capacity, users, and support.
           </p>
         </div>
@@ -237,7 +246,7 @@ export default function AutopilotPage() {
                   <Icon size={18} />
                 </span>
                 <p className="text-sm font-semibold text-charcoal mb-2">{item.title}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{item.summary}</p>
+                <p className="text-xs text-muted-ink leading-relaxed">{item.summary}</p>
               </div>
             );
           })}
@@ -252,7 +261,7 @@ export default function AutopilotPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-charcoal mb-3">
               Four tiers, sized to your operation.
             </h2>
-            <p className="text-sm text-gray-500 max-w-xl mx-auto">
+            <p className="text-sm text-muted-ink max-w-xl mx-auto">
               All five automations are included in every tier. Capacity, user seats, and support depth scale as you grow.
             </p>
           </div>
@@ -276,9 +285,9 @@ export default function AutopilotPage() {
                   <div className="mb-4">
                     <p className={`text-base font-bold ${isFeatured ? "text-white" : "text-charcoal"}`}>{tier.name}</p>
                     <p className="text-xl font-bold text-orange mt-0.5">{tier.price}</p>
-                    <p className={`text-[11px] ${isFeatured ? "text-white/40" : "text-gray-400"}`}>{tier.setup}</p>
+                    <p className={`text-[11px] ${isFeatured ? "text-white/60" : "text-muted-ink"}`}>{tier.setup}</p>
                   </div>
-                  <p className={`text-xs leading-relaxed mb-4 pb-4 ${isFeatured ? "text-white/60 border-b border-white/10" : "text-gray-500 border-b border-gray-100"}`}>
+                  <p className={`text-xs leading-relaxed mb-4 pb-4 ${isFeatured ? "text-white/60 border-b border-white/10" : "text-muted-ink border-b border-gray-100"}`}>
                     {tier.tagline}
                   </p>
                   <ul className="space-y-2.5 flex-1">
@@ -309,8 +318,8 @@ export default function AutopilotPage() {
             {[
               "Built for local service businesses, not generic SMB software",
               "Five automations working together, not five disconnected tools",
-              "Most owners spend less than 2 hours total on setup; we handle the build",
-              "The missed-call text-back alone typically recovers enough jobs in month one to cover the fee",
+              "We handle the build; your part is an intake conversation and approving the message wording",
+              "Every tier includes all five automations; you only scale capacity, seats, and support",
               "Backed by the same team that builds AnovasOS and our growth services",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2.5 text-sm text-white/80">
@@ -331,12 +340,14 @@ export default function AutopilotPage() {
           <h2 className="text-2xl font-bold text-charcoal mb-3">
             Let&apos;s size the right plan for your operation.
           </h2>
-          <p className="text-sm text-gray-500 max-w-md mx-auto">
+          <p className="text-sm text-muted-ink max-w-md mx-auto">
             Tell us about your business and we&apos;ll walk you through exactly what gets automated. No pressure, no pitch until you&apos;ve seen what it looks like for you.
           </p>
         </div>
         <AutopilotInquiryForm />
       </section>
+
+      </main>
 
       <MarketingFooter />
 

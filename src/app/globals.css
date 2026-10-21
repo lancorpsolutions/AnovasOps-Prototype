@@ -6,9 +6,16 @@
   --navy: #0f1b2d;
   --navy-light: #1c2d47;
   --charcoal: #232730;
-  --orange: #c9622d;
+  /* #b4521f keeps the brand's burnt orange but reaches 5:1 contrast with white
+     text (the previous #c9622d was 4:1, below WCAG AA for button labels). */
+  --orange: #b4521f;
   --orange-light: #e07b3f;
   --border-color: #e2e4e9;
+  /* Marketing-site tokens */
+  --ink: #070e1a;
+  --signal: #5fc3f5;
+  --signal-deep: #1f9fe0;
+  --muted-ink: #5b6577;
 }
 
 @theme inline {
@@ -19,6 +26,10 @@
   --color-charcoal: var(--charcoal);
   --color-orange: var(--orange);
   --color-orange-light: var(--orange-light);
+  --color-ink: var(--ink);
+  --color-signal: var(--signal);
+  --color-signal-deep: var(--signal-deep);
+  --color-muted-ink: var(--muted-ink);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -126,4 +137,84 @@ body {
   height: 360px;
   background: radial-gradient(circle, rgba(28, 45, 71, 0.6), transparent 70%);
   pointer-events: none;
+}
+
+/* ── Accessibility ─────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--signal-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Marketing surfaces ────────────────────────────────────────────────── */
+
+.surface-ink {
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, rgba(95, 195, 245, 0.10), transparent 60%),
+    radial-gradient(50rem 28rem at -10% 110%, rgba(224, 123, 63, 0.12), transparent 60%),
+    var(--ink);
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flow-line {
+  stroke-dasharray: 4 8;
+  animation: flow-dash 1.2s linear infinite;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise-in {
+  animation: rise-in 0.35s ease-out both;
 }

@@ -15,6 +15,12 @@ import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { PLANS } from "@/lib/plans";
+import { OfferingFactsPanel } from "@/components/site/offering-facts";
+import { SectionHeader } from "@/components/site/section";
+import { CtaBand } from "@/components/site/cta-band";
+import { TrackedLink } from "@/components/site/tracked-link";
+import { OFFERINGS } from "@/lib/site/offerings";
+import { ROUTES } from "@/lib/site/config";
 
 export const metadata: Metadata = {
   title: "AnovasOS: The Business Growth Platform for Local Service Businesses",
@@ -44,7 +50,7 @@ const anovasOSJsonLd = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   description:
-    "AnovasOS is a business growth platform providing demand generation, content creation, campaign management, SEO, lead nurturing, and consumer intelligence for local and home service businesses.",
+    "AnovasOS is a business growth platform for local and home service businesses: one command center for the sales pipeline, jobs, scheduling, crews, invoices, automation rules, SOPs, and operational risk tracking.",
   brand: { "@type": "Organization", name: "Anovas Integrated Systems" },
   offers: PLANS.map((plan) => ({
     "@type": "Offer",
@@ -103,6 +109,7 @@ export default function AnovasOSPage() {
   return (
     <div className="min-h-screen bg-background">
       <MarketingNav />
+      <main id="main">
 
       <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy via-navy to-navy-light text-white">
         <div className="absolute inset-0 hero-grid opacity-50" />
@@ -120,20 +127,30 @@ export default function AnovasOSPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild variant="primary" size="lg">
-              <Link href="/anovasos">
-                Try the Live Demo <ArrowRight size={16} />
-              </Link>
+              <TrackedLink href={`${ROUTES.book}?from=anovasos`} location="anovasos_hero" ctaId="book">
+                Book an AnovasOS walkthrough <ArrowRight size={16} aria-hidden="true" />
+              </TrackedLink>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">
-              <Link href="/anovasos/signup">Sign Up &amp; Get Started</Link>
+              <TrackedLink href={ROUTES.diagnostic} location="anovasos_hero" ctaId="diagnostic">
+                Get the free diagnostic
+              </TrackedLink>
             </Button>
           </div>
+          <p className="mt-4 text-sm text-white/55">
+            Already a customer? <Link href="/anovasos/login" className="underline hover:text-white">Log in</Link>
+          </p>
         </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-6 pt-16" aria-labelledby="glance-title">
+        <SectionHeader id="glance-title" eyebrow="At a glance" title="What AnovasOS is, and what it isn't." lead="Software you log into every day, plus a recurring review with our team. It's not a marketing agency retainer." />
+        <OfferingFactsPanel offering={OFFERINGS.anovasos} />
       </section>
 
       <section className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-xl font-bold text-charcoal mb-2 text-center">Sound familiar?</h2>
-        <p className="text-sm text-gray-500 mb-10 max-w-xl mx-auto text-center">
+        <p className="text-sm text-muted-ink mb-10 max-w-xl mx-auto text-center">
           These are the quiet revenue leaks we see across home service businesses every day.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -148,7 +165,7 @@ export default function AnovasOSPage() {
                   <Icon size={18} />
                 </span>
                 <p className="text-sm font-semibold text-charcoal mb-1.5">{point.title}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{point.summary}</p>
+                <p className="text-xs text-muted-ink leading-relaxed">{point.summary}</p>
               </div>
             );
           })}
@@ -158,7 +175,7 @@ export default function AnovasOSPage() {
       <section className="bg-white border-y border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-16">
           <h2 className="text-xl font-bold text-charcoal mb-2 text-center">What AnovasOS gives you</h2>
-          <p className="text-sm text-gray-500 mb-10 max-w-xl mx-auto text-center">
+          <p className="text-sm text-muted-ink mb-10 max-w-xl mx-auto text-center">
             Visibility, automation, and accountability, built specifically for trades businesses.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -173,7 +190,7 @@ export default function AnovasOSPage() {
                     <Icon size={18} />
                   </span>
                   <p className="text-sm font-semibold text-charcoal mb-2">{feature.title}</p>
-                  <p className="text-xs text-gray-500 leading-relaxed">{feature.summary}</p>
+                  <p className="text-xs text-muted-ink leading-relaxed">{feature.summary}</p>
                 </div>
               );
             })}
@@ -187,7 +204,7 @@ export default function AnovasOSPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-charcoal mb-3">
             Simple, transparent AnovasOS pricing.
           </h2>
-          <p className="text-sm text-gray-500 max-w-xl mx-auto">
+          <p className="text-sm text-muted-ink max-w-xl mx-auto">
             Pick the plan that matches where your business is today. Every plan includes a real
             optimization review with our team, not just software.
           </p>
@@ -211,7 +228,7 @@ export default function AnovasOSPage() {
                 )}
                 <p className="text-base font-bold text-charcoal mb-1">{plan.name}</p>
                 <p className="text-2xl font-bold text-charcoal mb-2">{plan.price}</p>
-                <p className="text-xs text-gray-500 leading-relaxed mb-5">{plan.description}</p>
+                <p className="text-xs text-muted-ink leading-relaxed mb-5">{plan.description}</p>
                 <ul className="space-y-2 mb-6 flex-1">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-xs text-gray-600">
@@ -231,27 +248,12 @@ export default function AnovasOSPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy-light to-navy text-white">
-        <div className="relative max-w-4xl mx-auto px-6 py-14 text-center">
-          <p className="text-base md:text-lg font-semibold mb-2">
-            See what is happening, fix what is stuck, and protect revenue before small issues
-            become bigger problems.
-          </p>
-          <p className="text-white/50 text-xs mb-6">
-            AnovasOS is built by Anovas Integrated Systems.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild variant="primary" size="lg">
-              <Link href="/anovasos">
-                Try the Live Demo <ArrowRight size={16} />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">
-              <Link href="/services/autopilot">See Anovas Autopilot</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        location="anovasos_final"
+        title="Not sure AnovasOS is the right first step?"
+        lead="The diagnostic scores your business across four pillars and tells you which system to fix first, even if the answer isn't AnovasOS."
+      />
+      </main>
 
       <MarketingFooter />
 
