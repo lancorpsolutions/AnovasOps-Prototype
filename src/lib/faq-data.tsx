@@ -219,10 +219,11 @@ export const faqSections: FaqSection[] = [
         question: "What is AnovasOS?",
         answer: (
           <p>
-            AnovasOS is the growth management platform for local service businesses: AI-powered
-            marketing execution, analytics, reporting, and ongoing management in one command center.
-            While Autopilot protects your revenue, AnovasOS generates demand and gives you full
-            visibility into what is working.
+            AnovasOS is the business growth platform for local service businesses: one command
+            center for your sales pipeline, jobs, scheduling, crews, invoices, automation rules,
+            SOPs, and operational risk tracking, with recurring optimization reviews from our team.
+            While Autopilot protects revenue from leads you already have, AnovasOS gives you full
+            visibility into the operation so nothing stalls between sale and invoice.
           </p>
         ),
       },
@@ -230,9 +231,10 @@ export const faqSections: FaqSection[] = [
         question: "How is AnovasOS different from Anovas Autopilot?",
         answer: (
           <p>
-            Autopilot keeps you from losing the leads you already have. AnovasOS goes out and gets
-            you more. Together they cover the full growth cycle: attract, convert, and retain. Most
-            clients start with one and add the other as they scale.
+            Autopilot is a managed service that keeps you from losing the leads you already have:
+            missed calls, cold quotes, no-shows, unpaid invoices. AnovasOS is software for running
+            the operation: pipeline, jobs, crews, and billing in one place. You can start with
+            either and add the other later.
           </p>
         ),
       },

@@ -26,6 +26,7 @@ export default function FaqPage() {
   return (
     <div className="min-h-screen bg-background">
       <MarketingNav />
+      <main id="main">
 
       <section className="relative overflow-hidden hero-glow bg-gradient-to-br from-navy via-navy to-navy-light text-white">
         <div className="absolute inset-0 hero-grid opacity-50" />
@@ -74,6 +75,8 @@ export default function FaqPage() {
           </Button>
         </div>
       </section>
+
+      </main>
 
       <MarketingFooter />
     </div>
