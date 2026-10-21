@@ -66,7 +66,7 @@ export default function RevenueLeaksLandingPage() {
               customer. Built for HVAC, plumbing, electrical, roofing, landscaping, and pest
               control teams who are tired of finding out about problems after the money&apos;s gone.
             </p>
-            <p className="text-white/40 text-xs">
+            <p className="text-white/60 text-xs">
               Brought to you by{" "}
               <span className="font-bold text-white">
                 Anovas<span className="text-orange-light">OS</span>
@@ -82,7 +82,7 @@ export default function RevenueLeaksLandingPage() {
 
       <section className="max-w-6xl mx-auto px-6 py-14">
         <h2 className="text-xl font-bold text-charcoal mb-2">What&apos;s inside</h2>
-        <p className="text-sm text-gray-500 mb-8 max-w-2xl">
+        <p className="text-sm text-muted-ink mb-8 max-w-2xl">
           Five real-world revenue leaks we see across home service businesses every day, what
           each one looks like on the ground, and the specific fix to plug it.
         </p>
@@ -95,12 +95,12 @@ export default function RevenueLeaksLandingPage() {
                   <span className="flex h-7 w-7 items-center justify-center rounded-md bg-orange/10 text-orange shrink-0">
                     <Icon size={15} />
                   </span>
-                  <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
+                  <span className="text-[11px] font-semibold text-muted-ink uppercase tracking-wide">
                     Leak {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <p className="text-sm font-semibold text-charcoal mb-1.5">{leak.title}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{leak.summary}</p>
+                <p className="text-xs text-muted-ink leading-relaxed">{leak.summary}</p>
               </div>
             );
           })}
@@ -117,8 +117,8 @@ export default function RevenueLeaksLandingPage() {
             AnovasOS is the operating system for home service businesses, built by Anovas
             Integrated Systems.
           </p>
-          <p className="text-white/30 text-[11px] mt-4">
-            <a href="/privacy" className="underline hover:text-white/60">
+          <p className="text-white/60 text-[11px] mt-4">
+            <a href="/privacy" className="underline hover:text-white">
               Privacy Policy
             </a>
           </p>

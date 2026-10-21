@@ -77,40 +77,50 @@ export default function CookiesPage() {
         </Section>
 
         <Section title="3. Third-Party Cookies">
-          <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
-            <thead>
-              <tr className="bg-gray-50 text-left">
-                <th className="px-3 py-2 font-semibold text-charcoal">Provider</th>
-                <th className="px-3 py-2 font-semibold text-charcoal">Purpose</th>
-                <th className="px-3 py-2 font-semibold text-charcoal">Learn More</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-t border-gray-200">
-                <td className="px-3 py-2">Stripe</td>
-                <td className="px-3 py-2">Payment processing</td>
-                <td className="px-3 py-2">stripe.com/privacy</td>
-              </tr>
-              <tr className="border-t border-gray-200">
-                <td className="px-3 py-2">PayPal</td>
-                <td className="px-3 py-2">Payment processing</td>
-                <td className="px-3 py-2">paypal.com/privacy</td>
-              </tr>
-              <tr className="border-t border-gray-200">
-                <td className="px-3 py-2">HubSpot</td>
-                <td className="px-3 py-2">CRM and marketing analytics</td>
-                <td className="px-3 py-2">legal.hubspot.com/privacy-policy</td>
-              </tr>
-              <tr className="border-t border-gray-200">
-                <td className="px-3 py-2">Microsoft</td>
-                <td className="px-3 py-2">Website analytics</td>
-                <td className="px-3 py-2">privacy.microsoft.com</td>
-              </tr>
-            </tbody>
-          </table>
-          <p className="text-xs text-gray-400 mt-2">
-            Update this table to reflect the actual third-party scripts deployed on your
-            production website before publishing.
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[32rem] text-sm border border-gray-200 rounded-lg overflow-hidden">
+              <thead>
+                <tr className="bg-gray-50 text-left">
+                  <th className="px-3 py-2 font-semibold text-charcoal">Provider</th>
+                  <th className="px-3 py-2 font-semibold text-charcoal">Purpose</th>
+                  <th className="px-3 py-2 font-semibold text-charcoal">When it loads</th>
+                  <th className="px-3 py-2 font-semibold text-charcoal">Learn More</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2">Google Analytics</td>
+                  <td className="px-3 py-2">Website analytics</td>
+                  <td className="px-3 py-2">Only after you accept analytics cookies</td>
+                  <td className="px-3 py-2">policies.google.com/privacy</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2">HubSpot</td>
+                  <td className="px-3 py-2">CRM; website visit tracking linked to form submissions</td>
+                  <td className="px-3 py-2">Tracking code only after you accept analytics cookies</td>
+                  <td className="px-3 py-2">legal.hubspot.com/privacy-policy</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2">Calendly</td>
+                  <td className="px-3 py-2">Appointment scheduling</td>
+                  <td className="px-3 py-2">On the booking page, to show the scheduler</td>
+                  <td className="px-3 py-2">calendly.com/privacy</td>
+                </tr>
+                <tr className="border-t border-gray-200">
+                  <td className="px-3 py-2">PayPal</td>
+                  <td className="px-3 py-2">Payment processing</td>
+                  <td className="px-3 py-2">On the AnovasOS sign-up page</td>
+                  <td className="px-3 py-2">paypal.com/privacy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3">
+            <strong>First-party storage.</strong> We store two small values in your browser&apos;s
+            local storage: your cookie choice, and where your visit came from (campaign tags such as
+            utm_source, the referring site, and the first page you landed on). The visit-source value
+            stays in your browser and is only sent to us if you submit a form, so we know which
+            channel brought you to us.
           </p>
         </Section>
 
@@ -135,11 +145,6 @@ export default function CookiesPage() {
             <strong>4.3 Cookie Consent Banner.</strong> Where required by law, we will present a
             cookie consent banner when you first visit our website. You can update your
             preferences at any time through the cookie settings link in our website footer.
-          </p>
-          <p className="text-xs text-gray-400">
-            Implementation note: A cookie consent management platform (Cookiebot, OneTrust free
-            tier, or Termly) should be implemented on the production website before launch if you
-            are targeting any EU or UK visitors.
           </p>
         </Section>
 
