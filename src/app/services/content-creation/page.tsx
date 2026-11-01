@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { intakeHref } from "@/lib/intake";
 
 export const metadata: Metadata = {
   title: "Content Creation | Anovas Integrated Systems",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/content-creation" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=content-creation";
+const INTAKE = intakeHref("content-creation");
 
 const tiers = [
   {
@@ -151,9 +152,7 @@ export default function ContentCreationPage() {
                     ))}
                   </ul>
                   <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={INTAKE}
                     className={
                       featured
                         ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
@@ -173,7 +172,7 @@ export default function ContentCreationPage() {
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
           <p className="text-white/60 text-sm mb-6">Already running SEO or social with us? Content is often bundled at a reduced rate. Ask on the call.</p>
           <Button asChild variant="primary" size="lg">
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            <a href={INTAKE}>
               Book a Discovery Call <ArrowRight size={16} />
             </a>
           </Button>

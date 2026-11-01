@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { intakeHref } from "@/lib/intake";
 
 export const metadata: Metadata = {
   title: "Paid Advertising | Anovas Integrated Systems",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/paid-advertising" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=paid-advertising";
+const INTAKE = intakeHref("paid-advertising");
 
 const tiers = [
   {
@@ -157,9 +158,7 @@ export default function PaidAdvertisingPage() {
                     ))}
                   </ul>
                   <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={INTAKE}
                     className={
                       featured
                         ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
@@ -179,7 +178,7 @@ export default function PaidAdvertisingPage() {
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
           <p className="text-white/60 text-sm mb-6">Not sure which platform to start with? We&apos;ll tell you what we&apos;d recommend for your market and budget on the call.</p>
           <Button asChild variant="primary" size="lg">
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            <a href={INTAKE}>
               Book a Discovery Call <ArrowRight size={16} />
             </a>
           </Button>
