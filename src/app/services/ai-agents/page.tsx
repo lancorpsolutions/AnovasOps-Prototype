@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Bot, CheckCircle, Zap, Users, BarChart2, Clock }
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { intakeHref } from "@/lib/intake";
 
 export const metadata: Metadata = {
   title: "AI Agent Services | Anovas Integrated Systems",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/ai-agents" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=ai-agents";
+const INTAKE = intakeHref("ai-agents");
 
 const capabilities = [
   {
@@ -186,9 +187,7 @@ export default function AIAgentsPage() {
                     ))}
                   </ul>
                   <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={INTAKE}
                     className={
                       featured
                         ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
@@ -220,7 +219,7 @@ export default function AIAgentsPage() {
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
           <p className="text-white/60 text-sm mb-6">Tell us what&apos;s costing you the most time. We&apos;ll scope the right agent workflow around it.</p>
           <Button asChild variant="primary" size="lg">
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            <a href={INTAKE}>
               Book a Discovery Call <ArrowRight size={16} />
             </a>
           </Button>

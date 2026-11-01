@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { intakeHref } from "@/lib/intake";
 
 export const metadata: Metadata = {
   title: "Business & Corporate Structure Consulting | Anovas Integrated Systems",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/business-structure" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=business-structure";
+const INTAKE = intakeHref("business-structure");
 
 const tiers = [
   {
@@ -135,9 +136,7 @@ export default function BusinessStructurePage() {
                     ))}
                   </ul>
                   <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={INTAKE}
                     className={
                       featured
                         ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
@@ -174,7 +173,7 @@ export default function BusinessStructurePage() {
             We&apos;ll schedule your session and send a short intake form so we can review your current setup before we talk.
           </p>
           <Button asChild variant="primary" size="lg">
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            <a href={INTAKE}>
               Book a Discovery Call <ArrowRight size={16} />
             </a>
           </Button>

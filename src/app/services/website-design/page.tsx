@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { intakeHref } from "@/lib/intake";
 
 export const metadata: Metadata = {
   title: "Website Design & Development | Anovas Integrated Systems",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/website-design" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=website-design";
+const INTAKE = intakeHref("website-design");
 
 const tiers = [
   {
@@ -160,9 +161,7 @@ export default function WebsiteDesignPage() {
                     ))}
                   </ul>
                   <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={INTAKE}
                     className={
                       featured
                         ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
@@ -195,7 +194,7 @@ export default function WebsiteDesignPage() {
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
           <p className="text-white/60 text-sm mb-6">Questions about your project? Let&apos;s talk it through before you commit to anything.</p>
           <Button asChild variant="primary" size="lg">
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            <a href={INTAKE}>
               Book a Discovery Call <ArrowRight size={16} />
             </a>
           </Button>

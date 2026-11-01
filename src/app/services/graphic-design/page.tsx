@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, PenTool } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { intakeHref } from "@/lib/intake";
 
 export const metadata: Metadata = {
   title: "Graphic Design | Anovas Integrated Systems",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/graphic-design" },
 };
 
-const CALENDLY = "https://calendly.com/d/cysq-pnv-zpx/discovery-call?utm_source=website&utm_medium=cta&utm_content=graphic-design";
+const INTAKE = intakeHref("graphic-design");
 
 const tiers = [
   {
@@ -139,9 +140,7 @@ export default function GraphicDesignPage() {
                     ))}
                   </ul>
                   <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={INTAKE}
                     className={
                       featured
                         ? "mt-6 block text-center text-xs font-semibold bg-gradient-to-r from-orange to-orange-light text-white rounded-lg py-2.5 hover:opacity-90 transition-opacity"
@@ -181,9 +180,7 @@ export default function GraphicDesignPage() {
             ))}
           </ul>
           <a
-            href={CALENDLY}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={INTAKE}
             className="mt-6 inline-block text-center text-xs font-semibold border border-gray-300 text-charcoal rounded-lg px-5 py-2.5 hover:border-orange hover:text-orange transition-colors"
           >
             Request a Quote
@@ -195,7 +192,7 @@ export default function GraphicDesignPage() {
         <div className="max-w-3xl mx-auto px-6 py-14 text-center">
           <p className="text-white/60 text-sm mb-6">Not sure whether retainer or project is right for you? Book a quick call.</p>
           <Button asChild variant="primary" size="lg">
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            <a href={INTAKE}>
               Book a Discovery Call <ArrowRight size={16} />
             </a>
           </Button>
