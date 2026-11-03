@@ -5,6 +5,7 @@ const nextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  outputFileTracingRoot: path.join(__dirname),
 };
 
 module.exports = nextConfig;
